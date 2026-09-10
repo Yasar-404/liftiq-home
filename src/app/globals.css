@@ -1,0 +1,616 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LiftIQ marketing design system
+   Tokens: colors, typography, spacing, radius, shadow, motion
+   ============================================================ */
+
+@theme {
+  /* Fonts (bound to next/font CSS variables) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Core palette */
+  --color-bg: #08090a;
+  --color-bg-subtle: #0b0c0e;
+  --color-surface: #101114;
+  --color-surface-elevated: #16181c;
+  --color-surface-hover: #1b1e22;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-text: #f4f5f7;
+  --color-text-muted: #9ba1ac;
+  --color-text-faint: #6b7080;
+  /* Accent — LiftIQ blue → violet identity */
+  --color-accent: #7c5cff;
+  --color-accent-dim: #6248e6;
+  --color-accent-blue: #2f80ff;
+  --color-accent-violet: #b64bff;
+  --color-accent-soft: rgba(124, 92, 255, 0.14);
+  --gradient-brand: linear-gradient(150deg, #2f80ff 0%, #7c5cff 48%, #b64bff 100%);
+
+  /* Container widths */
+  --container-page: 1200px;
+  --container-wide: 1360px;
+  --container-prose: 720px;
+
+  /* Radius scale */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 70px -20px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px rgba(124, 92, 255, 0.28),
+    0 14px 46px -12px rgba(124, 92, 255, 0.42);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
+  --duration-base: 280ms;
+  --duration-slow: 600ms;
+}
+
+/* ---------- base ---------- */
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- typography helpers ---------- */
+
+.text-display {
+  font-size: clamp(3rem, 1.4rem + 7vw, 6.75rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  padding-bottom: 0.06em;
+}
+
+.text-h2 {
+  font-size: clamp(2.15rem, 1.35rem + 3.4vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+.text-h3 {
+  font-size: clamp(1.55rem, 1.1rem + 1.9vw, 2.25rem);
+  line-height: 1.14;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+}
+
+.text-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* Supporting copy under a display/h2 — sized to hold its own next to big type. */
+.text-lead {
+  font-size: clamp(1.1rem, 0.98rem + 0.6vw, 1.35rem);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Word-by-word heading reveal. JS-gated so plain text shows with no scripting,
+   and driven by `transition` (not `animation`) so the words always settle at
+   their final position even if the tab was hidden while it scrolled in. */
+.lq-words .lq-word {
+  display: inline-block;
+}
+.js .lq-words .lq-word {
+  overflow: hidden;
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+  vertical-align: bottom;
+}
+.js .lq-words .lq-word-inner {
+  display: inline-block;
+  transform: translateY(115%);
+  transition: transform 0.6s var(--ease-spring);
+}
+.js .lq-words.is-visible .lq-word-inner {
+  transform: translateY(0);
+  transition-delay: var(--word-delay, 0ms);
+}
+/* emphasised word also gets an ongoing dissolve (opacity/filter only, so it
+   never fights the transform transition above) */
+.js .lq-words.is-visible .lq-word-inner.word-dissolve {
+  animation: lq-dissolve 9s ease-in-out infinite;
+  animation-delay: calc(var(--word-delay, 0ms) + 1800ms);
+}
+
+.js .lq-reveal-block {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s var(--ease-spring);
+}
+.js .lq-reveal-block.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .lq-words .lq-word {
+    overflow: visible;
+  }
+  .js .lq-words .lq-word-inner {
+    transform: none;
+  }
+  .js .lq-reveal-block {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- surface utilities ---------- */
+
+.surface-card {
+  background: linear-gradient(
+    180deg,
+    var(--color-surface-elevated),
+    var(--color-surface)
+  );
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    var(--shadow-md);
+}
+
+/* Premium card: gradient hairline border + inner top highlight + sheen.
+   Use on a positioned element; `.card::before` draws the 1px gradient frame. */
+.card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(
+      120% 80% at 50% 0%,
+      rgba(255, 255, 255, 0.05),
+      transparent 60%
+    ),
+    linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 18px 40px -24px rgba(0, 0, 0, 0.7);
+  transition:
+    transform var(--duration-base) var(--ease-spring),
+    box-shadow var(--duration-base) var(--ease-spring);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.16),
+    rgba(255, 255, 255, 0.04) 32%,
+    rgba(255, 255, 255, 0.03) 70%,
+    rgba(124, 92, 255, 0.14)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    80% 60% at 50% 0%,
+    rgba(124, 92, 255, 0.16),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-spring);
+  pointer-events: none;
+}
+
+.card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 28px 60px -28px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(124, 92, 255, 0.16);
+}
+
+.card-interactive:hover::after {
+  opacity: 1;
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Slowly panning brand gradient for hero emphasis words. */
+.text-gradient-anim {
+  background: linear-gradient(
+    100deg,
+    #2f80ff,
+    #7c5cff,
+    #b64bff,
+    #7c5cff,
+    #2f80ff
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: lq-gradient-pan 7s ease-in-out infinite;
+}
+
+@keyframes lq-gradient-pan {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.hairline {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-strong),
+    transparent
+  );
+}
+
+.grid-texture {
+  background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.04) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.radial-fade {
+  -webkit-mask-image: radial-gradient(
+    ellipse 60% 55% at 50% 40%,
+    #000 40%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 60% 55% at 50% 40%,
+    #000 40%,
+    transparent 100%
+  );
+}
+
+.accent-glow {
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--color-accent-soft),
+    transparent 70%
+  );
+}
+
+/* ---------- premium background textures ---------- */
+
+/* Film-grain overlay (inline SVG fractal noise, no network request). */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+/* Dotted constellation field, fades toward edges. */
+.bg-dots {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.09) 1px,
+    transparent 1.4px
+  );
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    #000 30%,
+    transparent 78%
+  );
+  mask-image: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    #000 30%,
+    transparent 78%
+  );
+}
+
+/* Aurora blob — soft brand-coloured light. Positioned by callers. */
+.aurora {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(120px);
+  opacity: 0.5;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.aurora--blue {
+  background: radial-gradient(circle, var(--color-accent-blue), transparent 70%);
+}
+
+.aurora--violet {
+  background: radial-gradient(circle, var(--color-accent-violet), transparent 70%);
+}
+
+.aurora--accent {
+  background: radial-gradient(circle, var(--color-accent), transparent 70%);
+}
+
+@keyframes lq-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(4%, -6%, 0) scale(1.12);
+  }
+}
+
+.animate-drift {
+  animation: lq-drift 16s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: lq-drift 24s ease-in-out infinite reverse;
+}
+
+/* Conic sheen for gradient-ring cards / CTAs. */
+@keyframes lq-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.animate-spin-slow {
+  animation: lq-spin 14s linear infinite;
+}
+
+/* ---------- ecosystem diagram ---------- */
+
+/* dashes drifting toward the core */
+.ecosys-line {
+  animation: lq-dash-flow 1.4s linear infinite;
+}
+@keyframes lq-dash-flow {
+  to {
+    stroke-dashoffset: 8;
+  }
+}
+
+/* expanding pulse rings around the core */
+.ecosys-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lq-ecosys-ring 3.6s ease-out infinite;
+}
+@keyframes lq-ecosys-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+/* slowly rotating inner dashed ring */
+.ecosys-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lq-spin 20s linear infinite;
+}
+
+/* gentle per-node float */
+.ecosys-bob {
+  animation: lq-bob 6s ease-in-out infinite;
+}
+@keyframes lq-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.ecosys-node rect,
+.ecosys-node text {
+  transition:
+    stroke 0.25s ease,
+    fill 0.25s ease;
+}
+.ecosys-node:hover rect {
+  stroke: var(--color-accent);
+  fill: var(--color-surface-hover);
+}
+.ecosys-node:hover text {
+  fill: var(--color-text);
+}
+
+/* ---------- manifesto ---------- */
+
+/* the emphasised word softly dissolves and re-forms (wired up in the
+   .lq-words reveal rules so it doesn't fight the mask animation) */
+@keyframes lq-dissolve {
+  0%,
+  38%,
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    filter: blur(4px);
+    opacity: 0.55;
+  }
+  62% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* ---------- animations ---------- */
+
+@keyframes lq-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes lq-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes lq-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes lq-pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.animate-marquee {
+  animation: lq-marquee var(--marquee-duration, 40s) linear infinite;
+}
+
+/* Only hide reveal content once JS is confirmed running, so the page
+   degrades to fully-visible if scripting fails. Driven by `transition`
+   (not `animation`) so content always settles visible even if the tab was
+   hidden while it scrolled into view. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--duration-slow) ease,
+    transform var(--duration-slow) var(--ease-spring);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .animate-marquee {
+    animation: none !important;
+  }
+}
