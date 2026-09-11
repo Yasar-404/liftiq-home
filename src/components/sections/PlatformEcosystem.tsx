@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -24,6 +25,8 @@ const cx = W / 2;
 const cy = H / 2;
 const rx = 300;
 const ry = 180;
+const PAD = 20;
+const FALLBACK_VIEWBOX = `-52 -16 ${W + 104} ${H + 32}`;
 
 function nodePos(i: number) {
   const angle = (i / nodes.length) * Math.PI * 2 - Math.PI / 2;
@@ -32,6 +35,37 @@ function nodePos(i: number) {
 
 export function PlatformEcosystem() {
   const reduced = useReducedMotion();
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [viewBox, setViewBox] = useState(FALLBACK_VIEWBOX);
+
+  // Fit the viewBox to the diagram's real rendered bounding box, so it's
+  // always centred regardless of font metrics / label widths on the
+  // viewer's device (rather than trusting a hand-estimated box).
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    let cancelled = false;
+
+    const fit = () => {
+      if (cancelled) return;
+      const box = svg.getBBox();
+      if (box.width > 0 && box.height > 0) {
+        setViewBox(
+          `${box.x - PAD} ${box.y - PAD} ${box.width + PAD * 2} ${box.height + PAD * 2}`,
+        );
+      }
+    };
+
+    fit();
+    const id = window.setTimeout(fit, 250); // after webfonts/labels settle
+    window.addEventListener("resize", fit);
+    document.fonts?.ready?.then(fit).catch(() => {});
+    return () => {
+      cancelled = true;
+      window.clearTimeout(id);
+      window.removeEventListener("resize", fit);
+    };
+  }, []);
 
   return (
     <Section id="ecosystem" spacing="lg" containerClassName="flex flex-col gap-14">
@@ -56,7 +90,8 @@ export function PlatformEcosystem() {
         />
 
         <svg
-          viewBox={`-52 -16 ${W + 104} ${H + 32}`}
+          ref={svgRef}
+          viewBox={viewBox}
           className="w-full"
           role="img"
           aria-label="LiftIQ platform ecosystem diagram"
