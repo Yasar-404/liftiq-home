@@ -1,60 +1,71 @@
-# LiftIQ — Marketing Site
+# LiftIQ Website
 
-Premium marketing website for **LiftIQ**, an AI-powered gym management platform.
+Marketing site for [LiftIQ](https://liftiq.in), a gym management platform for memberships,
+attendance, billing, CRM, communication, and analytics.
 
-Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, and
-`motion` for interaction design.
+## Stack
 
-## Commands
+- [Next.js](https://nextjs.org) (App Router) and React 19
+- TypeScript (strict)
+- [Tailwind CSS](https://tailwindcss.com) v4, with design tokens in CSS
+- [Motion](https://motion.dev) for interaction animations
+- ESLint and Prettier
+
+## Getting started
+
+Requires Node.js 20.9 or newer.
 
 ```bash
-npm run dev     # local dev server (http://localhost:3000)
-npm run build   # production build
-npm run start   # serve the production build
-npm run lint    # eslint
+npm install
+npm run dev
 ```
 
-## Architecture
+The site runs at http://localhost:3000.
+
+## Scripts
+
+| Command                | Description                       |
+| ---------------------- | --------------------------------- |
+| `npm run dev`          | Start the development server      |
+| `npm run build`        | Create a production build         |
+| `npm run start`        | Serve the production build        |
+| `npm run lint`         | Lint with ESLint                  |
+| `npm run typecheck`    | Type-check with `tsc`             |
+| `npm run format`       | Format the codebase with Prettier |
+| `npm run format:check` | Check formatting without changing |
+
+## Project structure
 
 ```
 src/
-  app/
-    layout.tsx        # fonts, metadata, JSON-LD
-    page.tsx          # composes the landing sections
-    globals.css       # design tokens + primitives + reduced-motion
-    sitemap.ts / robots.ts
+  app/                  Routes, root layout, fonts, icons, robots and sitemap
   components/
-    layout/           # Container, Section
-    navigation/       # Navbar, MobileMenu
-    hero/             # Hero + supporting motion pieces
-    sections/         # one file per landing section (03–12)
-    features/         # FeatureCard
-    product/          # marketing UI mockups (dashboard, AI chat, charts)
-    contact/          # ContactSection
-    footer/           # Footer
-    ui/               # Button, Badge, Marquee, AnimatedCounter, Reveal, Logo, icons, Backdrop
-  data/               # copy + config, kept out of components
-  hooks/              # useScrolled, useReducedMotion, useInViewOnce
-  lib/                # cn(), shared motion variants
-  types/              # shared TS types
+    layout/             Container, Section, MotionProvider
+    navigation/         Header and mobile menu
+    footer/             Site footer
+    sections/           One folder per landing-page section
+    product/            Product UI mockups (dashboard, AI chat, charts)
+    ui/                 Reusable primitives (Button, Logo, Reveal, ...)
+  data/                 Site config, navigation, and section content
+  hooks/                Reusable React hooks
+  lib/                  Helpers (class names, motion presets, SEO)
+  styles/               Design tokens and shared CSS
+  types/                Shared TypeScript types
 ```
 
-## Design system
+## Conventions
 
-Tokens live in `src/app/globals.css` under `@theme` (colors, radius, shadow,
-motion, container widths) and are consumed as Tailwind utilities
-(`bg-surface`, `text-text-muted`, `border-border`, …).
+- **Content lives in `src/data`.** Components render data; edit copy, navigation, features,
+  and contact details there. Sample figures shown in the product mockups (`data/demo.ts`) are
+  placeholders, not customer data.
+- **Design tokens** (colors, radii, shadows, motion) are defined in `src/styles/tokens.css`
+  and used through Tailwind utilities such as `bg-surface` and `text-text-muted`.
+- **Motion** respects `prefers-reduced-motion`. Scroll reveals are gated on a `js` class on
+  `<html>` (set in the root layout), so content stays visible without JavaScript.
+- **Sections** are exported through `src/components/sections/index.ts` and composed in
+  `src/app/page.tsx`.
 
-## Motion
+## Deployment
 
-- Scroll reveals are CSS-animation driven (`Reveal` + `useInViewOnce`) — no JS
-  animation on the critical path.
-- Richer sequences (hero, tabs, ecosystem, AI copilot) use `motion`.
-- Everything collapses to a static experience under
-  `prefers-reduced-motion: reduce`.
-
-## Content
-
-All contact details, nav, features, and product-tab copy are data files in
-`src/data/`. Demo data shown in product mockups is clearly labelled and contains
-no real personal information.
+The site is a static Next.js app and deploys to any Next.js host, including Vercel.
+Contact details and the production domain are configured in `src/data/site.ts`.
