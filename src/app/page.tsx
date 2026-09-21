@@ -1,17 +1,19 @@
-import { Navbar } from "@/components/navigation/Navbar";
 import { Footer } from "@/components/footer/Footer";
-import { Hero } from "@/components/hero/Hero";
-import { Positioning } from "@/components/sections/Positioning";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { ProductStory } from "@/components/sections/ProductStory";
-import { CorePlatform } from "@/components/sections/CorePlatform";
-import { AiCopilot } from "@/components/sections/AiCopilot";
-import { AttendanceExperience } from "@/components/sections/AttendanceExperience";
-import { ForGymOwners } from "@/components/sections/ForGymOwners";
-import { Manifesto } from "@/components/sections/Manifesto";
-import { PlatformEcosystem } from "@/components/sections/PlatformEcosystem";
-import { FinalCta } from "@/components/sections/FinalCta";
-import { ContactSection } from "@/components/contact/ContactSection";
+import { Navbar } from "@/components/navigation/Navbar";
+import {
+  AiCopilot,
+  Attendance,
+  Contact,
+  CorePlatform,
+  Ecosystem,
+  FinalCta,
+  ForGymOwners,
+  Hero,
+  Manifesto,
+  Positioning,
+  Problem,
+  ProductStory,
+} from "@/components/sections";
 
 export default function HomePage() {
   return (
@@ -20,16 +22,16 @@ export default function HomePage() {
       <main id="main">
         <Hero />
         <Positioning />
-        <ProblemSection />
+        <Problem />
         <ProductStory />
         <CorePlatform />
         <AiCopilot />
-        <AttendanceExperience />
+        <Attendance />
         <ForGymOwners />
         <Manifesto />
-        <PlatformEcosystem />
+        <Ecosystem />
         <FinalCta />
-        <ContactSection />
+        <Contact />
       </main>
       <Footer />
     </>

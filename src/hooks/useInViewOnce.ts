@@ -3,10 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Fires once when the element is at (or near) the viewport. Uses an
- * IntersectionObserver plus a scroll/resize rect-check fallback, so content
- * is revealed reliably even in environments where observer callbacks are
- * delayed or dropped. Content can never stay permanently hidden.
+ * Becomes true once the element is at or near the viewport. Pairs an
+ * IntersectionObserver with a scroll/resize rect check, so reveals still fire
+ * when observer callbacks are delayed or dropped.
  */
 export function useInViewOnce<T extends HTMLElement = HTMLDivElement>(
   rootMargin = "0px 0px 20% 0px",

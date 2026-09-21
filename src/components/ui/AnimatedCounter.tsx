@@ -13,7 +13,7 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-/** Counts up from 0 to `value` once it scrolls into view. */
+/** Counts up to `value` once scrolled into view. */
 export function AnimatedCounter({
   value,
   duration = 1400,
@@ -37,7 +37,6 @@ export function AnimatedCounter({
         return;
       }
       const progress = Math.min((now - start) / duration, 1);
-      // easeOutExpo
       const eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       setDisplay(value * eased);
       if (progress < 1) frame.current = requestAnimationFrame(tick);

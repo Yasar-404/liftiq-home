@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { cn } from "@/lib/cn";
-import { useScrolled } from "@/hooks/useScrolled";
+import { Button } from "@/components/ui/Button";
+import { Menu } from "@/components/ui/icons";
+import { Logo } from "@/components/ui/Logo";
 import { primaryNav } from "@/data/navigation";
 import { site } from "@/data/site";
-import { Button } from "@/components/ui/Button";
-import { Logo } from "@/components/ui/Logo";
-import { Menu } from "@/components/ui/icons";
+import { useScrolled } from "@/hooks/useScrolled";
+import { cn } from "@/lib/cn";
 import { MobileMenu } from "./MobileMenu";
+import { SignInLink } from "./SignInLink";
 
 export function Navbar() {
   const scrolled = useScrolled(16);
@@ -25,7 +26,7 @@ export function Navbar() {
               : "h-15 border-transparent bg-transparent py-2",
           )}
         >
-          <a href="#top" aria-label="LiftIQ home" className="shrink-0">
+          <a href="#top" aria-label={`${site.name} home`} className="shrink-0">
             <Logo />
           </a>
 
@@ -33,7 +34,7 @@ export function Navbar() {
             <nav className="flex items-center gap-0.5">
               {primaryNav.map((item) => (
                 <a
-                  key={item.href}
+                  key={item.label}
                   href={item.href}
                   className="rounded-full px-3 py-2 text-sm text-text-muted transition-colors hover:text-text"
                 >
@@ -44,18 +45,7 @@ export function Navbar() {
 
             <span className="mx-1.5 h-5 w-px bg-border-strong" aria-hidden="true" />
 
-            <a
-              href="#contact"
-              className="group relative inline-flex overflow-hidden rounded-full p-px"
-            >
-              <span
-                aria-hidden="true"
-                className="absolute inset-[-150%] animate-spin-slow bg-[conic-gradient(from_0deg,transparent_0%,#7c5cff_12%,#2f80ff_22%,transparent_38%,transparent_100%)] opacity-60 transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <span className="relative rounded-full bg-bg-subtle px-4 py-1.5 text-sm text-text-muted transition-colors duration-200 group-hover:text-text">
-                Sign In
-              </span>
-            </a>
+            <SignInLink />
 
             <Button href={site.cta.primary.href} size="md" withArrow className="ml-1">
               {site.cta.primary.label}

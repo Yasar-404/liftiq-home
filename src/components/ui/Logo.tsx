@@ -2,7 +2,6 @@ import { cn } from "@/lib/cn";
 
 interface LogoProps {
   className?: string;
-  /** hide the wordmark, show only the mark */
   markOnly?: boolean;
 }
 
@@ -11,24 +10,12 @@ const BLADE =
   "Q45.2 31 44.8 43 Q44.2 57 42 67 L52.8 82.2 Q55.4 85 51.8 85.6 " +
   "L33 80.2 Q27.5 78.6 27.5 72.6 Z";
 
-/** LiftIQ mark — tapered "L" blade + two stacked tiles, blue → violet gradient. */
+/** LiftIQ mark: an "L" blade beside two stacked tiles. */
 export function LogoMark({ className }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 100 100"
-      fill="none"
-      aria-hidden="true"
-      className={cn("shrink-0", className)}
-    >
+    <svg viewBox="0 0 100 100" fill="none" aria-hidden="true" className={cn("shrink-0", className)}>
       <defs>
-        <linearGradient
-          id="lq-mark"
-          x1="30"
-          y1="6"
-          x2="46"
-          y2="96"
-          gradientUnits="userSpaceOnUse"
-        >
+        <linearGradient id="lq-mark" x1="30" y1="6" x2="46" y2="96" gradientUnits="userSpaceOnUse">
           <stop offset="0" stopColor="#1f7bff" />
           <stop offset="0.42" stopColor="#4d5bff" />
           <stop offset="0.7" stopColor="#8b3bf0" />

@@ -1,9 +1,6 @@
 import type { SVGProps } from "react";
 
-/**
- * In-house line-icon set (24px grid, 1.5 stroke).
- * Keeping icons local guarantees a single visual language and zero deps.
- */
+/** Line icons on a 24px grid with a 1.5 stroke. */
 
 type IconProps = SVGProps<SVGSVGElement>;
 

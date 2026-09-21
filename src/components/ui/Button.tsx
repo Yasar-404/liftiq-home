@@ -54,7 +54,7 @@ function Inner({ withArrow, children }: { withArrow?: boolean; children: ReactNo
   );
 }
 
-/** Link-styled-as-button. Use for anchors / in-page navigation. */
+/** Anchor styled as a button. */
 export function ButtonLink({
   href,
   onClick,
@@ -75,7 +75,7 @@ export function ButtonLink({
   );
 }
 
-/** Real <button> element. Use for click handlers that are not navigation. */
+/** Native `<button>` for actions that aren't navigation. */
 export function ButtonEl({
   variant = "primary",
   size = "md",
@@ -91,10 +91,7 @@ export function ButtonEl({
   );
 }
 
-/**
- * Polymorphic entry point: renders an anchor when `href` is present,
- * otherwise a native button.
- */
+/** Renders an anchor when `href` is given, otherwise a native button. */
 export function Button(props: LinkProps | NativeButtonProps) {
   if ("href" in props && typeof props.href === "string") {
     return <ButtonLink {...props} />;

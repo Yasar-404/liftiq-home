@@ -10,7 +10,7 @@ interface MiniBarsProps {
   activeIndex?: number;
 }
 
-/** Small attendance-style bar chart; bars grow on view. */
+/** Small bar chart; bars grow in when scrolled into view. */
 export function MiniBars({ data, labels, className, activeIndex }: MiniBarsProps) {
   const { ref, inView } = useInViewOnce<HTMLDivElement>();
   const max = Math.max(...data) || 1;

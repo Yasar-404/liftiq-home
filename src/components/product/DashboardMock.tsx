@@ -1,60 +1,36 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "motion/react";
-import { cn } from "@/lib/cn";
-import { viewportOnce } from "@/lib/motion";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
+import { Sparkle } from "@/components/ui/icons";
 import {
-  Grid,
-  Members,
-  Attendance,
-  Billing,
-  Insights,
-  Sparkle,
-} from "@/components/ui/icons";
+  dashboardKpis,
+  dashboardNav,
+  recentActivity,
+  revenueSeries,
+  upcomingRenewals,
+  weeklyCheckIns,
+} from "@/data/demo";
+import { cn } from "@/lib/cn";
+import { easeSpring, viewportOnce } from "@/lib/motion";
 import { MiniAreaChart } from "./MiniAreaChart";
 import { MiniBars } from "./MiniBars";
 import { WindowFrame } from "./WindowFrame";
 
-const revenueSeries = [22, 26, 24, 30, 28, 34, 33, 40, 44, 42, 52, 58];
-const attendance = [58, 72, 65, 80, 91, 74, 40];
-const days = ["M", "T", "W", "T", "F", "S", "S"];
-
-const nav = [
-  { icon: Grid, label: "Dashboard", active: true },
-  { icon: Members, label: "Members" },
-  { icon: Attendance, label: "Attendance" },
-  { icon: Billing, label: "Billing" },
-  { icon: Insights, label: "Insights" },
-];
-
-const renewals = [
-  { name: "Priya N.", plan: "Annual · Strength", days: "2d" },
-  { name: "Arjun M.", plan: "Quarterly", days: "4d" },
-  { name: "Kavya S.", plan: "Monthly · PT", days: "6d" },
-];
-
-const activity = [
-  { who: "Rahul V.", what: "checked in", when: "now" },
-  { who: "Meera K.", what: "renewed Annual plan", when: "6m" },
-  { who: "Dev A.", what: "booked assessment", when: "18m" },
-];
-
-function Panel({
-  children,
-  className,
-  delay = 0,
-}: {
-  children: React.ReactNode;
+interface PanelProps {
+  children: ReactNode;
   className?: string;
   delay?: number;
-}) {
+}
+
+function Panel({ children, className, delay = 0 }: PanelProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={viewportOnce}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.5, ease: easeSpring, delay }}
       className={cn(
         "rounded-[var(--radius-md)] border border-border bg-surface-elevated/70 p-4",
         className,
@@ -69,10 +45,9 @@ export function DashboardMock({ className }: { className?: string }) {
   return (
     <WindowFrame className={className}>
       <div className="flex bg-bg-subtle text-[13px]">
-        {/* sidebar */}
         <aside className="hidden w-[168px] shrink-0 flex-col gap-1 border-r border-border p-3 sm:flex">
-          <div className="px-2 pb-3 pt-1 text-eyebrow text-[0.6rem]">Workspace</div>
-          {nav.map(({ icon: Icon, label, active }) => (
+          <div className="text-eyebrow px-2 pt-1 pb-3 text-[0.6rem]">Workspace</div>
+          {dashboardNav.map(({ icon: Icon, label, active }) => (
             <div
               key={label}
               className={cn(
@@ -92,7 +67,6 @@ export function DashboardMock({ className }: { className?: string }) {
           </div>
         </aside>
 
-        {/* main */}
         <div className="min-w-0 flex-1 p-4 sm:p-5">
           <div className="mb-4 flex items-center justify-between">
             <div>
@@ -105,21 +79,16 @@ export function DashboardMock({ className }: { className?: string }) {
             </div>
           </div>
 
-          {/* KPI row */}
           <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: "Revenue · MTD", value: 4.82, prefix: "₹", suffix: "L", d: 0.05 },
-              { label: "Active members", value: 612, d: 0.12 },
-              { label: "Check-ins today", value: 148, d: 0.19 },
-            ].map((k) => (
-              <Panel key={k.label} delay={k.d} className="p-3">
-                <div className="text-[10.5px] text-text-faint">{k.label}</div>
+            {dashboardKpis.map((kpi, i) => (
+              <Panel key={kpi.label} delay={0.05 + i * 0.07} className="p-3">
+                <div className="text-[10.5px] text-text-faint">{kpi.label}</div>
                 <div className="mt-1 text-[1.15rem] font-semibold tracking-tight text-text">
                   <AnimatedCounter
-                    value={k.value}
-                    decimals={k.prefix ? 2 : 0}
-                    prefix={k.prefix ?? ""}
-                    suffix={k.suffix ?? ""}
+                    value={kpi.value}
+                    decimals={kpi.decimals}
+                    prefix={kpi.prefix}
+                    suffix={kpi.suffix}
                   />
                 </div>
                 <div className="mt-0.5 text-[10px] text-accent-dim">▲ 12% vs last month</div>
@@ -142,11 +111,8 @@ export function DashboardMock({ className }: { className?: string }) {
                 <span className="text-[11px] text-text-muted">AI insight</span>
               </div>
               <p className="text-[11.5px] leading-relaxed text-text">
-                Revenue is up{" "}
-                <span className="text-accent">12%</span> this month.{" "}
-                <span className="text-text-muted">
-                  18 memberships renew within 7 days.
-                </span>
+                Revenue is up <span className="text-accent">12%</span> this month.{" "}
+                <span className="text-text-muted">18 memberships renew within 7 days.</span>
               </p>
             </Panel>
           </div>
@@ -157,18 +123,22 @@ export function DashboardMock({ className }: { className?: string }) {
                 <span>Attendance</span>
                 <span className="text-text-faint">This week</span>
               </div>
-              <MiniBars data={attendance} labels={days} activeIndex={4} />
+              <MiniBars
+                data={weeklyCheckIns.values}
+                labels={weeklyCheckIns.labels}
+                activeIndex={weeklyCheckIns.peakIndex}
+              />
             </Panel>
 
             <Panel delay={0.38}>
               <div className="mb-2 text-[11px] text-text-muted">Upcoming renewals</div>
               <ul className="flex flex-col gap-1.5">
-                {renewals.map((r) => (
+                {upcomingRenewals.map((r) => (
                   <li key={r.name} className="flex items-center justify-between text-[11px]">
                     <span className="text-text">{r.name}</span>
                     <span className="text-text-faint">{r.plan}</span>
                     <span className="rounded bg-white/6 px-1.5 py-0.5 text-[10px] text-text-muted">
-                      {r.days}
+                      {r.due}
                     </span>
                   </li>
                 ))}
@@ -179,7 +149,7 @@ export function DashboardMock({ className }: { className?: string }) {
           <Panel delay={0.42} className="mt-3">
             <div className="mb-2 text-[11px] text-text-muted">Recent activity</div>
             <ul className="flex flex-col gap-1.5">
-              {activity.map((a, i) => (
+              {recentActivity.map((a, i) => (
                 <motion.li
                   key={a.who}
                   initial={{ opacity: 0, x: -8 }}

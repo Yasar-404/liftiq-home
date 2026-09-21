@@ -1,0 +1,1 @@
+export { ForGymOwners } from "./ForGymOwners";

@@ -8,6 +8,7 @@ export const productTabs: ProductTab[] = [
     description:
       "Revenue, attendance, renewals, and member health in a single workspace built for daily use.",
     points: ["Live business snapshot", "Today's priorities surfaced first", "No tab-switching"],
+    visual: "revenue",
   },
   {
     id: "members",
@@ -16,14 +17,15 @@ export const productTabs: ProductTab[] = [
     description:
       "Profiles, plans, payment history, attendance, and notes stay together and stay current.",
     points: ["Full lifecycle view", "Plan and renewal status", "Activity timeline"],
+    visual: "records",
   },
   {
     id: "attendance",
     label: "Attendance",
     headline: "Check-ins that keep up with the floor.",
-    description:
-      "Recognise members instantly and record attendance without slowing anyone down.",
+    description: "Recognise members instantly and record attendance without slowing anyone down.",
     points: ["Sub-second check-in", "Live floor count", "Trend detection"],
+    visual: "attendance",
   },
   {
     id: "billing",
@@ -32,6 +34,7 @@ export const productTabs: ProductTab[] = [
     description:
       "Track invoices, dues, and revenue with a clear picture of what's collected and what's pending.",
     points: ["Renewal pipeline", "Outstanding dues at a glance", "Revenue by plan"],
+    visual: "revenue",
   },
   {
     id: "crm",
@@ -40,6 +43,7 @@ export const productTabs: ProductTab[] = [
     description:
       "Turn conversations, trials, and at-risk signals into a working queue your team can clear.",
     points: ["Lead and trial tracking", "At-risk member alerts", "Assigned follow-ups"],
+    visual: "followUps",
   },
   {
     id: "insights",
@@ -48,13 +52,15 @@ export const productTabs: ProductTab[] = [
     description:
       "Understand growth, retention, and utilisation without exporting anything to a spreadsheet.",
     points: ["Retention cohorts", "Peak-hour utilisation", "Plan performance"],
+    visual: "revenue",
   },
   {
     id: "ai",
     label: "AI",
     headline: "Ask your gym a question.",
     description:
-      "The Copilot reads your data and answers in plain language — with the numbers behind it.",
+      "The Copilot reads your data and answers in plain language, with the numbers behind it.",
     points: ["Natural-language queries", "Proactive signals", "One-click drill-down"],
+    visual: "revenue",
   },
 ];

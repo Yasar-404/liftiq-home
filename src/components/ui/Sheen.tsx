@@ -1,9 +1,6 @@
 import { cn } from "@/lib/cn";
 
-/**
- * Diagonal light sweep. Drop inside any element that is `group relative
- * overflow-hidden`; it glides across on group-hover.
- */
+/** Diagonal light sweep on hover. Place inside a `group relative overflow-hidden` parent. */
 export function Sheen({ className }: { className?: string }) {
   return (
     <span

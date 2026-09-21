@@ -11,7 +11,7 @@ interface MiniAreaChartProps {
   stroke?: string;
 }
 
-/** Compact SVG area chart with a draw-on-view stroke animation. */
+/** Small SVG area chart; the stroke draws in when scrolled into view. */
 export function MiniAreaChart({
   data,
   className,
@@ -51,7 +51,12 @@ export function MiniAreaChart({
             <stop offset="100%" stopColor={stroke} stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path d={area} fill={`url(#fill-${id})`} opacity={inView ? 1 : 0} style={{ transition: "opacity 0.6s ease 0.3s" }} />
+        <path
+          d={area}
+          fill={`url(#fill-${id})`}
+          opacity={inView ? 1 : 0}
+          style={{ transition: "opacity 0.6s ease 0.3s" }}
+        />
         <path
           d={line}
           fill="none"

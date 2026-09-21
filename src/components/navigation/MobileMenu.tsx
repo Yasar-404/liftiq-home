@@ -1,12 +1,12 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
 import { useEffect } from "react";
-import type { NavItem } from "@/types";
+import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/Button";
 import { Close } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import { site } from "@/data/site";
+import type { NavItem } from "@/types";
 
 interface MobileMenuProps {
   open: boolean;
@@ -19,11 +19,11 @@ export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
     if (!open) return;
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
+    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = original;
-      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("keydown", onKeyDown);
     };
   }, [open, onClose]);
 
@@ -43,7 +43,7 @@ export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
             onClick={onClose}
           />
           <motion.nav
-            className="absolute inset-x-0 top-0 flex flex-col gap-8 border-b border-border bg-bg-subtle px-5 pb-10 pt-4"
+            className="absolute inset-x-0 top-0 flex flex-col gap-8 border-b border-border bg-bg-subtle px-5 pt-4 pb-10"
             variants={{
               hidden: { y: "-100%" },
               visible: { y: 0 },

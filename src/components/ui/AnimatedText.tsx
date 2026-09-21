@@ -21,10 +21,9 @@ interface AnimatedTextProps {
 const norm = (w: string) => w.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 /**
- * Premium heading reveal: each word rises out from behind a clip mask,
- * staggered. CSS-driven and JS-gated (see `.lq-words` in globals.css) so it
- * degrades to fully-visible text if scripting is off, and a fallback timer
- * guarantees the heading can never stay hidden if the observer misfires.
+ * Word-by-word heading reveal. Styles live in styles/motion.css and only apply
+ * once the `.js` flag is set, so the text is always visible without scripting.
+ * A timer reveals the text regardless if the observer never fires.
  */
 export function AnimatedText({
   children,
@@ -67,9 +66,7 @@ export function AnimatedText({
               className="lq-word"
               style={{ "--word-delay": `${delay + i * stagger}ms` } as CSSProperties}
             >
-              <span className={cn("lq-word-inner", isEmphasis && emphasisClassName)}>
-                {word}
-              </span>
+              <span className={cn("lq-word-inner", isEmphasis && emphasisClassName)}>{word}</span>
             </span>
           </Fragment>
         );

@@ -44,10 +44,7 @@ export function SectionHeading({
       <AnimatedText
         as="h2"
         delay={0.05}
-        className={cn(
-          "text-h2 text-balance max-w-3xl text-text",
-          align === "center" && "mx-auto",
-        )}
+        className={cn("text-h2 max-w-3xl text-balance text-text", align === "center" && "mx-auto")}
       >
         {title}
       </AnimatedText>

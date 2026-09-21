@@ -11,10 +11,12 @@ export interface Feature {
   title: string;
   description: string;
   icon: IconType;
-  /** Layout span on the bento grid (in 12-col units, desktop). */
+  /** Column span on the 12-column bento grid (lg and up). */
   span?: 4 | 6 | 8 | 12;
   accent?: boolean;
 }
+
+export type TabVisualKind = "revenue" | "attendance" | "records" | "followUps";
 
 export interface ProductTab {
   id: string;
@@ -22,9 +24,5 @@ export interface ProductTab {
   headline: string;
   description: string;
   points: string[];
-}
-
-export interface EcosystemNode {
-  label: string;
-  angle: number;
+  visual: TabVisualKind;
 }

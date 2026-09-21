@@ -27,3 +27,8 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
     ],
   },
 ];
+
+export const legalNav: NavItem[] = [
+  { label: "Privacy", href: "#contact" },
+  { label: "Terms", href: "#contact" },
+];

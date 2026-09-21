@@ -7,7 +7,7 @@ interface WindowFrameProps {
   className?: string;
 }
 
-/** Chromeless app-window shell used to frame product mockups. */
+/** Browser-style window chrome for product mockups. */
 export function WindowFrame({
   url = "app.liftiq.in/dashboard",
   children,

@@ -1,29 +1,11 @@
-import type { Variants, Transition } from "motion/react";
+import type { Variants } from "motion/react";
 
-/** Shared spring used across the marketing site. */
-export const spring: Transition = {
-  type: "spring",
-  stiffness: 260,
-  damping: 30,
-  mass: 0.9,
-};
+/** Ease curve shared by entrance animations. */
+export const easeSpring: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-export const easeOut: Transition = {
-  duration: 0.6,
-  ease: [0.16, 1, 0.3, 1],
-};
+/** Viewport options for scroll-triggered animations that should run once. */
+export const viewportOnce = { once: true, margin: "-80px" } as const;
 
-/** Fade + rise, used for section entrances. */
-export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: easeOut,
-  },
-};
-
-/** Stagger container for lists of revealing children. */
 export const staggerContainer: Variants = {
   hidden: {},
   visible: {
@@ -31,16 +13,12 @@ export const staggerContainer: Variants = {
   },
 };
 
-/** Blur-in reveal for hero-level elements. */
 export const blurIn: Variants = {
   hidden: { opacity: 0, y: 24, filter: "blur(12px)" },
   visible: {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, ease: easeSpring },
   },
 };
-
-/** Standard viewport config for scroll-triggered reveals. */
-export const viewportOnce = { once: true, margin: "-80px" } as const;

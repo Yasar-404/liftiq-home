@@ -27,8 +27,7 @@ export const features: Feature[] = [
   },
   {
     title: "Billing",
-    description:
-      "Keep payments, invoices, renewals, and revenue visibility organized and current.",
+    description: "Keep payments, invoices, renewals, and revenue visibility organized and current.",
     icon: Billing,
     span: 4,
   },
@@ -46,14 +45,13 @@ export const features: Feature[] = [
   },
   {
     title: "Reports & Insights",
-    description:
-      "Understand what's happening across the business with reports that stay readable.",
+    description: "Understand what's happening across the business with reports that stay readable.",
     icon: Insights,
     span: 6,
   },
   {
     title: "AI Copilot",
-    description: "Turn gym data into useful answers, insights, and actions — in plain language.",
+    description: "Turn gym data into useful answers, insights, and actions in plain language.",
     icon: Copilot,
     span: 6,
     accent: true,

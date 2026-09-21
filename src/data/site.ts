@@ -1,4 +1,3 @@
-/** Single source of truth for brand + contact details. */
 export const site = {
   name: "LiftIQ",
   domain: "https://liftiq.in",
@@ -15,7 +14,6 @@ export const site = {
   },
   cta: {
     primary: { label: "Book a Demo", href: "#contact" },
-    secondary: { label: "Explore LiftIQ", href: "#platform" },
-    tertiary: { label: "Talk to Us", href: "#contact" },
+    secondary: { label: "Explore the platform", href: "#platform" },
   },
 } as const;

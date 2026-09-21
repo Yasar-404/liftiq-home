@@ -3,18 +3,12 @@ import { cn } from "@/lib/cn";
 
 interface MarqueeProps {
   items: string[];
-  /** seconds for one full loop */
   duration?: number;
   className?: string;
   separator?: ReactNode;
 }
 
-export function Marquee({
-  items,
-  duration = 44,
-  className,
-  separator,
-}: MarqueeProps) {
+export function Marquee({ items, duration = 44, className, separator }: MarqueeProps) {
   const sep = separator ?? <span className="text-accent/50">/</span>;
   const track = [...items, ...items];
 
@@ -33,7 +27,7 @@ export function Marquee({
       >
         {track.map((item, i) => (
           <div key={`${item}-${i}`} className="flex items-center gap-10">
-            <span className="text-eyebrow whitespace-nowrap text-[0.8rem] tracking-[0.2em] text-text-muted">
+            <span className="text-eyebrow text-[0.8rem] tracking-[0.2em] whitespace-nowrap text-text-muted">
               {item}
             </span>
             {sep}

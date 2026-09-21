@@ -1,0 +1,12 @@
+export { AiCopilot } from "./AiCopilot";
+export { Attendance } from "./Attendance";
+export { Contact } from "./Contact";
+export { CorePlatform } from "./CorePlatform";
+export { Ecosystem } from "./Ecosystem";
+export { FinalCta } from "./FinalCta";
+export { ForGymOwners } from "./ForGymOwners";
+export { Hero } from "./Hero";
+export { Manifesto } from "./Manifesto";
+export { Positioning } from "./Positioning";
+export { Problem } from "./Problem";
+export { ProductStory } from "./ProductStory";

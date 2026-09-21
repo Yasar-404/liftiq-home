@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Tracks the user's `prefers-reduced-motion` setting.
- * SSR-safe: assumes motion is allowed until mounted.
- */
+/** Tracks `prefers-reduced-motion`. Assumes motion is allowed until mounted. */
 export function useReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
 

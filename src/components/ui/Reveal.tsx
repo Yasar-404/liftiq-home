@@ -11,10 +11,7 @@ interface RevealProps {
   children: ReactNode;
 }
 
-/**
- * CSS-driven scroll reveal. No animation library, GPU-friendly,
- * and fully disabled under `prefers-reduced-motion` (see globals.css).
- */
+/** Fades and lifts its children in when scrolled into view (styles/motion.css). */
 export function Reveal({ as: Tag = "div", delay = 0, className, children }: RevealProps) {
   const { ref, inView } = useInViewOnce<HTMLElement>();
 
