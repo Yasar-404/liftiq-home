@@ -1,0 +1,45 @@
+@theme {
+  /* Fonts (next/font exposes --font-inter / --font-mono-jb) */
+  --font-sans:
+    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Surfaces & text */
+  --color-bg: #08090a;
+  --color-bg-subtle: #0b0c0e;
+  --color-surface: #101114;
+  --color-surface-elevated: #16181c;
+  --color-surface-hover: #1b1e22;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+  --color-text: #f4f5f7;
+  --color-text-muted: #9ba1ac;
+  --color-text-faint: #6b7080;
+
+  /* Brand accent (blue to violet) */
+  --color-accent: #7c5cff;
+  --color-accent-dim: #6248e6;
+  --color-accent-blue: #2f80ff;
+  --color-accent-violet: #b64bff;
+  --color-accent-soft: rgba(124, 92, 255, 0.14);
+  --gradient-brand: linear-gradient(150deg, #2f80ff 0%, #7c5cff 48%, #b64bff 100%);
+
+  /* Layout widths */
+  --container-page: 1200px;
+  --container-wide: 1360px;
+
+  /* Radius */
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  /* Elevation */
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 70px -20px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px rgba(124, 92, 255, 0.28), 0 14px 46px -12px rgba(124, 92, 255, 0.42);
+
+  /* Motion */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-base: 280ms;
+  --duration-slow: 600ms;
+}
