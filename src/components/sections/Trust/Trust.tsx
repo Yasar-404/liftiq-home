@@ -2,11 +2,20 @@ import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { onboardingSteps, trustPoints } from "@/data/trust";
+import { pages } from "@/data/pages";
 
-export function Trust() {
+interface TrustProps {
+  /** Link to the dedicated page. Off on that page itself. */
+  showPageLink?: boolean;
+}
+
+export function Trust({ showPageLink = true }: TrustProps) {
   return (
     <Section id="trust" spacing="lg" className="band" containerClassName="flex flex-col gap-14">
       <SectionHeading
+        link={
+          showPageLink ? { href: pages.security.path, label: "Read about security" } : undefined
+        }
         align="center"
         eyebrow="Security and reliability"
         title="Built to be trusted with your members and your money."

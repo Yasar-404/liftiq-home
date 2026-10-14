@@ -27,14 +27,14 @@ export const site = {
   title: "LiftIQ: Gym Management Software for Memberships, Payments and Renewals",
   tagline: "Gym management software for memberships, payments, attendance and renewals.",
   description:
-    "LiftIQ is gym management software for gyms in India. Sell memberships, collect payments with GST receipts, track attendance, follow up leads and win renewals from one workspace, on the web and on your phone.",
+    "LiftIQ is gym management software for gyms in India. Sell memberships, collect payments with GST receipts, track attendance, follow up leads and win renewals from one workspace.",
   contact: {
     phone: "+91 73976 45660",
     phoneHref: "tel:+917397645660",
     email,
     emailHref: `mailto:${email}`,
     demoEmailHref: mailto("Demo request: LiftIQ", demoRequestBody),
-    location: "Sholinganallur, Chennai, Tamil Nadu, India",
+    location: "Tamil Nadu, India",
   },
   demo: {
     length: "20-minute",
@@ -47,6 +47,6 @@ export const site = {
   signInUrl: "" as string,
   cta: {
     primary: { label: "Book a Demo", href: "#demo" },
-    secondary: { label: "Explore the Platform", href: "#platform" },
+    secondary: { label: "Explore the Platform", href: "/platform" },
   },
 } as const;

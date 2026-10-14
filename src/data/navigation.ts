@@ -1,28 +1,22 @@
 import type { NavItem } from "@/types";
+import { primaryPages } from "./pages";
+import { site } from "./site";
 
-export const primaryNav: NavItem[] = [
-  { label: "Platform", href: "#platform" },
-  { label: "Daily Brief", href: "#intelligence" },
-  { label: "Features", href: "#features" },
-  { label: "Security", href: "#trust" },
-];
+export const primaryNav: NavItem[] = primaryPages.map(({ label, path }) => ({
+  label,
+  href: path,
+}));
 
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Product",
-    items: [
-      { label: "How it works", href: "#how-it-works" },
-      { label: "Platform", href: "#platform" },
-      { label: "Daily Brief", href: "#intelligence" },
-      { label: "Features", href: "#features" },
-    ],
+    items: [{ label: "Overview", href: "/" }, ...primaryNav],
   },
   {
     title: "Company",
     items: [
-      { label: "Why LiftIQ", href: "#compare" },
-      { label: "Security", href: "#trust" },
-      { label: "Book a Demo", href: "#demo" },
+      { label: "Book a Demo", href: site.cta.primary.href },
+      { label: "Email us", href: site.contact.emailHref },
     ],
   },
 ];

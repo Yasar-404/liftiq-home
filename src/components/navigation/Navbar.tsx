@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { Menu } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
@@ -12,6 +14,7 @@ import { MobileMenu } from "./MobileMenu";
 
 export function Navbar() {
   const scrolled = useScrolled(16);
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
 
@@ -31,22 +34,31 @@ export function Navbar() {
               : "border-transparent bg-transparent",
           )}
         >
-          <a href="#top" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
+          <Link href="/" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
             <Logo />
-          </a>
+          </Link>
 
           <nav aria-label="Main" className="hidden md:block">
             <ul className="flex items-center gap-0.5">
-              {primaryNav.map((item) => (
-                <li key={item.href}>
-                  <a
-                    href={item.href}
-                    className="rounded-full px-3 py-2 text-sm text-text-muted transition-colors duration-[var(--duration-fast)] hover:text-text"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              {primaryNav.map((item) => {
+                const current = pathname === item.href;
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={current ? "page" : undefined}
+                      className={cn(
+                        "block rounded-full px-3.5 py-2 text-sm transition-colors duration-[var(--duration-fast)]",
+                        current
+                          ? "bg-white/[0.07] text-text shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
+                          : "text-text-muted hover:bg-white/[0.04] hover:text-text",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
@@ -75,7 +87,7 @@ export function Navbar() {
         </div>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={closeMenu} items={primaryNav} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} items={primaryNav} currentPath={pathname} />
     </>
   );
 }

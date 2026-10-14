@@ -4,6 +4,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { features } from "@/data/features";
 import type { Feature } from "@/types";
 import { FeatureCard } from "./FeatureCard";
+import { pages } from "@/data/pages";
 
 type Size = NonNullable<Feature["size"]>;
 
@@ -18,10 +19,16 @@ const spanClass: Record<Size, string> = {
 /** Large cards with product visuals first, then the smaller ones, then the wide strip. */
 const bento = [...features].sort((a, b) => order[a.size ?? "small"] - order[b.size ?? "small"]);
 
-export function CorePlatform() {
+interface CorePlatformProps {
+  /** Link to the dedicated page. Off on that page itself. */
+  showPageLink?: boolean;
+}
+
+export function CorePlatform({ showPageLink = true }: CorePlatformProps) {
   return (
     <Section id="features" spacing="lg" containerClassName="flex flex-col gap-14">
       <SectionHeading
+        link={showPageLink ? { href: pages.features.path, label: "See every feature" } : undefined}
         eyebrow="Features"
         title="Built for how gyms actually run."
         description="More than one branch, a front desk that changes shifts, cash in the drawer and discounts at the counter. LiftIQ handles the details that generic software leaves out."
