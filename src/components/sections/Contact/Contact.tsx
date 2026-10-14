@@ -31,7 +31,7 @@ export function Contact() {
           <ol className="flex flex-col gap-6">
             {demoSteps.map((step, i) => (
               <Reveal as="li" key={step.title} delay={160 + i * 70} className="flex gap-4">
-                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border-strong bg-surface-elevated font-mono text-[12px] text-text">
+                <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border-strong bg-surface-elevated text-[12px] font-medium text-text tabular-nums">
                   {i + 1}
                 </span>
                 <span className="flex flex-col gap-1">

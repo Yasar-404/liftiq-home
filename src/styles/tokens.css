@@ -1,9 +1,9 @@
 @theme {
-  /* Fonts (next/font exposes --font-inter / --font-mono-jb) */
+  /* Fonts (next/font exposes --font-inter; "Rupee Sign" is defined in styles/fonts.css) */
   --font-sans:
-    var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif;
-  --font-mono: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
+    "Rupee Sign", var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 
   /* Surfaces */
   --color-bg: #08090a;

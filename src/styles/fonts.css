@@ -1,0 +1,13 @@
+/*
+ * The rupee sign (U+20B9) sits in Inter's latin-ext subset, an 84 KB file the
+ * browser fetches at high priority as soon as a ₹ is laid out, which delays the
+ * first paint on slow connections. This face draws only that glyph from fonts
+ * already on the device; if none has it, Inter is used as before.
+ */
+@font-face {
+  font-family: "Rupee Sign";
+  src:
+    local("Segoe UI"), local("Roboto"), local("SF Pro Text"), local(".SF NS"),
+    local("Helvetica Neue"), local("Arial");
+  unicode-range: U+20B9;
+}
