@@ -24,7 +24,10 @@ export function Loop() {
               <span className="grid h-10 w-10 place-items-center rounded-[var(--radius-sm)] border border-border-strong bg-surface-elevated text-accent-text">
                 <Icon className="h-5 w-5" />
               </span>
-              <span className="font-mono text-[0.72rem] text-text-faint" aria-hidden="true">
+              <span
+                className="text-[0.72rem] font-medium text-text-faint tabular-nums"
+                aria-hidden="true"
+              >
                 {String(i + 1).padStart(2, "0")}
               </span>
             </div>

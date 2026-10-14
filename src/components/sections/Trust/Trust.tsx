@@ -33,7 +33,7 @@ export function Trust() {
                 key={step}
                 className="flex gap-3.5 text-[0.925rem] leading-relaxed text-text-muted"
               >
-                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-strong font-mono text-[11px] text-text">
+                <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-border-strong text-[11px] font-medium text-text tabular-nums">
                   {i + 1}
                 </span>
                 {step}

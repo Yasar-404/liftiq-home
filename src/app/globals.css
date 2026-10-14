@@ -5,6 +5,7 @@
  * Tailwind utilities can always override them. Motion styles stay unlayered:
  * reveal states must win over anything else on the element.
  */
+@import "../styles/fonts.css";
 @import "../styles/tokens.css";
 @import "../styles/base.css";
 @import "../styles/typography.css";

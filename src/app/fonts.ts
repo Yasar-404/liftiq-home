@@ -1,16 +1,9 @@
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 
+// The only web font. Labels and numbering use Inter too, and the ₹ sign comes
+// from system fonts (see styles/fonts.css), so no other font file is fetched.
 export const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-});
-
-// Only used for small uppercase labels, so one weight is enough.
-export const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "500",
-  variable: "--font-mono-jb",
-  preload: false,
 });

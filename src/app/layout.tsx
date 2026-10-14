@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 import { metadata as siteMetadata, structuredData, viewport as siteViewport } from "@/lib/seo";
-import { inter, jetbrainsMono } from "./fonts";
+import { inter } from "./fonts";
 import "./globals.css";
 
 export const metadata = siteMetadata;
@@ -14,11 +14,7 @@ const enableJsStyles = "document.documentElement.classList.add('js')";
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html
-      lang="en-IN"
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en-IN" className={inter.variable} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: enableJsStyles }} />
         <script
