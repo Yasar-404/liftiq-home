@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { Close } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
@@ -12,13 +13,14 @@ interface MobileMenuProps {
   open: boolean;
   onClose: () => void;
   items: NavItem[];
+  currentPath: string;
 }
 
 /**
  * Full-width menu for small screens. Always rendered so it can transition;
  * `inert` keeps it out of the tab order and accessibility tree while closed.
  */
-export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, items, currentPath }: MobileMenuProps) {
   const closeButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -78,20 +80,27 @@ export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
 
         <nav aria-label="Mobile">
           <ul className="flex flex-col">
-            {items.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={onClose}
-                  className="flex items-center justify-between border-b border-border py-4 text-lg font-medium text-text"
-                >
-                  {item.label}
-                  <span className="text-text-faint" aria-hidden="true">
-                    →
-                  </span>
-                </a>
-              </li>
-            ))}
+            {items.map((item) => {
+              const current = currentPath === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    aria-current={current ? "page" : undefined}
+                    className={cn(
+                      "flex items-center justify-between border-b border-border py-4 text-lg font-medium",
+                      current ? "text-accent-text" : "text-text",
+                    )}
+                  >
+                    {item.label}
+                    <span className="text-text-faint" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 

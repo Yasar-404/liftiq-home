@@ -8,11 +8,17 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { productTabs } from "@/data/productTabs";
 import { cn } from "@/lib/cn";
 import { TabVisual } from "./TabVisual";
+import { pages } from "@/data/pages";
 
 const tabId = (id: string) => `product-tab-${id}`;
 const panelId = (id: string) => `product-panel-${id}`;
 
-export function ProductStory() {
+interface ProductStoryProps {
+  /** Link to the dedicated page. Off on that page itself. */
+  showPageLink?: boolean;
+}
+
+export function ProductStory({ showPageLink = true }: ProductStoryProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const activeTab = productTabs[activeIndex];
@@ -48,6 +54,9 @@ export function ProductStory() {
       containerClassName="flex flex-col items-center gap-10"
     >
       <SectionHeading
+        link={
+          showPageLink ? { href: pages.platform.path, label: "Explore the platform" } : undefined
+        }
         align="center"
         eyebrow="The platform"
         title="Everything the front desk and the owner work from."

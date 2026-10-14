@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
+import { Footer } from "@/components/footer/Footer";
 import { AnchorScroll } from "@/components/layout/AnchorScroll";
 import { RevealObserver } from "@/components/layout/RevealObserver";
+import { Navbar } from "@/components/navigation/Navbar";
 import { metadata as siteMetadata, structuredData, viewport as siteViewport } from "@/lib/seo";
 import { inter } from "./fonts";
 import "./globals.css";
@@ -28,7 +30,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         >
           Skip to content
         </a>
-        {children}
+        <Navbar />
+        <main id="main">{children}</main>
+        <Footer />
         <RevealObserver />
         <AnchorScroll />
       </body>

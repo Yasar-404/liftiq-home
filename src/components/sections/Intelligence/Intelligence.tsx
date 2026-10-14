@@ -6,10 +6,16 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { atRiskMembers, brief, plans, renewals } from "@/data/demo";
 import { availableNow, intelligencePrinciples, onTheRoadmap } from "@/data/intelligence";
 import { formatInr, plural } from "@/lib/format";
+import { pages } from "@/data/pages";
 
 const shownAtRisk = atRiskMembers.slice(0, 3);
 
-export function Intelligence() {
+interface IntelligenceProps {
+  /** Link to the dedicated page. Off on that page itself. */
+  showPageLink?: boolean;
+}
+
+export function Intelligence({ showPageLink = true }: IntelligenceProps) {
   return (
     <Section
       id="intelligence"
@@ -23,6 +29,11 @@ export function Intelligence() {
       />
 
       <SectionHeading
+        link={
+          showPageLink
+            ? { href: pages.aiInsights.path, label: "How LiftIQ insights work" }
+            : undefined
+        }
         eyebrow="Daily Brief"
         title="Start every day knowing what matters."
         description="Each morning LiftIQ counts the day for you and picks the task with the most money riding on it. It shows its working, so you can trust it."

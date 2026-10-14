@@ -1,5 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
+import { isRoute } from "@/lib/links";
 import { ArrowRight } from "./icons";
 
 type Variant = "primary" | "secondary" | "ghost";
@@ -57,7 +59,7 @@ function Inner({ withArrow, children }: { withArrow?: boolean; children: ReactNo
   );
 }
 
-/** Anchor styled as a button. */
+/** Link styled as a button: client-side navigation for site routes, a plain anchor otherwise. */
 export function ButtonLink({
   href,
   onClick,
@@ -68,16 +70,15 @@ export function ButtonLink({
   cta,
   children,
 }: LinkProps) {
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      data-cta={cta}
-      className={cn(base, sizes[size], variants[variant], className)}
-    >
-      <Inner withArrow={withArrow}>{children}</Inner>
-    </a>
-  );
+  const props = {
+    href,
+    onClick,
+    "data-cta": cta,
+    className: cn(base, sizes[size], variants[variant], className),
+  };
+  const inner = <Inner withArrow={withArrow}>{children}</Inner>;
+
+  return isRoute(href) ? <Link {...props}>{inner}</Link> : <a {...props}>{inner}</a>;
 }
 
 /** Native `<button>` for actions that aren't navigation. */

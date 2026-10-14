@@ -37,15 +37,17 @@ The site runs at http://localhost:3000.
 
 ```
 src/
-  app/                  Routes, root layout, fonts, icons, robots and sitemap
+  app/                  Routes (/, /platform, /ai-insights, /features, /security), the root
+                        layout, 404 page, fonts, icons, robots and sitemap
   components/
-    layout/             Container, Section, RevealObserver
+    layout/             Container, Section, RevealObserver, AnchorScroll
     navigation/         Header and mobile menu
     footer/             Site footer
-    sections/           One folder per landing-page section
+    sections/           One folder per homepage section, reused on the dedicated pages
+    page/               Building blocks for the dedicated pages (PageHero, DetailGroups, ...)
     product/            Product previews built from the sample data in data/demo.ts
     ui/                 Reusable primitives (Button, Logo, Reveal, ...)
-  data/                 Site config, navigation, and section content
+  data/                 Site config, the page registry, navigation, and page and section content
   hooks/                Reusable React hooks
   lib/                  Helpers (class names, formatting, SEO)
   styles/               Design tokens and shared CSS
@@ -53,6 +55,14 @@ src/
 ```
 
 ## Conventions
+
+- **Pages are registered in `data/pages.ts`.** Its path, nav label, title and description feed
+  the navigation, the sitemap and the page's metadata (`pageMetadata` in `lib/seo.ts`, which
+  sets the canonical URL, Open Graph and Twitter tags). To add a page, add it there and create
+  `src/app/<path>/page.tsx`. The navbar, `<main>` and footer come from the root layout, and
+  every page ends with the `Contact` section so the Book a Demo button (`#demo`) works on it.
+- **Links**: site routes use Next.js `Link` (`Button` does this automatically for paths
+  starting with `/`); same-page `#section` links are handled by `AnchorScroll`.
 
 - **Content lives in `src/data`.** Components render data; edit copy, navigation, features,
   and contact details there. Brand name, contact details, calls to action and the sign-in URL

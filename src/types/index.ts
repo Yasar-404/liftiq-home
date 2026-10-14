@@ -34,3 +34,16 @@ export interface ProductTab {
   solution: string;
   points: string[];
 }
+
+export interface DetailItem {
+  title: string;
+  body: string;
+  /** Shown as a badge when the item is not generally available yet. */
+  status?: string;
+}
+
+export interface DetailGroup {
+  title: string;
+  summary?: string;
+  items: DetailItem[];
+}
