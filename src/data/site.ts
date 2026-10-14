@@ -41,10 +41,10 @@ export const site = {
     replyTime: "within 1 business day",
   },
   /**
-   * Customer sign-in: the central sign-in for every web role. Set to "" to hide the Sign in
-   * link in the header and mobile menu.
+   * Customer sign-in. Left empty until the central sign-in at app.liftiq.in is live, so the site
+   * never shows a link that leads nowhere. Set it to "https://app.liftiq.in/signin" at launch.
    */
-  signInUrl: "https://app.liftiq.in/signin" as string,
+  signInUrl: "" as string,
   cta: {
     primary: { label: "Book a Demo", href: "#demo" },
     secondary: { label: "Explore the Platform", href: "#platform" },

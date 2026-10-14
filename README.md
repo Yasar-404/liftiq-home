@@ -65,8 +65,8 @@ src/
   counts and percentages are derived from its rows rather than typed in, so every preview
   agrees, and dates are relative ("in 3 days") so nothing looks stale. Change a row and the
   dashboard, the brief and the product tabs update together.
-- **Sign-in link.** `site.signInUrl` points at the central sign-in. Set it to `""` and the
-  header and mobile menu hide the Sign in link.
+- **Sign-in link.** `site.signInUrl` is empty until the central sign-in is live. Set it and the
+  header and mobile menu show a Sign in link.
 - **Calls to action** carry a `data-cta` attribute (`hero-demo`, `nav-demo`, `demo-email`, ...)
   so a tag manager can measure clicks without code changes. The site loads no analytics.
 - **Design tokens** (colors, radii, shadows, motion) are defined in `src/styles/tokens.css`
