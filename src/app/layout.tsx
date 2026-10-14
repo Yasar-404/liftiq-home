@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { AnchorScroll } from "@/components/layout/AnchorScroll";
 import { RevealObserver } from "@/components/layout/RevealObserver";
 import { metadata as siteMetadata, structuredData, viewport as siteViewport } from "@/lib/seo";
 import { inter } from "./fonts";
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </a>
         {children}
         <RevealObserver />
+        <AnchorScroll />
       </body>
     </html>
   );
