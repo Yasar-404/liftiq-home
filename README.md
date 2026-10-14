@@ -86,6 +86,10 @@ src/
   text is never animated, so it is readable on first paint.
 - **Sections** are exported through `src/components/sections/index.ts` and composed in
   `src/app/page.tsx`, ordered by the questions a gym owner asks while deciding.
+- **In-page links** keep the address bar clean. Write them as normal `href="#section-id"`
+  links; `AnchorScroll` in the root layout scrolls to the section and moves focus there
+  without adding the hash to the URL, and removes a hash a visitor arrives with. Without
+  JavaScript they behave as ordinary anchors.
 
 ## Deployment
 
