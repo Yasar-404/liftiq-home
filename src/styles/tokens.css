@@ -5,7 +5,7 @@
     Arial, sans-serif;
   --font-mono: var(--font-mono-jb), ui-monospace, "SF Mono", Menlo, monospace;
 
-  /* Surfaces & text */
+  /* Surfaces */
   --color-bg: #08090a;
   --color-bg-subtle: #0b0c0e;
   --color-surface: #101114;
@@ -13,23 +13,41 @@
   --color-surface-hover: #1b1e22;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  /*
+   * Text. Every text colour meets WCAG AA (4.5:1) for body-size text on both
+   * --color-bg and --color-surface-elevated.
+   */
   --color-text: #f4f5f7;
   --color-text-muted: #9ba1ac;
-  --color-text-faint: #6b7080;
+  --color-text-faint: #80869a;
 
-  /* Brand accent (blue to violet) */
+  /* Brand accent (blue to violet). Use accent-text, not accent, for small text. */
   --color-accent: #7c5cff;
-  --color-accent-dim: #6248e6;
+  --color-accent-text: #a08bff;
   --color-accent-blue: #2f80ff;
   --color-accent-violet: #b64bff;
   --color-accent-soft: rgba(124, 92, 255, 0.14);
+  /* Accent fill behind white text: meets 4.5:1 across the whole gradient. */
+  --color-accent-strong: #6a4cf0;
+  --gradient-button: linear-gradient(150deg, #2468e0 0%, #6a4cf0 55%, #8a3df0 100%);
   --gradient-brand: linear-gradient(150deg, #2f80ff 0%, #7c5cff 48%, #b64bff 100%);
+
+  /* Status (used in product previews) */
+  --color-positive: #4ade80;
+  --color-positive-soft: rgba(74, 222, 128, 0.12);
+  --color-warning: #fbbf24;
+  --color-warning-soft: rgba(251, 191, 36, 0.12);
+  --color-negative: #f87171;
+  --color-negative-soft: rgba(248, 113, 113, 0.12);
 
   /* Layout widths */
   --container-page: 1200px;
   --container-wide: 1360px;
 
   /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
   --radius-md: 14px;
   --radius-lg: 20px;
 
@@ -38,8 +56,12 @@
   --shadow-lg: 0 24px 70px -20px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 0 1px rgba(124, 92, 255, 0.28), 0 14px 46px -12px rgba(124, 92, 255, 0.42);
 
+  /* Focus */
+  --color-focus: #a08bff;
+
   /* Motion */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 160ms;
   --duration-base: 280ms;
   --duration-slow: 600ms;
 }

@@ -1,9 +1,6 @@
-"use client";
-
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import type { CSSProperties, ElementType, ReactNode } from "react";
 import { cn } from "@/lib/cn";
-import { useInViewOnce } from "@/hooks/useInViewOnce";
 
 interface AnimatedTextProps {
   children: ReactNode;
@@ -13,64 +10,40 @@ interface AnimatedTextProps {
   delay?: number;
   /** ms between words */
   stagger?: number;
-  /** words (case-insensitive, punctuation ignored) to style differently */
-  emphasize?: string[];
-  emphasisClassName?: string;
 }
 
-const norm = (w: string) => w.toLowerCase().replace(/[^a-z0-9]/g, "");
-
 /**
- * Word-by-word heading reveal. Styles live in styles/motion.css and only apply
- * once the `.js` flag is set, so the text is always visible without scripting.
- * A timer reveals the text regardless if the observer never fires.
+ * Word-by-word heading reveal, triggered by the RevealObserver in the root
+ * layout. Styles live in styles/motion.css and only apply once the `.js` flag
+ * is set, so the text is always visible without scripting. Non-string
+ * children render as-is.
  */
 export function AnimatedText({
   children,
   as: Tag = "span",
   className,
   delay = 0,
-  stagger = 42,
-  emphasize,
-  emphasisClassName,
+  stagger = 36,
 }: AnimatedTextProps) {
-  const { ref, inView } = useInViewOnce<HTMLElement>();
-  const [fallback, setFallback] = useState(false);
-
-  useEffect(() => {
-    const t = setTimeout(() => setFallback(true), 2500);
-    return () => clearTimeout(t);
-  }, []);
-
-  const show = inView || fallback;
-
   if (typeof children !== "string") {
-    return (
-      <Tag ref={ref} className={cn("lq-reveal-block", show && "is-visible", className)}>
-        {children}
-      </Tag>
-    );
+    return <Tag className={className}>{children}</Tag>;
   }
 
-  const emphasisSet = new Set((emphasize ?? []).map(norm));
   const words = children.split(" ");
 
   return (
-    <Tag ref={ref} className={cn("lq-words", show && "is-visible", className)}>
-      {words.map((word, i) => {
-        const isEmphasis = emphasisSet.has(norm(word));
-        return (
-          <Fragment key={`${word}-${i}`}>
-            {i > 0 && " "}
-            <span
-              className="lq-word"
-              style={{ "--word-delay": `${delay + i * stagger}ms` } as CSSProperties}
-            >
-              <span className={cn("lq-word-inner", isEmphasis && emphasisClassName)}>{word}</span>
-            </span>
-          </Fragment>
-        );
-      })}
+    <Tag className={cn("lq-words", className)}>
+      {words.map((word, i) => (
+        <Fragment key={`${word}-${i}`}>
+          {i > 0 && " "}
+          <span
+            className="lq-word"
+            style={{ "--word-delay": `${delay + i * stagger}ms` } as CSSProperties}
+          >
+            <span className="lq-word-inner">{word}</span>
+          </span>
+        </Fragment>
+      ))}
     </Tag>
   );
 }

@@ -1,7 +1,4 @@
-"use client";
-
-import type { ElementType, ReactNode } from "react";
-import { useInViewOnce } from "@/hooks/useInViewOnce";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 interface RevealProps {
@@ -11,15 +8,15 @@ interface RevealProps {
   children: ReactNode;
 }
 
-/** Fades and lifts its children in when scrolled into view (styles/motion.css). */
+/**
+ * Fades and lifts its children in when scrolled into view. A server component:
+ * the single RevealObserver in the root layout adds `is-visible`.
+ */
 export function Reveal({ as: Tag = "div", delay = 0, className, children }: RevealProps) {
-  const { ref, inView } = useInViewOnce<HTMLElement>();
-
   return (
     <Tag
-      ref={ref}
-      className={cn("reveal", inView && "is-visible", className)}
-      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
+      className={cn("reveal", className)}
+      style={delay ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : undefined}
     >
       {children}
     </Tag>

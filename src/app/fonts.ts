@@ -6,9 +6,11 @@ export const inter = Inter({
   variable: "--font-inter",
 });
 
+// Only used for small uppercase labels, so one weight is enough.
 export const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
-  weight: ["400", "500"],
+  weight: "500",
   variable: "--font-mono-jb",
+  preload: false,
 });

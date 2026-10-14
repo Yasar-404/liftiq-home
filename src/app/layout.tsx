@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { MotionProvider } from "@/components/layout/MotionProvider";
+import { RevealObserver } from "@/components/layout/RevealObserver";
 import { metadata as siteMetadata, structuredData, viewport as siteViewport } from "@/lib/seo";
 import { inter, jetbrainsMono } from "./fonts";
 import "./globals.css";
@@ -15,7 +15,7 @@ const enableJsStyles = "document.documentElement.classList.add('js')";
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${inter.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
@@ -27,11 +27,12 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         />
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-accent-strong focus:px-4 focus:py-2 focus:text-sm focus:text-white"
         >
           Skip to content
         </a>
-        <MotionProvider>{children}</MotionProvider>
+        {children}
+        <RevealObserver />
       </body>
     </html>
   );

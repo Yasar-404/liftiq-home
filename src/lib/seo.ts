@@ -1,36 +1,35 @@
 import type { Metadata, Viewport } from "next";
 import { site } from "@/data/site";
 
-const title = "LiftIQ — AI-Powered Gym Management Software";
-
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
-  title: { default: title, template: "%s — LiftIQ" },
+  title: { default: site.title, template: `%s | ${site.name}` },
   description: site.description,
   keywords: [
     "gym management software",
-    "fitness business platform",
-    "membership management",
-    "gym CRM",
-    "attendance tracking",
+    "gym management software India",
+    "gym membership software",
     "gym billing software",
-    "AI gym insights",
+    "gym attendance software",
+    "gym CRM",
+    "fitness studio software",
   ],
   applicationName: site.name,
-  authors: [{ name: site.name }],
+  authors: [{ name: site.name, url: site.domain }],
   creator: site.name,
-  alternates: { canonical: site.domain },
+  publisher: site.name,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     url: site.domain,
     siteName: site.name,
-    title,
+    title: site.title,
     description: site.description,
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: site.title,
     description: site.description,
   },
   robots: {
@@ -38,6 +37,7 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  formatDetection: { telephone: false, email: false, address: false },
   category: "technology",
 };
 
@@ -48,26 +48,36 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-/** schema.org description of the product, rendered as JSON-LD in the root layout. */
+/**
+ * schema.org description of the company and product, rendered as JSON-LD in
+ * the root layout. Only facts the site states elsewhere; no prices or ratings.
+ */
 export const structuredData = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: site.name,
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  description: site.description,
-  url: site.domain,
-  offers: { "@type": "Offer", availability: "https://schema.org/PreOrder" },
-  publisher: {
-    "@type": "Organization",
-    name: site.name,
-    email: site.contact.email,
-    telephone: site.contact.phone,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: site.contact.locationShort,
-      addressRegion: "Tamil Nadu",
-      addressCountry: "IN",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.domain}/#organization`,
+      name: site.name,
+      url: site.domain,
+      logo: `${site.domain}/icon.svg`,
+      email: site.contact.email,
+      telephone: site.contact.phone,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Chennai",
+        addressRegion: "Tamil Nadu",
+        addressCountry: "IN",
+      },
     },
-  },
+    {
+      "@type": "SoftwareApplication",
+      name: site.name,
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      description: site.description,
+      url: site.domain,
+      publisher: { "@id": `${site.domain}/#organization` },
+    },
+  ],
 };

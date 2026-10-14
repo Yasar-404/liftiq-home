@@ -1,65 +1,43 @@
+import { Approval, Branches, Cash, Expenses, Phone as Mobile, Shield } from "@/components/ui/icons";
 import type { Feature } from "@/types";
-import {
-  Members,
-  Attendance,
-  Billing,
-  Crm,
-  Communication,
-  Insights,
-  Copilot,
-  Intelligence,
-} from "@/components/ui/icons";
 
+/** Capabilities beyond the core daily loop. Anything not yet released carries a `status`. */
 export const features: Feature[] = [
   {
-    title: "Membership Management",
+    title: "Branches",
     description:
-      "Manage member profiles, plans, renewals, status, and lifecycle from one clean record.",
-    icon: Members,
-    span: 8,
-    accent: true,
+      "Run several locations from one account, with each branch's hours, manager and numbers kept apart and comparable.",
+    icon: Branches,
   },
   {
-    title: "Attendance",
-    description: "Fast, reliable check-ins and attendance tracking that never gets in the way.",
-    icon: Attendance,
-    span: 4,
+    title: "Roles and permissions",
+    description:
+      "Owners see everything. The front desk sees what it needs. Pay and exports stay with the people allowed to see them.",
+    icon: Shield,
   },
   {
-    title: "Billing",
-    description: "Keep payments, invoices, renewals, and revenue visibility organized and current.",
-    icon: Billing,
-    span: 4,
+    title: "Discount approvals",
+    description:
+      "Set the desk's discount limit. Anything above it waits for the owner's approval, with the reason attached.",
+    icon: Approval,
   },
   {
-    title: "CRM",
-    description: "Turn member interactions into a queue of actionable follow-ups.",
-    icon: Crm,
-    span: 4,
+    title: "Cash-drawer close",
+    description:
+      "For each branch and day, see what should be in the drawer, count it, and record who closed it and why it was off.",
+    icon: Cash,
   },
   {
-    title: "Communication",
-    description: "Keep important member communication in context, not scattered across chats.",
-    icon: Communication,
-    span: 4,
+    title: "Expenses",
+    description:
+      "Record rent, salaries and supplies by category, and see what was spent next to what members paid.",
+    icon: Expenses,
   },
   {
-    title: "Reports & Insights",
-    description: "Understand what's happening across the business with reports that stay readable.",
-    icon: Insights,
-    span: 6,
-  },
-  {
-    title: "AI Copilot",
-    description: "Turn gym data into useful answers, insights, and actions in plain language.",
-    icon: Copilot,
-    span: 6,
-    accent: true,
-  },
-  {
-    title: "Business Intelligence",
-    description: "Make better decisions with a clearer, connected view of the business.",
-    icon: Intelligence,
-    span: 12,
+    title: "Mobile app",
+    description:
+      "An app for Android and iPhone with the dashboard, members, payments, renewals and approvals, on the same data as the web.",
+    icon: Mobile,
+    status: "In testing",
   },
 ];

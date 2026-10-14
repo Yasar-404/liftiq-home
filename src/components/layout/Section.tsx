@@ -7,8 +7,6 @@ interface SectionProps {
   className?: string;
   containerClassName?: string;
   spacing?: "sm" | "md" | "lg";
-  /** Render children without the width-constraining container. */
-  bare?: boolean;
   children: ReactNode;
 }
 
@@ -23,12 +21,11 @@ export function Section({
   className,
   containerClassName,
   spacing = "md",
-  bare = false,
   children,
 }: SectionProps) {
   return (
     <section id={id} className={cn("relative scroll-mt-24", spacingClass[spacing], className)}>
-      {bare ? children : <Container className={containerClassName}>{children}</Container>}
+      <Container className={containerClassName}>{children}</Container>
     </section>
   );
 }
