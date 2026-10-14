@@ -7,30 +7,36 @@ import { ContactChannels } from "./ContactChannels";
 
 export function Contact() {
   return (
-    <Section id="demo" spacing="lg" className="relative overflow-hidden border-t border-border">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-        <div className="grid-texture radial-fade absolute inset-0 opacity-70" />
-        <div className="glow top-[-10rem] left-1/2 h-[32rem] w-[60rem] max-w-[160vw] -translate-x-1/2" />
-      </div>
-
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-        <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-4">
-            <Reveal as="p" className="text-eyebrow">
-              Book a demo
-            </Reveal>
-            <Reveal as="h2" delay={60} className="text-h2 max-w-xl text-balance">
-              See LiftIQ on a gym like yours.
-            </Reveal>
-            <Reveal as="p" delay={120} className="text-lead max-w-lg text-pretty">
-              A short, practical walkthrough of the product. Bring your questions, and we will bring
-              a sample gym set up the way you work.
-            </Reveal>
+    <Section id="demo" spacing="lg" className="relative overflow-hidden">
+      <Reveal className="frame-lit">
+        <div className="relative overflow-hidden rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,#121318,#0b0c0e)] px-6 py-14 sm:px-12 sm:py-20">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            <div className="spotlight absolute inset-x-0 top-0 h-[30rem]" />
+            <div className="grid-texture radial-fade absolute inset-0 opacity-60" />
           </div>
 
-          <ol className="flex flex-col gap-6">
+          <div className="relative flex flex-col items-center gap-5 text-center">
+            <p className="text-eyebrow">Book a demo</p>
+            <h2 className="text-h2 text-sheen max-w-2xl text-balance">
+              See LiftIQ on a gym like yours.
+            </h2>
+            <p className="text-lead max-w-xl text-pretty">
+              A short, practical walkthrough of the product. Email us a few details about your gym
+              and we will reply {site.demo.replyTime} to find a time.
+            </p>
+            <div className="mt-3 flex w-full flex-col items-stretch gap-3 sm:w-auto sm:flex-row sm:items-center">
+              <Button href={site.contact.demoEmailHref} size="lg" withArrow cta="demo-email">
+                {site.cta.primary.label}
+              </Button>
+              <Button href={site.contact.phoneHref} size="lg" variant="secondary" cta="demo-call">
+                Call {site.contact.phone}
+              </Button>
+            </div>
+          </div>
+
+          <ol className="relative mt-14 grid grid-cols-1 gap-8 border-t border-border pt-10 md:grid-cols-3">
             {demoSteps.map((step, i) => (
-              <Reveal as="li" key={step.title} delay={160 + i * 70} className="flex gap-4">
+              <li key={step.title} className="flex gap-4">
                 <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full border border-border-strong bg-surface-elevated text-[12px] font-medium text-text tabular-nums">
                   {i + 1}
                 </span>
@@ -40,46 +46,15 @@ export function Contact() {
                     {step.body}
                   </span>
                 </span>
-              </Reveal>
+              </li>
             ))}
           </ol>
-        </div>
 
-        <Reveal delay={120} className="lg:pt-10">
-          <div className="card relative flex flex-col gap-6 p-6 sm:p-8">
-            <div className="flex flex-col gap-2">
-              <h3 className="text-h3">Request a demo</h3>
-              <p className="text-[0.95rem] leading-relaxed text-text-muted">
-                Email us a few details about your gym and we will reply {site.demo.replyTime} to
-                find a time. Prefer to talk? Call us.
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-              <Button
-                href={site.contact.demoEmailHref}
-                size="lg"
-                withArrow
-                cta="demo-email"
-                className="sm:flex-1"
-              >
-                {site.cta.primary.label}
-              </Button>
-              <Button
-                href={site.contact.phoneHref}
-                size="lg"
-                variant="secondary"
-                cta="demo-call"
-                className="sm:flex-1"
-              >
-                Call {site.contact.phone}
-              </Button>
-            </div>
-
+          <div className="relative mt-10 border-t border-border pt-2">
             <ContactChannels />
           </div>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
     </Section>
   );
 }

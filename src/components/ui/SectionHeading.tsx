@@ -31,6 +31,7 @@ export function SectionHeading({
       <AnimatedText
         as="h2"
         className={cn("text-h2 max-w-3xl text-balance text-text", centered && "mx-auto")}
+        wordClassName="text-sheen"
       >
         {title}
       </AnimatedText>

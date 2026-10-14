@@ -13,6 +13,20 @@
     mask-image: radial-gradient(ellipse 60% 55% at 50% 30%, #000 30%, transparent 100%);
   }
 
+  /* A cone of light falling from the top centre of a section. */
+  .spotlight {
+    background: conic-gradient(
+      from 180deg at 50% 0%,
+      transparent 150deg,
+      rgba(124, 92, 255, 0.16) 172deg,
+      rgba(160, 139, 255, 0.22) 180deg,
+      rgba(124, 92, 255, 0.16) 188deg,
+      transparent 210deg
+    );
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
+    mask-image: linear-gradient(to bottom, #000, transparent 85%);
+  }
+
   /* A soft accent light. Size and position it with utilities. */
   .glow {
     position: absolute;

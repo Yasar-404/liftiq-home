@@ -75,6 +75,11 @@ src/
   `bg-accent-strong` behind white text.
 - **CSS layers.** `styles/base.css` is in `@layer base` and shared classes are in
   `@layer components`, so Tailwind utilities always win. Keep new shared CSS inside a layer.
+- **Surfaces.** `.band` gives a section a contrasting background to vary the page rhythm;
+  `.frame-lit` frames a product visual with a top-lit hairline; `.text-sheen` and
+  `.text-gradient-soft` are gradient text for headings. Gradient text is clipped to the
+  element's own glyphs, so on word-animated headings pass it to `AnimatedText` as
+  `wordClassName`, not `className`.
 - **Motion** is CSS only and respects `prefers-reduced-motion`. Scroll reveals (`Reveal`,
   `AnimatedText`) are server components revealed by one `RevealObserver` in the root layout, and
   are gated on a `js` class on `<html>`, so content stays visible without JavaScript. The hero
