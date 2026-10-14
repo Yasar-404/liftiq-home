@@ -1,17 +1,39 @@
-export const beforeItems = [
-  "Renewals tracked in three places",
-  "Revenue guessed at month-end",
-  "Follow-ups remembered, then forgotten",
-  "Attendance in a separate app",
-  "Member health is a gut feeling",
-  "Reports rebuilt by hand every week",
-];
+interface ComparisonRow {
+  task: string;
+  before: string;
+  withLiftIQ: string;
+}
 
-export const afterItems = [
-  "Renewals in one pipeline",
-  "Revenue visible in real time",
-  "Follow-ups queued and assigned",
-  "Attendance in the same view",
-  "Member health scored automatically",
-  "Reports that stay current",
+/** The same jobs, done with registers and spreadsheets versus with LiftIQ. */
+export const comparisonRows: ComparisonRow[] = [
+  {
+    task: "Renewals",
+    before: "Spotted when a member stops showing up",
+    withLiftIQ: "Listed a week ahead, with what is at stake",
+  },
+  {
+    task: "Payments",
+    before: "Cash in a drawer, UPI on a phone, receipts by hand",
+    withLiftIQ: "Recorded once against an invoice, receipt issued",
+  },
+  {
+    task: "Dues",
+    before: "Remembered, or not",
+    withLiftIQ: "Sorted by how late they are",
+  },
+  {
+    task: "Leads",
+    before: "Scattered across WhatsApp and call logs",
+    withLiftIQ: "A pipeline with follow-up dates",
+  },
+  {
+    task: "Attendance",
+    before: "A register nobody reads",
+    withLiftIQ: "Visits that flag members drifting away",
+  },
+  {
+    task: "Month-end",
+    before: "An evening of adding up",
+    withLiftIQ: "Reports ready whenever you look",
+  },
 ];

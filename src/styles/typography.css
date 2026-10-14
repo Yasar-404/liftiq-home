@@ -1,52 +1,45 @@
-.text-display {
-  font-size: clamp(3rem, 1.4rem + 7vw, 6.75rem);
-  line-height: 1;
-  letter-spacing: -0.035em;
-  font-weight: 600;
-  padding-bottom: 0.06em;
-}
+@layer components {
+  .text-display {
+    font-size: clamp(2.6rem, 1.2rem + 6vw, 5.75rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    font-weight: 600;
+    padding-bottom: 0.06em;
+  }
 
-.text-h2 {
-  font-size: clamp(2.15rem, 1.35rem + 3.4vw, 3.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  font-weight: 600;
-}
+  .text-h2 {
+    font-size: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+  }
 
-.text-h3 {
-  font-size: clamp(1.55rem, 1.1rem + 1.9vw, 2.25rem);
-  line-height: 1.14;
-  letter-spacing: -0.022em;
-  font-weight: 600;
-}
+  .text-h3 {
+    font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.875rem);
+    line-height: 1.18;
+    letter-spacing: -0.022em;
+    font-weight: 600;
+  }
 
-.text-lead {
-  font-size: clamp(1.1rem, 0.98rem + 0.6vw, 1.35rem);
-  line-height: 1.55;
-  color: var(--color-text-muted);
-}
+  .text-lead {
+    font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
 
-.text-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--color-text-muted);
-}
+  .text-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-accent-text);
+  }
 
-.text-gradient {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.text-gradient-anim {
-  background: linear-gradient(100deg, #2f80ff, #7c5cff, #b64bff, #7c5cff, #2f80ff);
-  background-size: 220% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: lq-gradient-pan 7s ease-in-out infinite;
+  .text-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 }

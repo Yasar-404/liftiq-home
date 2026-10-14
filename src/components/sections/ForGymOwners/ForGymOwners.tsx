@@ -2,56 +2,49 @@ import { Section } from "@/components/layout/Section";
 import { Check } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Sheen } from "@/components/ui/Sheen";
-import { afterItems, beforeItems } from "@/data/owners";
+import { comparisonRows } from "@/data/owners";
 
 export function ForGymOwners() {
   return (
-    <Section id="owners" spacing="lg" containerClassName="flex flex-col gap-14">
+    <Section id="compare" spacing="lg" containerClassName="flex flex-col gap-14">
       <SectionHeading
-        eyebrow="For gym owners"
-        title="Spend less time managing the business. More time growing it."
-        description="The same operation, moved out of scattered tools and into one workspace that keeps itself current."
+        eyebrow="Why LiftIQ"
+        title="The same jobs, without the paperwork."
+        description="Most gyms run on a register, a payment app, a spreadsheet and WhatsApp. Each works on its own. LiftIQ connects them, so a payment, a visit and a renewal all land on the same member."
       />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Reveal>
-          <div className="flex h-full flex-col gap-4 rounded-[var(--radius-lg)] border border-border bg-bg-subtle/60 p-6 sm:p-7">
-            <span className="text-eyebrow text-text-faint">Before</span>
-            <ul className="flex flex-col gap-3">
-              {beforeItems.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-sm text-text-faint">
-                  <span className="mt-1.5 h-1 w-3 shrink-0 rounded-full bg-white/15" />
-                  <span className="line-through decoration-white/20">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
+      <Reveal className="overflow-hidden rounded-[var(--radius-lg)] border border-border">
+        <div
+          aria-hidden="true"
+          className="hidden grid-cols-[160px_1fr_1fr] gap-6 border-b border-border bg-surface/60 px-7 py-4 md:grid"
+        >
+          <span className="text-eyebrow text-text-muted">Job</span>
+          <span className="text-eyebrow text-text-muted">Registers and spreadsheets</span>
+          <span className="text-eyebrow">With LiftIQ</span>
+        </div>
 
-        <Reveal delay={100}>
-          <div className="card group relative flex h-full flex-col gap-4 overflow-hidden p-6 sm:p-7">
-            <Sheen />
-            <div className="pointer-events-none absolute -top-24 -right-24 h-52 w-52 rounded-full bg-[radial-gradient(circle,rgba(124,92,255,0.22),transparent_70%)] blur-2xl" />
-            <span className="text-eyebrow relative text-accent">With LiftIQ</span>
-            <ul className="relative flex flex-col gap-3">
-              {afterItems.map((item, i) => (
-                <Reveal
-                  as="li"
-                  key={item}
-                  delay={i * 50}
-                  className="flex items-start gap-2.5 text-sm text-text"
-                >
-                  <span className="mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full bg-accent-soft text-accent">
-                    <Check className="h-2.5 w-2.5" />
-                  </span>
-                  {item}
-                </Reveal>
-              ))}
-            </ul>
-          </div>
-        </Reveal>
-      </div>
+        <ul>
+          {comparisonRows.map((row) => (
+            <li
+              key={row.task}
+              className="grid grid-cols-1 gap-2 border-b border-border px-5 py-5 last:border-0 sm:px-7 md:grid-cols-[160px_1fr_1fr] md:items-center md:gap-6"
+            >
+              <h3 className="text-[0.95rem] font-semibold text-text">{row.task}</h3>
+              <p className="text-sm text-text-muted">
+                <span className="font-medium text-text-faint md:sr-only">Without LiftIQ: </span>
+                {row.before}
+              </p>
+              <p className="flex items-start gap-2 text-sm text-text">
+                <Check className="mt-0.5 h-4 w-4 shrink-0 text-accent-text" aria-hidden="true" />
+                <span>
+                  <span className="sr-only">With LiftIQ: </span>
+                  {row.withLiftIQ}
+                </span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
     </Section>
   );
 }

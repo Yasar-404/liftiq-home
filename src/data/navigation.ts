@@ -1,34 +1,28 @@
 import type { NavItem } from "@/types";
 
 export const primaryNav: NavItem[] = [
-  { label: "Product", href: "#platform" },
-  { label: "Solutions", href: "#owners" },
+  { label: "Platform", href: "#platform" },
+  { label: "Daily Brief", href: "#intelligence" },
   { label: "Features", href: "#features" },
-  { label: "Resources", href: "#contact" },
+  { label: "Security", href: "#trust" },
 ];
 
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
-    title: "Platform",
+    title: "Product",
     items: [
-      { label: "Product", href: "#platform" },
-      { label: "Solutions", href: "#owners" },
+      { label: "How it works", href: "#how-it-works" },
+      { label: "Platform", href: "#platform" },
+      { label: "Daily Brief", href: "#intelligence" },
       { label: "Features", href: "#features" },
-      { label: "Resources", href: "#contact" },
     ],
   },
   {
     title: "Company",
     items: [
-      { label: "About", href: "#manifesto" },
-      { label: "Contact", href: "#contact" },
-      { label: "Privacy", href: "#contact" },
-      { label: "Terms", href: "#contact" },
+      { label: "Why LiftIQ", href: "#compare" },
+      { label: "Security", href: "#trust" },
+      { label: "Book a Demo", href: "#demo" },
     ],
   },
-];
-
-export const legalNav: NavItem[] = [
-  { label: "Privacy", href: "#contact" },
-  { label: "Terms", href: "#contact" },
 ];

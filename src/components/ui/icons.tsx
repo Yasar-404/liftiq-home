@@ -53,21 +53,6 @@ export const Billing = (p: IconProps) => (
   </Base>
 );
 
-export const Crm = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M4 5h16v11H8l-4 3z" />
-    <path d="M8 9h8M8 12h5" />
-  </Base>
-);
-
-export const Communication = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M4 4h12v9H9l-5 3.5z" />
-    <path d="M9 8h1M13 8h1" />
-    <path d="M20 8v9l-3-2h-4" />
-  </Base>
-);
-
 export const Insights = (p: IconProps) => (
   <Base {...p}>
     <path d="M4 19V5M4 19h16" />
@@ -75,39 +60,9 @@ export const Insights = (p: IconProps) => (
   </Base>
 );
 
-export const Copilot = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M12 3v3" />
-    <rect x="4" y="6" width="16" height="12" rx="3" />
-    <circle cx="9" cy="12" r="1" />
-    <circle cx="15" cy="12" r="1" />
-    <path d="M2 12h2M20 12h2" />
-  </Base>
-);
-
-export const Intelligence = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M12 3a5 5 0 0 0-3 9c.6.5 1 1.2 1 2v1h4v-1c0-.8.4-1.5 1-2a5 5 0 0 0-3-9Z" />
-    <path d="M9 20h6M10 22h4" />
-  </Base>
-);
-
-export const Bolt = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M13 3 4 14h7l-1 7 9-11h-7z" />
-  </Base>
-);
-
 export const Check = (p: IconProps) => (
   <Base {...p}>
     <path d="m5 12 5 5L20 7" />
-  </Base>
-);
-
-export const Sparkle = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M12 4c.7 3.6 1.8 4.7 5.4 5.4-3.6.7-4.7 1.8-5.4 5.4-.7-3.6-1.8-4.7-5.4-5.4C10.2 8.7 11.3 7.6 12 4Z" />
-    <path d="M18.5 15c.3 1.6.8 2.1 2.4 2.5-1.6.4-2.1.9-2.4 2.5-.3-1.6-.8-2.1-2.4-2.5 1.6-.4 2.1-.9 2.4-2.5Z" />
   </Base>
 );
 
@@ -149,5 +104,87 @@ export const Pin = (p: IconProps) => (
   <Base {...p}>
     <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z" />
     <circle cx="12" cy="10" r="2.5" />
+  </Base>
+);
+
+export const Bell = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z" />
+    <path d="M10 20.5a2 2 0 0 0 4 0" />
+  </Base>
+);
+
+export const Renew = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M20 12a8 8 0 0 1-14.3 4.9" />
+    <path d="M4 12a8 8 0 0 1 14.3-4.9" />
+    <path d="M18.5 3v4.2h-4.2M5.5 21v-4.2h4.2" />
+  </Base>
+);
+
+export const Branches = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 21h18" />
+    <path d="M5 21V9l5-3v15M10 21V4l9 4v13" />
+    <path d="M13 11h3M13 15h3" />
+  </Base>
+);
+
+export const Shield = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M12 3 5 6v5.5c0 4.3 3 8 7 9.5 4-1.5 7-5.2 7-9.5V6z" />
+    <path d="m9 12 2 2 4-4" />
+  </Base>
+);
+
+export const Approval = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="4" y="3.5" width="16" height="17" rx="2" />
+    <path d="M8 8h8M8 12h5" />
+    <path d="m11 16.5 1.5 1.5 3-3" />
+  </Base>
+);
+
+export const Cash = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="2.5" y="6" width="19" height="12" rx="2" />
+    <circle cx="12" cy="12" r="2.5" />
+    <path d="M6 9.5v5M18 9.5v5" />
+  </Base>
+);
+
+export const Expenses = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
+    <path d="M9 8h6M9 12h6M9 16h3" />
+  </Base>
+);
+
+export const Lock = (p: IconProps) => (
+  <Base {...p}>
+    <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+    <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+    <path d="M12 15v2" />
+  </Base>
+);
+
+export const Link = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
+    <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
+  </Base>
+);
+
+export const Audit = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M7 3h7l4 4v14H7z" />
+    <path d="M14 3v4h4" />
+    <path d="m9.5 14 2 2 3.5-4" />
+  </Base>
+);
+
+export const Leads = (p: IconProps) => (
+  <Base {...p}>
+    <path d="M3 5h18l-7 8v5l-4 2v-7z" />
   </Base>
 );

@@ -11,18 +11,20 @@ export interface Feature {
   title: string;
   description: string;
   icon: IconType;
-  /** Column span on the 12-column bento grid (lg and up). */
-  span?: 4 | 6 | 8 | 12;
-  accent?: boolean;
+  /** Shown as a badge when the capability is not generally available yet. */
+  status?: string;
 }
 
-export type TabVisualKind = "revenue" | "attendance" | "records" | "followUps";
+export type TabVisualKind =
+  "members" | "payments" | "attendance" | "renewals" | "leads" | "reports";
 
 export interface ProductTab {
-  id: string;
+  id: TabVisualKind;
   label: string;
   headline: string;
-  description: string;
+  /** The operational problem, in the owner's words. */
+  problem: string;
+  /** What LiftIQ does about it. */
+  solution: string;
   points: string[];
-  visual: TabVisualKind;
 }

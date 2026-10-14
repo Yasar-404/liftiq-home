@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Close } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import { site } from "@/data/site";
+import { cn } from "@/lib/cn";
 import type { NavItem } from "@/types";
 
 interface MobileMenuProps {
@@ -14,12 +14,21 @@ interface MobileMenuProps {
   items: NavItem[];
 }
 
+/**
+ * Full-width menu for small screens. Always rendered so it can transition;
+ * `inert` keeps it out of the tab order and accessibility tree while closed.
+ */
 export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
+  const closeButton = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     if (!open) return;
+    closeButton.current?.focus();
     const original = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKeyDown = (event: KeyboardEvent) => event.key === "Escape" && onClose();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = original;
@@ -28,70 +37,81 @@ export function MobileMenu({ open, onClose, items }: MobileMenuProps) {
   }, [open, onClose]);
 
   return (
-    <AnimatePresence>
-      {open && (
-        <motion.div
-          className="fixed inset-0 z-[70] md:hidden"
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-        >
-          <motion.div
-            className="absolute inset-0 bg-bg/80 backdrop-blur-xl"
-            variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
-            transition={{ duration: 0.25 }}
-            onClick={onClose}
-          />
-          <motion.nav
-            className="absolute inset-x-0 top-0 flex flex-col gap-8 border-b border-border bg-bg-subtle px-5 pt-4 pb-10"
-            variants={{
-              hidden: { y: "-100%" },
-              visible: { y: 0 },
-            }}
-            transition={{ type: "spring", stiffness: 260, damping: 30 }}
-          >
-            <div className="flex items-center justify-between">
-              <Logo />
-              <button
-                onClick={onClose}
-                aria-label="Close menu"
-                className="grid h-10 w-10 place-items-center rounded-full border border-border text-text-muted transition-colors hover:text-text"
-              >
-                <Close className="h-5 w-5" />
-              </button>
-            </div>
-
-            <ul className="flex flex-col">
-              {items.map((item, i) => (
-                <motion.li
-                  key={item.href}
-                  initial={{ opacity: 0, x: -12 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.08 + i * 0.05 }}
-                >
-                  <a
-                    href={item.href}
-                    onClick={onClose}
-                    className="flex items-center justify-between border-b border-border py-4 text-lg font-medium text-text"
-                  >
-                    {item.label}
-                    <span className="text-text-faint">→</span>
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-
-            <div className="flex flex-col gap-3">
-              <Button href={site.cta.primary.href} size="lg" withArrow onClick={onClose}>
-                {site.cta.primary.label}
-              </Button>
-              <Button href="#contact" size="lg" variant="secondary" onClick={onClose}>
-                Sign In
-              </Button>
-            </div>
-          </motion.nav>
-        </motion.div>
+    <div
+      id="mobile-menu"
+      inert={!open}
+      className={cn(
+        "fixed inset-0 z-[70] md:hidden",
+        open ? "visible" : "invisible delay-[var(--duration-base)]",
       )}
-    </AnimatePresence>
+    >
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className={cn(
+          "absolute inset-0 bg-bg/80 backdrop-blur-md transition-opacity duration-[var(--duration-base)]",
+          open ? "opacity-100" : "opacity-0",
+        )}
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu"
+        className={cn(
+          "absolute inset-x-0 top-0 flex flex-col gap-8 rounded-b-[var(--radius-lg)] border-b border-border bg-bg-subtle px-5 pt-4 pb-8",
+          "transition-[transform,opacity] duration-[var(--duration-base)] ease-[var(--ease-spring)]",
+          open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0",
+        )}
+      >
+        <div className="flex items-center justify-between">
+          <Logo />
+          <button
+            ref={closeButton}
+            type="button"
+            onClick={onClose}
+            aria-label="Close menu"
+            className="grid h-11 w-11 place-items-center rounded-full border border-border text-text-muted transition-colors hover:text-text"
+          >
+            <Close className="h-5 w-5" />
+          </button>
+        </div>
+
+        <nav aria-label="Mobile">
+          <ul className="flex flex-col">
+            {items.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  onClick={onClose}
+                  className="flex items-center justify-between border-b border-border py-4 text-lg font-medium text-text"
+                >
+                  {item.label}
+                  <span className="text-text-faint" aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="flex flex-col gap-3">
+          <Button
+            href={site.cta.primary.href}
+            size="lg"
+            withArrow
+            onClick={onClose}
+            cta="menu-demo"
+          >
+            {site.cta.primary.label}
+          </Button>
+          {site.signInUrl && (
+            <Button href={site.signInUrl} size="lg" variant="secondary">
+              Sign in
+            </Button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

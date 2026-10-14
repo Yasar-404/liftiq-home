@@ -1,4 +1,10 @@
 @import "tailwindcss";
+
+/*
+ * Base styles live in @layer base and shared classes in @layer components, so
+ * Tailwind utilities can always override them. Motion styles stay unlayered:
+ * reveal states must win over anything else on the element.
+ */
 @import "../styles/tokens.css";
 @import "../styles/base.css";
 @import "../styles/typography.css";
