@@ -6,6 +6,11 @@ interface AnimatedTextProps {
   children: ReactNode;
   as?: ElementType;
   className?: string;
+  /**
+   * Classes for each word. Use this for gradient text: words are separate
+   * transformed boxes, so a background clipped to the parent's text won't show.
+   */
+  wordClassName?: string;
   /** ms before the first word starts */
   delay?: number;
   /** ms between words */
@@ -22,6 +27,7 @@ export function AnimatedText({
   children,
   as: Tag = "span",
   className,
+  wordClassName,
   delay = 0,
   stagger = 36,
 }: AnimatedTextProps) {
@@ -40,7 +46,7 @@ export function AnimatedText({
             className="lq-word"
             style={{ "--word-delay": `${delay + i * stagger}ms` } as CSSProperties}
           >
-            <span className="lq-word-inner">{word}</span>
+            <span className={cn("lq-word-inner", wordClassName)}>{word}</span>
           </span>
         </Fragment>
       ))}

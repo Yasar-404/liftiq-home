@@ -13,7 +13,13 @@ export interface Feature {
   icon: IconType;
   /** Shown as a badge when the capability is not generally available yet. */
   status?: string;
+  /** Card size in the features bento: large cards carry a product visual. */
+  size?: "large" | "small" | "wide";
+  /** Sample product visual shown on large cards. */
+  visual?: FeatureVisualKind;
 }
+
+export type FeatureVisualKind = "branches" | "approval" | "cashClose";
 
 export type TabVisualKind =
   "members" | "payments" | "attendance" | "renewals" | "leads" | "reports";

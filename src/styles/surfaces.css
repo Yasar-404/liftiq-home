@@ -9,6 +9,34 @@
       var(--shadow-md);
   }
 
+  /* A contrasting full-width band, used to vary the rhythm between sections. */
+  .band {
+    background:
+      radial-gradient(60% 50% at 50% 0%, rgba(124, 92, 255, 0.07), transparent),
+      linear-gradient(180deg, #0c0d10, #0a0b0d);
+    border-block: 1px solid var(--color-border);
+  }
+
+  /*
+   * Frame for a product visual: a gradient hairline that is brightest along the
+   * top edge, as if lit from above. Wrap the visual in an element with this class.
+   */
+  .frame-lit {
+    position: relative;
+    border-radius: calc(var(--radius-lg) + 1px);
+    padding: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(160, 139, 255, 0.55),
+      rgba(255, 255, 255, 0.08) 22%,
+      rgba(255, 255, 255, 0.03) 60%
+    );
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.4),
+      0 40px 120px -40px rgba(124, 92, 255, 0.35),
+      0 30px 60px -30px rgba(0, 0, 0, 0.8);
+  }
+
   /* Cards with a gradient hairline border (::before). Needs a positioned element. */
   .card {
     border-radius: var(--radius-lg);

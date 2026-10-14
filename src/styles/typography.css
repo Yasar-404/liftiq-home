@@ -1,16 +1,16 @@
 @layer components {
   .text-display {
-    font-size: clamp(2.6rem, 1.2rem + 6vw, 5.75rem);
-    line-height: 1;
-    letter-spacing: -0.04em;
+    font-size: clamp(2.6rem, 1.2rem + 6vw, 6rem);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
     font-weight: 600;
     padding-bottom: 0.06em;
   }
 
   .text-h2 {
-    font-size: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-size: clamp(2rem, 1.3rem + 2.8vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
     font-weight: 600;
   }
 
@@ -37,6 +37,25 @@
 
   .text-gradient {
     background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Accent words in display headings: lit from above, settling into violet. */
+  .text-gradient-soft {
+    background: linear-gradient(180deg, #d9d0ff 10%, #9f87ff 55%, #7c5cff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /*
+   * Headings fade slightly from white at the top. The darkest point (#b9bdc7) is about
+   * 10.6:1 against the page background.
+   */
+  .text-sheen {
+    background: linear-gradient(180deg, #ffffff 35%, #b9bdc7);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

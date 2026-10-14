@@ -192,6 +192,50 @@ export const atRiskMembers = [
   { name: "Bhavna C.", reason: "Joined 6 weeks ago, 1 visit in 3 weeks", band: "Medium" },
 ] as const;
 
+/* Branches ---------------------------------------------------------------- */
+
+const mainBranch = { name: "Velachery", members: 171, collected: 1_52_600, checkInsToday: 46 };
+
+/** Two branches whose figures add up to the gym-wide totals above. */
+export const branches = [
+  mainBranch,
+  {
+    name: "OMR",
+    members: demoGym.activeMembers - mainBranch.members,
+    collected: collections.last4Weeks - mainBranch.collected,
+    checkInsToday: attendance.today - mainBranch.checkInsToday,
+  },
+];
+
+/* Discount approval -------------------------------------------------------- */
+
+const requestPlan: PlanName = "Quarterly";
+const requestDiscountPct = 10;
+
+/** A discount above the desk's limit, waiting for the owner. */
+export const discountRequest = {
+  member: "Rohit P.",
+  plan: requestPlan,
+  price: plans[requestPlan],
+  discountPct: requestDiscountPct,
+  deskLimitPct: 5,
+  finalPrice: plans[requestPlan] * (1 - requestDiscountPct / 100),
+  reason: "Referred two friends who joined this month",
+  requestedBy: "Front desk, Velachery",
+};
+
+/* Cash drawer -------------------------------------------------------------- */
+
+const cashExpected = sum(paymentRows.filter((p) => p.method === "Cash").map((p) => p.amount));
+
+/** Yesterday's close: the drawer should hold exactly the cash payments recorded. */
+export const cashClose = {
+  branch: mainBranch.name,
+  expected: cashExpected,
+  counted: cashExpected,
+  closedBy: "Front desk",
+};
+
 /* Today's brief ----------------------------------------------------------- */
 
 /** The morning brief: five numbers and one thing to do first. */
