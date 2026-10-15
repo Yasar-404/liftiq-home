@@ -1,6 +1,7 @@
 import { Section } from "@/components/layout/Section";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
+import { Check } from "@/components/ui/icons";
 import { demoCovers } from "@/data/contact";
 import { site } from "@/data/site";
 import { ContactChannels } from "./ContactChannels";
@@ -10,7 +11,7 @@ export function Contact() {
   return (
     <Section id="contact" spacing="lg" className="relative overflow-hidden">
       <Reveal variant="scale" className="frame-lit">
-        <div className="relative overflow-hidden rounded-[var(--radius-lg)] bg-[image:var(--gradient-panel)] px-6 py-14 sm:px-12 sm:py-20">
+        <div className="relative overflow-hidden rounded-[var(--radius-lg)] bg-[image:var(--gradient-panel)] px-6 pt-14 pb-8 sm:px-12 sm:pt-20 sm:pb-10">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">
             <div className="spotlight absolute inset-x-0 top-0 h-[30rem]" />
             <div className="grid-texture radial-fade absolute inset-0 opacity-60" />
@@ -34,13 +35,26 @@ export function Contact() {
             </div>
           </div>
 
-          <ul className="relative mt-12 grid grid-cols-1 gap-3 border-t border-border pt-8 text-center text-sm text-text-muted md:grid-cols-3">
-            {demoCovers.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
+          <div className="relative mt-12 border-t border-border pt-8">
+            <p className="text-center text-[11px] font-medium tracking-[0.14em] text-accent-text uppercase">
+              The demo covers
+            </p>
+            <ul className="mt-5 grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-3">
+              {demoCovers.map((item) => (
+                <li key={item} className="flex items-start gap-3 text-[0.9rem] text-text-muted">
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-accent/30 bg-accent-soft text-accent-text"
+                  >
+                    <Check className="h-3 w-3" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <div className="relative mt-8 border-t border-border pt-2">
+          <div className="relative mt-8">
             <ContactChannels />
           </div>
         </div>
