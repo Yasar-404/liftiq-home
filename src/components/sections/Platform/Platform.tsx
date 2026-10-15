@@ -20,9 +20,6 @@ export function Platform() {
         description="Switch between the areas your team works in every day."
       />
       <PlatformTabs areas={platformAreas} previews={previews} />
-      <p className="text-center text-[11px] text-text-faint">
-        Sample gym and figures, for illustration.
-      </p>
     </Section>
   );
 }

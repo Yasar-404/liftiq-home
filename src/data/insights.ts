@@ -8,67 +8,30 @@ import type { DetailGroup } from "@/types";
 export const insightGroups: DetailGroup[] = [
   {
     title: "The morning brief",
-    summary: "Counted once each morning, so it reads the same all day and can be checked.",
     items: [
-      {
-        title: "Collected yesterday",
-        body: "Everything paid yesterday, compared with a usual day.",
-      },
-      {
-        title: "Expiring this week",
-        body: "Memberships ending in the next seven days, and the money riding on them.",
-      },
-      {
-        title: "Outstanding",
-        body: "Balances still owed, and how many members owe them.",
-      },
-      {
-        title: "Leads to follow up",
-        body: "Enquiries whose follow-up date has passed.",
-      },
-      {
-        title: "Members likely to leave",
-        body: "Members whose attendance matches a warning rule, each with the reason.",
-      },
-      {
-        title: "Do this first",
-        body: "One task, chosen by money at stake and urgency, from four kinds of work: renewals not yet reached, overdue balances, members likely to leave and overdue follow-ups.",
-      },
+      { title: "Collected yesterday", body: "Payments received vs. a typical day." },
+      { title: "Expiring soon", body: "Memberships ending within 7 days and their value." },
+      { title: "Outstanding", body: "Unpaid balances and members who owe them." },
+      { title: "Overdue follow-ups", body: "Leads past their follow-up date." },
+      { title: "At-risk members", body: "Members matching attendance warning rules." },
+      { title: "Priority action", body: "One task ranked by urgency and financial impact." },
     ],
   },
   {
-    title: "Members likely to leave",
-    summary: "Rules an owner can say out loud, instead of a score nobody can explain.",
+    title: "Members at risk",
     items: [
       {
-        title: "Declining",
-        body: "A regular whose visits in the last 30 days have fallen to half of the 30 days before, or less.",
+        title: "Declining attendance",
+        body: "Visits have dropped by at least 50% vs. the previous 30 days.",
       },
       {
-        title: "Not seen for 7, 14 or 30 days",
-        body: "Members who have stopped coming, grouped by how long it has been.",
+        title: "Inactive for 7, 14 or 30 days",
+        body: "Members grouped by time since their last visit.",
       },
+      { title: "New but inactive", body: "Recent joiners who have stopped attending." },
       {
-        title: "New and stopped",
-        body: "Members who joined in the last few weeks and have already stopped coming.",
-      },
-      {
-        title: "Expiring and barely coming",
-        body: "Members whose plan ends soon and who have hardly visited, so a renewal is at risk.",
-      },
-    ],
-  },
-  {
-    title: "Weekly and monthly summaries",
-    summary: "The longer view, on the same dashboard as the brief.",
-    items: [
-      {
-        title: "Last week",
-        body: "What was collected against the week before, the renewal rate, leads converted and the reasons people gave for leaving.",
-      },
-      {
-        title: "Last month",
-        body: "What came in, what was spent, what was left over, and how many of the memberships that ended were renewed.",
+        title: "Expiring with low attendance",
+        body: "Members nearing expiry with limited recent visits.",
       },
     ],
   },

@@ -3,6 +3,7 @@ import { Section } from "@/components/layout/Section";
 import { BriefMock } from "@/components/product/BriefMock";
 import { MockHeading, MockPanel, MockRow } from "@/components/product/Mock";
 import { Reveal } from "@/components/ui/Reveal";
+import { InsightModal } from "./InsightModal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { brief, plans, renewals } from "@/data/demo";
 import { insightGroups, insightPrinciples, insightStatus } from "@/data/insights";
@@ -101,34 +102,7 @@ export function AiInsights() {
             <p className="leading-relaxed text-text-muted">{insightStatus.planned}</p>
           </Reveal>
 
-          <details className="group rounded-[var(--radius-lg)] border border-border bg-surface/40">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-[var(--radius-lg)] px-5 py-3.5 text-[0.925rem] font-medium text-text [&::-webkit-details-marker]:hidden">
-              How each insight is counted
-              <span
-                aria-hidden="true"
-                className="text-text-faint transition-transform duration-[var(--duration-base)] group-open:rotate-45"
-              >
-                +
-              </span>
-            </summary>
-            <div className="flex flex-col gap-6 border-t border-border px-5 py-5">
-              {insightGroups.map((group) => (
-                <div key={group.title} className="flex flex-col gap-3">
-                  <h3 className="text-[0.95rem] font-semibold text-text">{group.title}</h3>
-                  <dl className="flex flex-col gap-2.5">
-                    {group.items.map((item) => (
-                      <div key={item.title}>
-                        <dt className="text-[0.875rem] font-medium text-text">{item.title}</dt>
-                        <dd className="text-[0.85rem] leading-relaxed text-text-muted">
-                          {item.body}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              ))}
-            </div>
-          </details>
+          <InsightModal groups={insightGroups} />
         </div>
       </div>
     </Section>
