@@ -38,7 +38,7 @@ interface ExpiringMembership {
 
 /** Every membership that ends in the next 7 days. */
 export const expiringThisWeek: ExpiringMembership[] = [
-  { name: "Priya N.", plan: "Annual", endsInDays: 1, visitsThisMonth: 14, contacted: false },
+  { name: "Samantha", plan: "Annual", endsInDays: 1, visitsThisMonth: 14, contacted: false },
   { name: "Arjun M.", plan: "Quarterly", endsInDays: 2, visitsThisMonth: 11, contacted: true },
   { name: "Kavya S.", plan: "Monthly", endsInDays: 2, visitsThisMonth: 9, contacted: false },
   { name: "Rahul V.", plan: "Half-yearly", endsInDays: 3, visitsThisMonth: 12, contacted: false },

@@ -37,7 +37,7 @@ function MemberProfile() {
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
           <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-soft text-[12px] font-semibold text-accent-text">
-            PN
+            {member.name.slice(0, 2).toUpperCase()}
           </span>
           <div>
             <div className="text-[13px] font-semibold text-text">{member.name}</div>
