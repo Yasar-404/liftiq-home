@@ -9,6 +9,7 @@ export function Loop() {
     <Section id="how-it-works" spacing="lg" containerClassName="flex flex-col gap-16">
       <SectionHeading
         align="center"
+        index={2}
         eyebrow="How it works"
         title="Built around the loop that keeps a gym in business."
         description="Most gym revenue is lost between steps: a payment nobody chased, a renewal nobody noticed, a lead nobody called back. LiftIQ keeps every step in one place."

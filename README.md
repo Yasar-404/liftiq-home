@@ -37,17 +37,16 @@ The site runs at http://localhost:3000.
 
 ```
 src/
-  app/                  Routes (/, /platform, /ai-insights, /features, /security), the root
-                        layout, 404 page, fonts, icons, robots and sitemap
+  app/                  The homepage, 404 page, root layout, fonts, icons, robots and sitemap
   components/
     layout/             Container, Section, RevealObserver, AnchorScroll
     navigation/         Header and mobile menu
     footer/             Site footer
-    sections/           One folder per homepage section, reused on the dedicated pages
-    page/               Building blocks for the dedicated pages (PageHero, DetailGroups, ...)
+    sections/           One folder per homepage section (Hero, Overview, Loop, ProductStory, ...)
+    page/               PageHero, used by the 404 page
     product/            Product previews built from the sample data in data/demo.ts
     ui/                 Reusable primitives (Button, Logo, Reveal, ...)
-  data/                 Site config, the page registry, navigation, and page and section content
+  data/                 Site config, navigation, and the content of each section
   hooks/                Reusable React hooks
   lib/                  Helpers (class names, formatting, SEO)
   styles/               Design tokens and shared CSS
@@ -56,13 +55,17 @@ src/
 
 ## Conventions
 
-- **Pages are registered in `data/pages.ts`.** Its path, nav label, title and description feed
-  the navigation, the sitemap and the page's metadata (`pageMetadata` in `lib/seo.ts`, which
-  sets the canonical URL, Open Graph and Twitter tags). To add a page, add it there and create
-  `src/app/<path>/page.tsx`. The navbar, `<main>` and footer come from the root layout, and
-  every page ends with the `Contact` section so the Book a Demo button (`#demo`) works on it.
-- **Links**: site routes use Next.js `Link` (`Button` does this automatically for paths
-  starting with `/`); same-page `#section` links are handled by `AnchorScroll`.
+- **One page.** All product marketing lives on the homepage as sections, in the order a gym
+  owner's questions come up: hero, product overview, how it works, platform, features, AI
+  insights, benefits, security, demo. There are no separate product routes. `next.config.ts`
+  redirects the four short-lived addresses (`/platform`, `/ai-insights`, `/features`,
+  `/security`) to the matching section. The navbar, `<main id="main">` and footer come from the
+  root layout.
+- **Navigation** is the list in `data/sections.ts`. Each entry's `id` must match a section's
+  `id`; the navbar, mobile menu, footer and the active-section highlight (`useActiveSection`)
+  all read from it. Write in-page links as `href="/#section-id"`: they work from the 404 page
+  too, and on the homepage `AnchorScroll` scrolls to the section, moves focus there and keeps
+  the address bar clean. Without JavaScript they are ordinary anchors.
 
 - **Content lives in `src/data`.** Components render data; edit copy, navigation, features,
   and contact details there. Brand name, contact details, calls to action and the sign-in URL
@@ -90,16 +93,19 @@ src/
   `.text-gradient-soft` are gradient text for headings. Gradient text is clipped to the
   element's own glyphs, so on word-animated headings pass it to `AnimatedText` as
   `wordClassName`, not `className`.
-- **Motion** is CSS only and respects `prefers-reduced-motion`. Scroll reveals (`Reveal`,
-  `AnimatedText`) are server components revealed by one `RevealObserver` in the root layout, and
-  are gated on a `js` class on `<html>`, so content stays visible without JavaScript. The hero
-  text is never animated, so it is readable on first paint.
+- **Motion** is CSS only, uses transform and opacity (plus one clip-path wipe on a few large
+  frames), and respects `prefers-reduced-motion`. Durations and easings are tokens
+  (`--duration-*`, `--ease-*`) and the rules live in `styles/motion.css`. The opening sequence
+  uses `.enter` and `.settle`; the hero text only settles upward and is never hidden, so the
+  message is readable on first paint. Scroll reveals (`Reveal`, `AnimatedText`) are server
+  components revealed by one `RevealObserver`, gated on a `js` class on `<html>`, so content
+  stays visible without JavaScript. `Reveal` has variants (`rise`, `fade`, `scale`, `mask`,
+  `left`, `right`): choose by what the element is rather than using one everywhere.
+- **The platform story** (`ProductStory`/`StoryTrack`) is one row per area: text on the left and
+  its visual beside it, which sticks near the top from `lg` while its row scrolls past. It
+  needs no script and renders each visual once.
 - **Sections** are exported through `src/components/sections/index.ts` and composed in
   `src/app/page.tsx`, ordered by the questions a gym owner asks while deciding.
-- **In-page links** keep the address bar clean. Write them as normal `href="#section-id"`
-  links; `AnchorScroll` in the root layout scrolls to the section and moves focus there
-  without adding the hash to the URL, and removes a hash a visitor arrives with. Without
-  JavaScript they behave as ordinary anchors.
 
 ## Deployment
 

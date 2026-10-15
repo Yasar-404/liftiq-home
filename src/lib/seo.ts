@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import type { PageInfo } from "@/data/pages";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -19,10 +18,10 @@ export const metadata: Metadata = {
   authors: [{ name: site.name, url: site.domain }],
   creator: site.name,
   publisher: site.name,
-  // Each page sets its own canonical URL (see homeMetadata and pageMetadata), so
-  // pages never inherit the homepage's.
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
+    url: "/",
     siteName: site.name,
     title: site.title,
     description: site.description,
@@ -41,55 +40,6 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, email: false, address: false },
   category: "technology",
 };
-
-/** Canonical and social metadata for the homepage. */
-export const homeMetadata: Metadata = {
-  alternates: { canonical: "/" },
-  openGraph: {
-    type: "website",
-    url: "/",
-    siteName: site.name,
-    title: site.title,
-    description: site.description,
-    locale: "en_IN",
-  },
-};
-
-/**
- * The site-wide social preview from app/opengraph-image.tsx. A page that sets its
- * own openGraph replaces the inherited one, image included, so pages name it again.
- */
-const socialImage = {
-  url: "/opengraph-image",
-  width: 1200,
-  height: 630,
-  alt: `${site.name}: gym management software for memberships, payments and renewals`,
-};
-
-/** Title, description, canonical URL and social metadata for a dedicated page. */
-export function pageMetadata(page: PageInfo): Metadata {
-  const title = `${page.title} | ${site.name}`;
-  return {
-    title: page.title,
-    description: page.description,
-    alternates: { canonical: page.path },
-    openGraph: {
-      type: "website",
-      url: page.path,
-      siteName: site.name,
-      title,
-      description: page.description,
-      locale: "en_IN",
-      images: [socialImage],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: page.description,
-      images: [socialImage],
-    },
-  };
-}
 
 export const viewport: Viewport = {
   themeColor: "#08090a",

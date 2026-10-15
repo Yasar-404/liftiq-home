@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Container } from "@/components/layout/Container";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "@/components/ui/icons";
@@ -6,7 +5,6 @@ import { Logo } from "@/components/ui/Logo";
 import { contactChannels } from "@/data/contact";
 import { footerNav } from "@/data/navigation";
 import { site } from "@/data/site";
-import { isRoute } from "@/lib/links";
 
 const linkClass =
   "text-sm text-text-muted transition-colors duration-[var(--duration-fast)] hover:text-text";
@@ -36,15 +34,9 @@ export function Footer() {
               <ul className="flex flex-col gap-3">
                 {group.items.map((item) => (
                   <li key={item.label}>
-                    {isRoute(item.href) ? (
-                      <Link href={item.href} className={linkClass}>
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <a href={item.href} className={linkClass}>
-                        {item.label}
-                      </a>
-                    )}
+                    <a href={item.href} className={linkClass}>
+                      {item.label}
+                    </a>
                   </li>
                 ))}
               </ul>

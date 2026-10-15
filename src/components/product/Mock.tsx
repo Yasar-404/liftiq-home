@@ -1,15 +1,28 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 /** Building blocks for product previews. Server components, no client JavaScript. */
 
-export function MockPanel({ children, className }: { children: ReactNode; className?: string }) {
+interface MockPanelProps {
+  children: ReactNode;
+  className?: string;
+  /** When set (ms), the panel fades in on load after this delay, for sequenced previews. */
+  enterDelay?: number;
+}
+
+export function MockPanel({ children, className, enterDelay }: MockPanelProps) {
   return (
     <div
       className={cn(
         "rounded-[var(--radius-md)] border border-border bg-surface-elevated/70 p-3.5 sm:p-4",
+        enterDelay !== undefined && "enter",
         className,
       )}
+      style={
+        enterDelay !== undefined
+          ? ({ "--enter-delay": `${enterDelay}ms` } as CSSProperties)
+          : undefined
+      }
     >
       {children}
     </div>

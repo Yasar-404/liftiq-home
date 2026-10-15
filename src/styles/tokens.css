@@ -59,9 +59,11 @@
   /* Focus */
   --color-focus: #a08bff;
 
-  /* Motion */
+  /* Motion: see styles/motion.css for how each is used */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 160ms;
   --duration-base: 280ms;
   --duration-slow: 600ms;
+  --duration-hero: 900ms;
 }

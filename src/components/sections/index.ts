@@ -1,8 +1,9 @@
+export { Benefits } from "./Benefits";
 export { Contact } from "./Contact";
 export { CorePlatform } from "./CorePlatform";
-export { ForGymOwners } from "./ForGymOwners";
 export { Hero } from "./Hero";
 export { Intelligence } from "./Intelligence";
 export { Loop } from "./Loop";
+export { Overview } from "./Overview";
 export { ProductStory } from "./ProductStory";
 export { Trust } from "./Trust";

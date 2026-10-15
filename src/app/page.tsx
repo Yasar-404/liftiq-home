@@ -1,32 +1,30 @@
 import {
+  Benefits,
   Contact,
   CorePlatform,
-  ForGymOwners,
   Hero,
   Intelligence,
   Loop,
+  Overview,
   ProductStory,
   Trust,
 } from "@/components/sections";
-import { homeMetadata } from "@/lib/seo";
-
-export const metadata = homeMetadata;
 
 /**
- * The overview. Each section answers one question a gym owner has, in order:
- * what is it, how does it work, what does it do, how does it help me decide,
- * what else, why not my current tools, can I trust it, and what happens next.
- * Sections link to the dedicated page that covers them in depth.
+ * The whole product story on one page, in the order a gym owner's questions
+ * come up: what is it, how does it work, what does it do, what is different,
+ * what do I get, can I trust it, and what happens next.
  */
 export default function HomePage() {
   return (
     <>
       <Hero />
+      <Overview />
       <Loop />
       <ProductStory />
-      <Intelligence />
       <CorePlatform />
-      <ForGymOwners />
+      <Intelligence />
+      <Benefits />
       <Trust />
       <Contact />
     </>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 const SELECTOR = ".reveal:not(.is-visible), .lq-words:not(.is-visible)";
 
@@ -10,13 +9,10 @@ const SELECTOR = ".reveal:not(.is-visible), .lq-words:not(.is-visible)";
  * AnimatedText), instead of a hook per element. Marks each element
  * `is-visible` once it nears the viewport. A throttled scroll/resize check
  * backs the observer up, so content still appears where observer callbacks
- * are delayed or dropped, and everything is revealed before printing. Runs
- * again after each client-side navigation, for the new page's elements.
+ * are delayed or dropped, and everything is revealed before printing.
  * Renders nothing.
  */
 export function RevealObserver() {
-  const pathname = usePathname();
-
   useEffect(() => {
     const pending = new Set(document.querySelectorAll<HTMLElement>(SELECTOR));
     if (pending.size === 0) return;
@@ -73,7 +69,7 @@ export function RevealObserver() {
     check();
 
     return cleanup;
-  }, [pathname]);
+  }, []);
 
   return null;
 }

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/page/PageHero";
 import { Contact } from "@/components/sections";
 import { Button } from "@/components/ui/Button";
-import { primaryPages } from "@/data/pages";
+import { primaryNav } from "@/data/navigation";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -16,20 +15,23 @@ export default function NotFound() {
       <PageHero
         eyebrow="404"
         title="This page doesn't exist."
-        lead="The link may be old or mistyped. These pages might help:"
+        lead="The link may be old or mistyped. Everything about LiftIQ is on the homepage:"
       >
         <Button href="/" size="lg" withArrow>
           Go to the homepage
         </Button>
-        <nav aria-label="Pages" className="flex flex-wrap justify-center gap-x-5 gap-y-2 sm:ml-3">
-          {primaryPages.map((page) => (
-            <Link
-              key={page.path}
-              href={page.path}
+        <nav
+          aria-label="Sections"
+          className="flex flex-wrap justify-center gap-x-5 gap-y-2 sm:ml-3"
+        >
+          {primaryNav.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
               className="text-sm text-text-muted transition-colors hover:text-text"
             >
-              {page.label}
-            </Link>
+              {item.label}
+            </a>
           ))}
         </nav>
       </PageHero>
