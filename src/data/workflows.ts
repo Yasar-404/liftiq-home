@@ -1,6 +1,6 @@
-import type { ProductTab } from "@/types";
+import type { Workflow } from "@/types";
 
-export const productTabs: ProductTab[] = [
+export const workflows: Workflow[] = [
   {
     id: "members",
     label: "Members",

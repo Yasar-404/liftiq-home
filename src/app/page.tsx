@@ -1,13 +1,13 @@
 import {
   Benefits,
   Contact,
-  CorePlatform,
+  Features,
   Hero,
-  Intelligence,
-  Loop,
-  Overview,
-  ProductStory,
-  Trust,
+  AiInsights,
+  HowItWorks,
+  PlatformOverview,
+  Workflows,
+  About,
 } from "@/components/sections";
 
 /**
@@ -19,13 +19,13 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Overview />
-      <Loop />
-      <ProductStory />
-      <CorePlatform />
-      <Intelligence />
+      <PlatformOverview />
+      <HowItWorks />
+      <Workflows />
+      <Features />
+      <AiInsights />
       <Benefits />
-      <Trust />
+      <About />
       <Contact />
     </>
   );

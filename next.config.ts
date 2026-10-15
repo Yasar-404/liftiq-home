@@ -2,17 +2,21 @@ import type { NextConfig } from "next";
 
 /**
  * Addresses that existed briefly as separate pages. The content now lives on
- * the homepage, so they redirect to the matching section (the page's own
- * scripts then drop the #hash from the address bar).
+ * the homepage, so they redirect to the matching section.
  */
-const movedSections = ["platform", "ai-insights", "features", "security"];
+const movedSections: Record<string, string> = {
+  "/platform": "/#platform",
+  "/ai-insights": "/#ai",
+  "/features": "/#features",
+  "/security": "/#about",
+};
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   async redirects() {
-    return movedSections.map((section) => ({
-      source: `/${section}`,
-      destination: `/#${section}`,
+    return Object.entries(movedSections).map(([source, destination]) => ({
+      source,
+      destination,
       permanent: true,
     }));
   },

@@ -21,11 +21,10 @@ export interface Feature {
 
 export type FeatureVisualKind = "branches" | "approval" | "cashClose";
 
-export type TabVisualKind =
-  "members" | "payments" | "attendance" | "renewals" | "leads" | "reports";
+export type WorkflowId = "members" | "payments" | "attendance" | "renewals" | "leads" | "reports";
 
-export interface ProductTab {
-  id: TabVisualKind;
+export interface Workflow {
+  id: WorkflowId;
   label: string;
   headline: string;
   /** The operational problem, in the owner's words. */
@@ -35,7 +34,7 @@ export interface ProductTab {
   points: string[];
 }
 
-export interface DetailItem {
+interface DetailItem {
   title: string;
   body: string;
   /** Shown as a badge when the item is not generally available yet. */

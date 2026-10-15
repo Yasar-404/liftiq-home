@@ -111,7 +111,7 @@ function CashClose() {
 }
 
 /** Sample product visual shown on a feature card. */
-export function FeatureVisual({ kind }: { kind: FeatureVisualKind }) {
+export function FeaturePreview({ kind }: { kind: FeatureVisualKind }) {
   switch (kind) {
     case "branches":
       return <BranchComparison />;

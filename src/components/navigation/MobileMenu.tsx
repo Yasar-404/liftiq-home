@@ -10,7 +10,10 @@ import type { NavItem } from "@/types";
 
 interface MobileMenuProps {
   open: boolean;
+  /** Dismissed without choosing anything: focus returns to the menu button. */
   onClose: () => void;
+  /** A link was chosen: the menu closes and focus stays with the destination. */
+  onNavigate: () => void;
   items: NavItem[];
   /** Href of the section the reader is in, if any. */
   currentHref: string | null;
@@ -20,7 +23,7 @@ interface MobileMenuProps {
  * Full-width menu for small screens. Always rendered so it can transition;
  * `inert` keeps it out of the tab order and accessibility tree while closed.
  */
-export function MobileMenu({ open, onClose, items, currentHref }: MobileMenuProps) {
+export function MobileMenu({ open, onClose, onNavigate, items, currentHref }: MobileMenuProps) {
   const closeButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -86,7 +89,7 @@ export function MobileMenu({ open, onClose, items, currentHref }: MobileMenuProp
                 <li key={item.href}>
                   <a
                     href={item.href}
-                    onClick={onClose}
+                    onClick={onNavigate}
                     aria-current={current ? "location" : undefined}
                     className={cn(
                       "flex items-center justify-between border-b border-border py-4 text-lg font-medium",
@@ -109,7 +112,7 @@ export function MobileMenu({ open, onClose, items, currentHref }: MobileMenuProp
             href={site.cta.primary.href}
             size="lg"
             withArrow
-            onClick={onClose}
+            onClick={onNavigate}
             cta="menu-demo"
           >
             {site.cta.primary.label}

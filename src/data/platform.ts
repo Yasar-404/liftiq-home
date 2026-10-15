@@ -112,3 +112,19 @@ export const platformRoles: { title: string; body: string; status?: string }[] =
     status: "In testing",
   },
 ];
+
+/** What the layered screens in the product overview show, one line each. */
+export const platformHighlights = [
+  {
+    title: "The day, counted",
+    body: "Collections, dues, renewals and follow-ups are counted from your records each morning, with one task to do first.",
+  },
+  {
+    title: "The member, in full",
+    body: "A member's plan, payments, visits and notes sit on one record, with renew, call and WhatsApp at hand.",
+  },
+  {
+    title: "Control at the counter",
+    body: "A discount above the desk's limit waits for the owner, with the reason attached, instead of being decided in a hurry.",
+  },
+];

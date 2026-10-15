@@ -4,7 +4,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { loopSteps } from "@/data/loop";
 
-export function Loop() {
+export function HowItWorks() {
   return (
     <Section id="how-it-works" spacing="lg" containerClassName="flex flex-col gap-16">
       <SectionHeading

@@ -10,11 +10,7 @@ export const primaryNav: NavItem[] = navSections.map(({ id, label }) => ({
 export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Product",
-    items: [
-      ...primaryNav,
-      { label: "Features", href: sectionHref("features") },
-      { label: "How it works", href: sectionHref("how-it-works") },
-    ],
+    items: [...primaryNav, { label: "How it works", href: sectionHref("how-it-works") }],
   },
   {
     title: "Company",

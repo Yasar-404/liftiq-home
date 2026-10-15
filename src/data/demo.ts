@@ -24,7 +24,7 @@ export const plans = {
   Annual: 16_800,
 } as const;
 
-export type PlanName = keyof typeof plans;
+type PlanName = keyof typeof plans;
 
 /* Renewals ---------------------------------------------------------------- */
 
@@ -70,7 +70,7 @@ interface Payment {
 }
 
 /** Payments recorded yesterday. */
-export const paymentsYesterday: Payment[] = [
+const paymentsYesterday: Payment[] = [
   { name: "Neha P.", plan: "Monthly", method: "UPI", receipt: "R-1182" },
   { name: "Karthik R.", plan: "Quarterly", method: "UPI", receipt: "R-1183" },
   { name: "Aditi G.", plan: "Monthly", method: "Cash", receipt: "R-1184" },
@@ -85,7 +85,7 @@ interface Due {
 }
 
 /** Members with a balance still owed. */
-export const outstandingDues: Due[] = [
+const outstandingDues: Due[] = [
   { name: "Imran Q.", amount: 5_400, daysLate: 12 },
   { name: "Lakshmi T.", amount: 4_200, daysLate: 9 },
   { name: "Gautam B.", amount: 3_600, daysLate: 6 },

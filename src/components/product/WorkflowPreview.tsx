@@ -15,7 +15,7 @@ import {
   revenueByPlan,
 } from "@/data/demo";
 import { formatInr, plural } from "@/lib/format";
-import type { TabVisualKind } from "@/types";
+import type { WorkflowId } from "@/types";
 
 function dueLabel(days: number) {
   return days === 1 ? "Ends tomorrow" : `Ends in ${days} days`;
@@ -283,7 +283,7 @@ function Reports() {
 }
 
 /** Sample visual shown beside each product tab. */
-export function TabVisual({ kind }: { kind: TabVisualKind }) {
+export function WorkflowPreview({ kind }: { kind: WorkflowId }) {
   switch (kind) {
     case "members":
       return <MemberProfile />;

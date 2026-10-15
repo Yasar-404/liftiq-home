@@ -3,14 +3,12 @@
   --font-sans:
     "Rupee Sign", var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
 
   /* Surfaces */
   --color-bg: #08090a;
   --color-bg-subtle: #0b0c0e;
   --color-surface: #101114;
   --color-surface-elevated: #16181c;
-  --color-surface-hover: #1b1e22;
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-strong: rgba(255, 255, 255, 0.14);
 
@@ -25,13 +23,10 @@
   /* Brand accent (blue to violet). Use accent-text, not accent, for small text. */
   --color-accent: #7c5cff;
   --color-accent-text: #a08bff;
-  --color-accent-blue: #2f80ff;
-  --color-accent-violet: #b64bff;
   --color-accent-soft: rgba(124, 92, 255, 0.14);
   /* Accent fill behind white text: meets 4.5:1 across the whole gradient. */
   --color-accent-strong: #6a4cf0;
   --gradient-button: linear-gradient(150deg, #2468e0 0%, #6a4cf0 55%, #8a3df0 100%);
-  --gradient-brand: linear-gradient(150deg, #2f80ff 0%, #7c5cff 48%, #b64bff 100%);
 
   /* Status (used in product previews) */
   --color-positive: #4ade80;

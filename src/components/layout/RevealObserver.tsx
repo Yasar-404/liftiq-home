@@ -2,11 +2,11 @@
 
 import { useEffect } from "react";
 
-const SELECTOR = ".reveal:not(.is-visible), .lq-words:not(.is-visible)";
+const SELECTOR = ".reveal:not(.is-visible), .lq-words:not(.is-visible), .chart:not(.is-visible)";
 
 /**
- * One IntersectionObserver for every scroll reveal on the page (Reveal and
- * AnimatedText), instead of a hook per element. Marks each element
+ * One IntersectionObserver for every scroll-triggered animation on the page
+ * (Reveal, AnimatedText and the charts), instead of a hook per element. Marks each element
  * `is-visible` once it nears the viewport. A throttled scroll/resize check
  * backs the observer up, so content still appears where observer callbacks
  * are delayed or dropped, and everything is revealed before printing.

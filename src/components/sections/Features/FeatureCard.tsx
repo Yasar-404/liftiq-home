@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 import type { Feature } from "@/types";
-import { FeatureVisual } from "./FeatureVisual";
+import { FeaturePreview } from "@/components/product/FeaturePreview";
 
 export function FeatureCard({ title, description, icon: Icon, status, size, visual }: Feature) {
   const wide = size === "wide";
@@ -29,7 +29,7 @@ export function FeatureCard({ title, description, icon: Icon, status, size, visu
 
       {visual && (
         <div className="mt-auto">
-          <FeatureVisual kind={visual} />
+          <FeaturePreview kind={visual} />
         </div>
       )}
     </article>

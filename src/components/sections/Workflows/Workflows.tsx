@@ -2,28 +2,28 @@ import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { platformModules, platformRoles } from "@/data/platform";
-import { productTabs } from "@/data/productTabs";
-import { StoryTrack } from "./StoryTrack";
-import type { StoryStep } from "./StoryTrack";
-import { TabVisual } from "./TabVisual";
+import { workflows } from "@/data/workflows";
+import { WorkflowRows } from "./WorkflowRows";
+import type { WorkflowRow } from "./WorkflowRows";
+import { WorkflowPreview } from "@/components/product/WorkflowPreview";
 
-const steps: StoryStep[] = productTabs.map((tab) => ({
+const steps: WorkflowRow[] = workflows.map((tab) => ({
   id: tab.id,
   label: tab.label,
   headline: tab.headline,
   problem: tab.problem,
   solution: tab.solution,
   points: tab.points,
-  visual: <TabVisual kind={tab.id} />,
+  visual: <WorkflowPreview kind={tab.id} />,
 }));
 
 /**
  * The platform, told as a scroll-linked story (one step per area of the gym),
  * followed by a compact index of every module and who uses LiftIQ.
  */
-export function ProductStory() {
+export function Workflows() {
   return (
-    <Section id="platform" spacing="lg" containerClassName="flex flex-col gap-20 lg:gap-28">
+    <Section id="workflows" spacing="lg" containerClassName="flex flex-col gap-20 lg:gap-28">
       <div className="flex flex-col gap-14">
         <SectionHeading
           index={3}
@@ -31,7 +31,7 @@ export function ProductStory() {
           title="Everything the front desk and the owner work from."
           description="One workspace for the jobs a gym does every day. Scroll through the areas: each answers a question you would otherwise piece together by hand."
         />
-        <StoryTrack steps={steps} />
+        <WorkflowRows steps={steps} />
       </div>
 
       <div className="flex flex-col gap-10 border-t border-border pt-14">

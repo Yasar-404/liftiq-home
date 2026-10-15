@@ -46,7 +46,7 @@ export const site = {
    */
   signInUrl: "" as string,
   cta: {
-    primary: { label: "Book a Demo", href: "/#demo" },
+    primary: { label: "Book a Demo", href: "/#contact" },
     secondary: { label: "Explore the Platform", href: "/#platform" },
   },
 } as const;

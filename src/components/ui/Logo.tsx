@@ -1,17 +1,12 @@
 import { cn } from "@/lib/cn";
 
-interface LogoProps {
-  className?: string;
-  markOnly?: boolean;
-}
-
 const BLADE =
   "M27.5 19 Q27.5 14 32.5 14 L41 14 Q44.4 14 44.5 18.2 " +
   "Q45.2 31 44.8 43 Q44.2 57 42 67 L52.8 82.2 Q55.4 85 51.8 85.6 " +
   "L33 80.2 Q27.5 78.6 27.5 72.6 Z";
 
 /** LiftIQ mark: an "L" blade beside two stacked tiles. */
-export function LogoMark({ className }: { className?: string }) {
+function LogoMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 100 100" fill="none" aria-hidden="true" className={cn("shrink-0", className)}>
       <defs>
@@ -39,15 +34,13 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
-export function Logo({ className, markOnly = false }: LogoProps) {
+export function Logo({ className }: { className?: string }) {
   return (
     <span className={cn("inline-flex items-center gap-1.5", className)}>
       <LogoMark className="h-[27px] w-[27px]" />
-      {!markOnly && (
-        <span className="text-[1.1rem] font-semibold tracking-[-0.02em] text-text">
-          Lift<span className="text-text-muted">IQ</span>
-        </span>
-      )}
+      <span className="text-[1.1rem] font-semibold tracking-[-0.02em] text-text">
+        Lift<span className="text-text-muted">IQ</span>
+      </span>
     </span>
   );
 }

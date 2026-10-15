@@ -30,27 +30,3 @@ export const loopSteps: LoopStep[] = [
     icon: Renew,
   },
 ];
-
-/** Short facts under the hero calls to action. Each is a shipped capability. */
-export const heroFacts = [
-  "GST invoices and receipts",
-  "Multi-branch",
-  "Roles for the front desk",
-  "A brief every morning",
-];
-
-/** What the layered screens in the product overview show, one line each. */
-export const overviewCallouts = [
-  {
-    title: "The day, counted",
-    body: "Collections, dues, renewals and follow-ups are counted from your records each morning, with one task to do first.",
-  },
-  {
-    title: "The member, in full",
-    body: "A member's plan, payments, visits and notes sit on one record, with renew, call and WhatsApp at hand.",
-  },
-  {
-    title: "Control at the counter",
-    body: "A discount above the desk's limit waits for the owner, with the reason attached, instead of being decided in a hurry.",
-  },
-];

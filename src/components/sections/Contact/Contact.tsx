@@ -7,7 +7,7 @@ import { ContactChannels } from "./ContactChannels";
 
 export function Contact() {
   return (
-    <Section id="demo" spacing="lg" className="relative overflow-hidden">
+    <Section id="contact" spacing="lg" className="relative overflow-hidden">
       <Reveal className="frame-lit">
         <div className="relative overflow-hidden rounded-[var(--radius-lg)] bg-[linear-gradient(180deg,#121318,#0b0c0e)] px-6 py-14 sm:px-12 sm:py-20">
           <div aria-hidden="true" className="pointer-events-none absolute inset-0">

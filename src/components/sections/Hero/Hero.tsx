@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
 import { DashboardMock } from "@/components/product/DashboardMock";
 import { Button } from "@/components/ui/Button";
-import { heroFacts } from "@/data/loop";
+import { heroFacts } from "@/data/hero";
 import { site } from "@/data/site";
 
 const previewMask = "linear-gradient(to bottom, #000 72%, transparent)";

@@ -2,9 +2,9 @@ import { BriefMock } from "@/components/product/BriefMock";
 import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { overviewCallouts } from "@/data/loop";
-import { FeatureVisual } from "../CorePlatform/FeatureVisual";
-import { TabVisual } from "../ProductStory/TabVisual";
+import { platformHighlights } from "@/data/platform";
+import { FeaturePreview } from "@/components/product/FeaturePreview";
+import { WorkflowPreview } from "@/components/product/WorkflowPreview";
 
 const layer =
   "rounded-[var(--radius-lg)] border border-border-strong bg-surface p-2.5 shadow-[var(--shadow-lg)] sm:p-3";
@@ -13,9 +13,9 @@ const layer =
  * The product at a glance: three real screens, layered. On large screens they
  * overlap in depth with a slight perspective; below that they simply stack.
  */
-export function Overview() {
+export function PlatformOverview() {
   return (
-    <Section id="product" spacing="lg" containerClassName="flex flex-col gap-14 lg:gap-20">
+    <Section id="platform" spacing="lg" containerClassName="flex flex-col gap-14 lg:gap-20">
       <SectionHeading
         index={1}
         eyebrow="Product"
@@ -38,7 +38,7 @@ export function Overview() {
             delay={160}
             className={`${layer} lg:z-10 lg:col-span-6 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:mt-48`}
           >
-            <TabVisual kind="members" />
+            <WorkflowPreview kind="members" />
           </Reveal>
 
           <Reveal
@@ -46,13 +46,13 @@ export function Overview() {
             delay={280}
             className={`${layer} lg:z-20 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:-mt-4 lg:ml-8`}
           >
-            <FeatureVisual kind="approval" />
+            <FeaturePreview kind="approval" />
           </Reveal>
         </div>
       </div>
 
       <ul className="grid grid-cols-1 gap-8 border-t border-border pt-10 md:grid-cols-3 md:gap-10">
-        {overviewCallouts.map((callout, i) => (
+        {platformHighlights.map((callout, i) => (
           <Reveal as="li" key={callout.title} delay={i * 80} className="flex flex-col gap-2">
             <span className="text-[0.72rem] font-medium text-text-faint tabular-nums">
               {String(i + 1).padStart(2, "0")}

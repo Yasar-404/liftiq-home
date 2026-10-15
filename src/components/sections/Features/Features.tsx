@@ -20,7 +20,7 @@ const spanClass: Record<Size, string> = {
 /** Large cards with product visuals first, then the smaller ones, then the wide strip. */
 const bento = [...features].sort((a, b) => order[a.size ?? "small"] - order[b.size ?? "small"]);
 
-export function CorePlatform() {
+export function Features() {
   return (
     <Section id="features" spacing="lg" containerClassName="flex flex-col gap-14">
       <SectionHeading

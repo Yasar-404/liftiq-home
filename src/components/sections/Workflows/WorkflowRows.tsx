@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Check } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/Reveal";
 
-export interface StoryStep {
+export interface WorkflowRow {
   id: string;
   label: string;
   headline: string;
@@ -22,7 +22,7 @@ export interface StoryStep {
  * its text. Each visual is rendered once and the page needs no script for any
  * of it.
  */
-export function StoryTrack({ steps }: { steps: StoryStep[] }) {
+export function WorkflowRows({ steps }: { steps: WorkflowRow[] }) {
   return (
     <ol className="relative flex flex-col gap-20 lg:gap-6 lg:border-l lg:border-border lg:pl-12">
       {steps.map((step, i) => (

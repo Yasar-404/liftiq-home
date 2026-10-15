@@ -6,8 +6,7 @@ import { Check } from "@/components/ui/icons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { atRiskMembers, brief, plans, renewals } from "@/data/demo";
-import { aiRoadmap, insightGroups } from "@/data/insights";
-import { availableNow, intelligencePrinciples } from "@/data/intelligence";
+import { aiRoadmap, availableNow, insightGroups, intelligencePrinciples } from "@/data/insights";
 import { formatInr, plural } from "@/lib/format";
 
 const shownAtRisk = atRiskMembers.slice(0, 3);
@@ -42,10 +41,10 @@ function Trace() {
  * what AI-assisted features are planned. Nothing here claims a model produces
  * today's numbers.
  */
-export function Intelligence() {
+export function AiInsights() {
   return (
     <Section
-      id="ai-insights"
+      id="ai"
       spacing="lg"
       className="ai-surface relative overflow-hidden"
       containerClassName="flex flex-col gap-16"

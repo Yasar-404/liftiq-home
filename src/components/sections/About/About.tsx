@@ -1,18 +1,17 @@
 import { Section } from "@/components/layout/Section";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { notYetClaimed, securityGroups } from "@/data/security";
 import { site } from "@/data/site";
-import { onboardingSteps, trustPoints } from "@/data/trust";
+import { notYetClaimed, onboardingSteps, securityGroups, trustPoints } from "@/data/about";
 
 /**
- * Trust: the controls that matter most, the full detail on request, what is not
+ * The about section: the controls that matter most, the full detail on request, what is not
  * claimed yet, and what getting started looks like. Everything here describes
  * how LiftIQ is built today; there are no certifications, customers or logos.
  */
-export function Trust() {
+export function About() {
   return (
-    <Section id="security" spacing="lg" className="band" containerClassName="flex flex-col gap-14">
+    <Section id="about" spacing="lg" className="band" containerClassName="flex flex-col gap-14">
       <SectionHeading
         index={7}
         align="center"

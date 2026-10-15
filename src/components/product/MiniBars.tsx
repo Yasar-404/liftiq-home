@@ -1,6 +1,4 @@
-"use client";
-
-import { useInViewOnce } from "@/hooks/useInViewOnce";
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 interface MiniBarsProps {
@@ -13,25 +11,25 @@ interface MiniBarsProps {
   activeIndex?: number;
 }
 
-/** Small bar chart; bars grow in when scrolled into view. */
+/**
+ * Small bar chart. A server component: bars grow when the shared RevealObserver
+ * marks it `is-visible` (see `.chart` in styles/motion.css), and are full height
+ * without scripting.
+ */
 export function MiniBars({ data, label, labels, className, activeIndex }: MiniBarsProps) {
-  const { ref, inView } = useInViewOnce<HTMLDivElement>();
   const max = Math.max(...data) || 1;
 
   return (
-    <div ref={ref} role="img" aria-label={label} className={cn("flex flex-col gap-1.5", className)}>
+    <div role="img" aria-label={label} className={cn("chart flex flex-col gap-1.5", className)}>
       <div className="flex h-20 items-end gap-1.5">
         {data.map((d, i) => (
           <div
             key={i}
             className={cn(
-              "flex-1 rounded-[3px] transition-[height] duration-700 ease-[var(--ease-spring)]",
+              "chart-bar flex-1 rounded-[3px]",
               i === activeIndex ? "bg-accent" : "bg-white/12",
             )}
-            style={{
-              height: inView ? `${(d / max) * 100}%` : "0%",
-              transitionDelay: `${i * 45}ms`,
-            }}
+            style={{ height: `${(d / max) * 100}%`, "--i": i } as CSSProperties}
           />
         ))}
       </div>
