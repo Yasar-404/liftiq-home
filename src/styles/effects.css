@@ -18,9 +18,9 @@
     background: conic-gradient(
       from 180deg at 50% 0%,
       transparent 150deg,
-      rgba(91, 127, 255, 0.16) 172deg,
-      rgba(142, 168, 255, 0.22) 180deg,
-      rgba(91, 127, 255, 0.16) 188deg,
+      oklch(0.58 0.18 292 / 0.16) 172deg,
+      oklch(0.7 0.16 292 / 0.22) 180deg,
+      oklch(0.58 0.18 292 / 0.16) 188deg,
       transparent 210deg
     );
     -webkit-mask-image: linear-gradient(to bottom, #000, transparent 85%);
@@ -32,6 +32,6 @@
     position: absolute;
     border-radius: 999px;
     pointer-events: none;
-    background: radial-gradient(closest-side, rgba(91, 127, 255, 0.22), transparent);
+    background: radial-gradient(closest-side, oklch(0.58 0.18 292 / 0.22), transparent);
   }
 }

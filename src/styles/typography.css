@@ -37,7 +37,7 @@
 
   /* Accent words in display headings: lit from above, settling into violet. */
   .text-gradient-soft {
-    background: linear-gradient(180deg, #d6e1ff 10%, #8ea8ff 55%, #5b7fff);
+    background: var(--gradient-text);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
