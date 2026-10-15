@@ -1,20 +1,22 @@
 import type { DetailGroup } from "@/types";
 
 /**
- * The strongest controls, stated briefly. Each describes how LiftIQ is built
- * today (see the liftiq-gym repository's docs/architecture.md); there are no
- * certifications to claim.
+ * The four capabilities shown as cards. Each describes how LiftIQ is built
+ * today (see the liftiq-gym repository's docs/architecture.md); the payment
+ * line rests on the unique (tenant, idempotency key) index on payments.
  */
 export const trustPoints = [
-  { title: "Each gym kept separate", body: "Isolated in the database, not only in the app." },
-  { title: "Access by role", body: "You set what the front desk can see and do." },
-  { title: "Recorded once", body: "A double tap never records a payment twice." },
-  { title: "Numbers you can check", body: "Every figure links to the list behind it." },
+  { title: "Your gym stays separate", body: "Each gym's data remains isolated from other gyms." },
+  { title: "Access stays controlled", body: "Define what front-desk staff can access and do." },
+  {
+    title: "Every payment matters",
+    body: "Prevent duplicate payment records when a payment action is repeated.",
+  },
+  {
+    title: "Every number has a source",
+    body: "Trace dashboard figures back to their underlying records.",
+  },
 ];
-
-/** Said plainly, next to the controls. */
-export const notYetClaimed =
-  "No independent certifications yet, such as SOC 2 or ISO 27001, and no published backup recovery targets.";
 
 /**
  * Security controls as built in the LiftIQ platform (see the liftiq-gym
