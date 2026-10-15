@@ -1,31 +1,17 @@
-import {
-  Benefits,
-  Contact,
-  Features,
-  Hero,
-  AiInsights,
-  HowItWorks,
-  PlatformOverview,
-  Workflows,
-  About,
-} from "@/components/sections";
+import { AiInsights, Benefits, Contact, Hero, Platform } from "@/components/sections";
 
 /**
- * The whole product story on one page, in the order a gym owner's questions
- * come up: what is it, how does it work, what does it do, what is different,
- * what do I get, can I trust it, and what happens next.
+ * The whole story in five sections: what LiftIQ is, how the platform covers a
+ * gym, one example of the insights, what it does for the business, and how to
+ * book a demo. Security is a short strip inside the benefits section.
  */
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <PlatformOverview />
-      <HowItWorks />
-      <Workflows />
-      <Features />
+      <Platform />
       <AiInsights />
       <Benefits />
-      <About />
       <Contact />
     </>
   );

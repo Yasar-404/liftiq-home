@@ -57,24 +57,21 @@ tests/                  Checks of a running build (Node's built-in test runner)
 
 The homepage sections, in page order, and the `id` each answers to:
 
-| Section           | Folder                      | `id`           |
-| ----------------- | --------------------------- | -------------- |
-| Hero              | `sections/Hero`             | `top`          |
-| Platform overview | `sections/PlatformOverview` | `platform`     |
-| How it works      | `sections/HowItWorks`       | `how-it-works` |
-| Workflows         | `sections/Workflows`        | `workflows`    |
-| Features          | `sections/Features`         | `features`     |
-| AI insights       | `sections/AiInsights`       | `ai`           |
-| Benefits          | `sections/Benefits`         | `benefits`     |
-| About (security)  | `sections/About`            | `about`        |
-| Book a demo       | `sections/Contact`          | `contact`      |
+| Section        | Folder                         | `id`       |
+| -------------- | ------------------------------ | ---------- |
+| Hero           | `sections/Hero`                | `top`      |
+| Platform tabs  | `sections/Platform`            | `platform` |
+| AI insights    | `sections/AiInsights`          | `ai`       |
+| Benefits       | `sections/Benefits`            | `benefits` |
+| Security strip | `sections/Benefits/TrustStrip` | `security` |
+| Book a demo    | `sections/Contact`             | `contact`  |
 
 ## Conventions
 
 - **One page.** All product marketing lives on the homepage as sections, in the order a gym
   owner's questions come up. There are no separate product routes: `next.config.ts` redirects
   the four short-lived addresses (`/platform`, `/ai-insights`, `/features`, `/security`) to
-  the matching section. The navbar, `<main id="main">` and footer come from the root layout.
+  the matching section (`/features` lands on the platform tabs). The navbar, `<main id="main">` and footer come from the root layout.
 - **Navigation is native hash navigation.** The links are the list in `data/sections.ts`; each
   entry's `id` must match a section's `id`. Write in-page links as `href="/#section-id"`: a plain
   anchor updates the URL hash, works on a direct load, refresh and back/forward, works without
@@ -106,8 +103,7 @@ The homepage sections, in page order, and the `id` each answers to:
   `bg-accent-strong` behind white text.
 - **CSS layers.** `styles/base.css` is in `@layer base` and shared classes are in
   `@layer components`, so Tailwind utilities always win. Keep new shared CSS inside a layer.
-- **Surfaces.** `.band` gives a section a contrasting background to vary the page rhythm;
-  `.frame-lit` frames a product visual with a top-lit hairline; `.text-sheen` and
+- **Surfaces.** `.frame-lit` frames a product visual with a top-lit hairline; `.text-sheen` and
   `.text-gradient-soft` are gradient text for headings. Gradient text is clipped to the
   element's own glyphs, so on word-animated headings pass it to `AnimatedText` as
   `wordClassName`, not `className`.
@@ -119,9 +115,9 @@ The homepage sections, in page order, and the `id` each answers to:
   components revealed by one `RevealObserver`, gated on a `js` class on `<html>`, so content
   stays visible without JavaScript. `Reveal` has variants (`rise`, `fade`, `scale`, `mask`,
   `left`, `right`): choose by what the element is rather than using one everywhere.
-- **The platform story** (`Workflows`/`WorkflowRows`) is one row per area: text on the left and
-  its visual beside it, which sticks near the top from `lg` while its row scrolls past. It
-  needs no script and renders each visual once.
+- **The platform section** (`Platform`/`PlatformTabs`) is four tabs (members, billing, attendance,
+  analytics) with roving focus and arrow/Home/End keys. The server renders every panel and the
+  inactive ones carry `hidden`; without JavaScript the tab list is hidden and all panels show.
 - **Sections** are exported through `src/components/sections/index.ts` and composed in
   `src/app/page.tsx`.
 - **Charts are server components.** `MiniAreaChart` and `MiniBars` draw in via CSS when the

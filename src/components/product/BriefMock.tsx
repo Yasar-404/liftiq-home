@@ -12,7 +12,7 @@ export function BriefMock({ className, enterDelay }: { className?: string; enter
         <span className="mock-label">Counted this morning</span>
       </div>
 
-      <dl className="grid grid-cols-2 gap-x-3 gap-y-3 @md:grid-cols-3 @2xl:grid-cols-5">
+      <dl className="grid grid-cols-2 gap-x-3 gap-y-3 @md:grid-cols-4">
         {brief.figures.map((figure) => (
           <div key={figure.label} className="flex min-w-0 flex-col">
             <dt className="order-2 text-[11px] leading-snug text-text-muted">{figure.label}</dt>

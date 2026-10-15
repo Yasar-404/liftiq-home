@@ -16,15 +16,15 @@ const BASE = (process.env.BASE_URL ?? "http://localhost:3000").replace(/\/$/, ""
 const CANONICAL = "https://liftiq.in";
 
 /** Section ids that navigation and calls to action point at. */
-const NAV_IDS = ["platform", "features", "ai", "benefits", "about"];
+const NAV_IDS = ["platform", "ai", "benefits", "security"];
 const CTA_ID = "contact";
 
 /** Addresses that briefly existed as separate pages and must now redirect. */
 const MOVED = {
   "/platform": "/#platform",
   "/ai-insights": "/#ai",
-  "/features": "/#features",
-  "/security": "/#about",
+  "/features": "/#platform",
+  "/security": "/#security",
 };
 
 const get = (path, init) => fetch(BASE + path, { redirect: "manual", ...init });
@@ -51,7 +51,7 @@ describe("homepage", () => {
   });
 
   it("has an element for every section the navigation points at", () => {
-    for (const id of [...NAV_IDS, CTA_ID, "how-it-works", "workflows", "top", "main"]) {
+    for (const id of [...NAV_IDS, CTA_ID, "top", "main"]) {
       assert.match(html, new RegExp(` id="${id}"`), `missing #${id}`);
     }
   });
@@ -85,7 +85,7 @@ describe("homepage", () => {
     assert.doesNotMatch(html, /Sholinganallur|Chennai/);
   });
 
-  it("carries the content of every former page", () => {
+  it("keeps the content of the former pages in short form", () => {
     // Headings are split into word spans, so compare against the text content.
     const text = html
       .replace(/<script[\s\S]*?<\/script>/g, " ")
@@ -94,9 +94,9 @@ describe("homepage", () => {
       .replace(/&amp;/g, "&")
       .replace(/\s+/g, " ");
     const expected = [
-      "Everything the front desk and the owner work from", // platform
-      "Built for how gyms actually run", // features
-      "Start every day knowing what matters", // AI insights
+      "One workspace for the whole gym", // platform
+      "Less admin. A clearer picture. Members who stay", // benefits
+      "Start the day knowing what matters", // AI insights
       "Every control, in detail", // security
     ];
     for (const phrase of expected) assert.ok(text.includes(phrase), `missing: ${phrase}`);

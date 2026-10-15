@@ -2,7 +2,6 @@ import type { CSSProperties } from "react";
 import { Container } from "@/components/layout/Container";
 import { DashboardMock } from "@/components/product/DashboardMock";
 import { Button } from "@/components/ui/Button";
-import { heroFacts } from "@/data/hero";
 import { site } from "@/data/site";
 
 const previewMask = "linear-gradient(to bottom, #000 72%, transparent)";
@@ -31,16 +30,6 @@ export function Hero() {
 
       <Container size="wide">
         <div className="flex flex-col items-center text-center">
-          <p
-            className="enter mb-7 inline-flex items-center gap-2.5 rounded-full border border-border-strong bg-white/[0.03] py-1 pr-3.5 pl-1 text-[0.8rem] text-text-muted shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]"
-            style={delay(0)}
-          >
-            <span className="rounded-full bg-accent-soft px-2 py-0.5 text-[0.72rem] font-medium text-accent-text">
-              India
-            </span>
-            Gym management software
-          </p>
-
           <h1 id="hero-title" className="text-display text-sheen pb-1">
             <span className="settle block whitespace-nowrap" style={delay(0)}>
               Run your gym.
@@ -54,8 +43,8 @@ export function Hero() {
             className="text-lead settle mt-6 max-w-[36rem] text-pretty"
             style={delay(220, { "--settle-from": "14px" })}
           >
-            Memberships, payments, attendance, leads and renewals in one workspace. Every morning,
-            LiftIQ shows you what came in, what is due, and which task to do first.
+            Memberships, payments, attendance and renewals in one workspace, with a morning brief
+            that tells you what to do first.
           </p>
 
           <div
@@ -69,27 +58,13 @@ export function Hero() {
               {site.cta.secondary.label}
             </Button>
           </div>
-
-          <ul
-            className="enter mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.8rem] text-text-faint"
-            style={delay(260)}
-          >
-            {heroFacts.map((fact, i) => (
-              <li key={fact} className="flex items-center gap-6">
-                {i > 0 && (
-                  <span className="hidden h-3 w-px bg-border-strong sm:block" aria-hidden="true" />
-                )}
-                {fact}
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="enter relative mx-auto mt-14 max-w-[1120px] sm:mt-20" style={delay(320)}>
           {/* A thin line of light along the top edge of the preview. */}
           <div
             aria-hidden="true"
-            className="absolute inset-x-[12%] -top-px z-10 h-px bg-[linear-gradient(90deg,transparent,rgba(196,181,255,0.9),transparent)]"
+            className="bg-[linear-gradient(90deg,transparent,rgba(190, 208, 255,0.9),transparent)] absolute inset-x-[12%] -top-px z-10 h-px"
           />
           <div aria-hidden="true" className="glow inset-x-[-8%] -top-24 h-64 w-auto opacity-80" />
           <figure

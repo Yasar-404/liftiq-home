@@ -107,79 +107,11 @@ export const Pin = (p: IconProps) => (
   </Base>
 );
 
-export const Bell = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M6 16V11a6 6 0 1 1 12 0v5l1.5 2h-15z" />
-    <path d="M10 20.5a2 2 0 0 0 4 0" />
-  </Base>
-);
-
 export const Renew = (p: IconProps) => (
   <Base {...p}>
     <path d="M20 12a8 8 0 0 1-14.3 4.9" />
     <path d="M4 12a8 8 0 0 1 14.3-4.9" />
     <path d="M18.5 3v4.2h-4.2M5.5 21v-4.2h4.2" />
-  </Base>
-);
-
-export const Branches = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M3 21h18" />
-    <path d="M5 21V9l5-3v15M10 21V4l9 4v13" />
-    <path d="M13 11h3M13 15h3" />
-  </Base>
-);
-
-export const Shield = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M12 3 5 6v5.5c0 4.3 3 8 7 9.5 4-1.5 7-5.2 7-9.5V6z" />
-    <path d="m9 12 2 2 4-4" />
-  </Base>
-);
-
-export const Approval = (p: IconProps) => (
-  <Base {...p}>
-    <rect x="4" y="3.5" width="16" height="17" rx="2" />
-    <path d="M8 8h8M8 12h5" />
-    <path d="m11 16.5 1.5 1.5 3-3" />
-  </Base>
-);
-
-export const Cash = (p: IconProps) => (
-  <Base {...p}>
-    <rect x="2.5" y="6" width="19" height="12" rx="2" />
-    <circle cx="12" cy="12" r="2.5" />
-    <path d="M6 9.5v5M18 9.5v5" />
-  </Base>
-);
-
-export const Expenses = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M6 3h12v18l-3-2-3 2-3-2-3 2z" />
-    <path d="M9 8h6M9 12h6M9 16h3" />
-  </Base>
-);
-
-export const Lock = (p: IconProps) => (
-  <Base {...p}>
-    <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
-    <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
-    <path d="M12 15v2" />
-  </Base>
-);
-
-export const Link = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1" />
-    <path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" />
-  </Base>
-);
-
-export const Audit = (p: IconProps) => (
-  <Base {...p}>
-    <path d="M7 3h7l4 4v14H7z" />
-    <path d="M14 3v4h4" />
-    <path d="m9.5 14 2 2 3.5-4" />
   </Base>
 );
 
