@@ -1,13 +1,12 @@
 @layer components {
   /*
-   * The AI section's surface: the same navy and blue as the rest of the page, lit from one side and given a faint dot field, so it reads as its own
+   * The AI section's surface: the same neutral and purple as the rest of the page, lit from one side and given a faint dot field, so it reads as its own
    * place without leaving the design language.
    */
   .ai-surface {
     background:
-      radial-gradient(50% 40% at 85% 8%, rgba(91, 127, 255, 0.13), transparent),
-      radial-gradient(40% 35% at 5% 90%, rgba(47, 128, 255, 0.07), transparent),
-      linear-gradient(180deg, var(--color-bg), #080d1b 50%, var(--color-bg));
+      radial-gradient(50% 40% at 85% 8%, oklch(0.58 0.18 292 / 0.14), transparent),
+      linear-gradient(180deg, var(--color-bg), var(--color-bg-subtle) 50%, var(--color-bg));
     border-block: 1px solid var(--color-border);
     isolation: isolate;
   }
@@ -34,13 +33,13 @@
     padding: 1px;
     background: linear-gradient(
       180deg,
-      rgba(142, 168, 255, 0.55),
+      oklch(0.7 0.16 292 / 0.55),
       rgba(255, 255, 255, 0.08) 22%,
       rgba(255, 255, 255, 0.03) 60%
     );
     box-shadow:
       0 0 0 1px rgba(0, 0, 0, 0.4),
-      0 40px 120px -40px rgba(91, 127, 255, 0.35),
+      0 40px 120px -40px oklch(0.58 0.18 292 / 0.35),
       0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
 
@@ -65,7 +64,7 @@
       rgba(255, 255, 255, 0.14),
       rgba(255, 255, 255, 0.04) 35%,
       rgba(255, 255, 255, 0.03) 70%,
-      rgba(91, 127, 255, 0.16)
+      oklch(0.58 0.18 292 / 0.18)
     );
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,

@@ -4,29 +4,43 @@
     "Rupee Sign", var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
 
-  /* Surfaces: deep navy rather than neutral black */
-  --color-bg: #060912;
-  --color-bg-subtle: #0a0f1b;
-  --color-surface: #0e1524;
-  --color-surface-elevated: #131c2f;
-  --color-border: rgba(150, 175, 255, 0.1);
-  --color-border-strong: rgba(150, 175, 255, 0.18);
+  /*
+   * Brand and surfaces are the LiftIQ app's dark theme, copied from
+   * liftiq-gym/apps/owner/src/app/globals.css (.dark): background
+   * oklch(0.15 0.004 285), card oklch(0.19 0.005 285), primary hue 292. Keep the
+   * values in step with the product rather than choosing new ones.
+   */
+  --color-bg: oklch(0.15 0.004 285);
+  --color-bg-subtle: oklch(0.17 0.005 285);
+  --color-surface: oklch(0.19 0.005 285);
+  --color-surface-elevated: oklch(0.225 0.006 285);
+  --color-border: oklch(1 0 0 / 0.08);
+  --color-border-strong: oklch(1 0 0 / 0.16);
 
   /*
    * Text. Every text colour meets WCAG AA (4.5:1) for body-size text on both
    * --color-bg and --color-surface-elevated.
    */
-  --color-text: #f1f4fb;
-  --color-text-muted: #9ba7be;
-  --color-text-faint: #7f8ba6;
+  --color-text: oklch(0.96 0.002 285);
+  --color-text-muted: oklch(0.72 0.015 285);
+  --color-text-faint: oklch(0.62 0.015 285);
 
-  /* Brand accent: the blue end of the logo's gradient. Use accent-text, not accent, for small text. */
-  --color-accent: #5b7fff;
-  --color-accent-text: #8ea8ff;
-  --color-accent-soft: rgba(91, 127, 255, 0.14);
-  /* Accent fill behind white text: meets 4.5:1 across the whole gradient. */
-  --color-accent-strong: #3f5cf0;
-  --gradient-button: linear-gradient(150deg, #2f6fe8 0%, #3f5cf0 60%, #5a4fe8 100%);
+  /* Brand accent: the product's purple (ring/chart-1 .58, primary-text .70, primary .54).
+     Use accent-text, not accent, for small text. */
+  --color-accent: oklch(0.58 0.18 292);
+  --color-accent-text: oklch(0.7 0.16 292);
+  --color-accent-soft: oklch(0.58 0.18 292 / 0.16);
+  --color-accent-glow: oklch(0.58 0.18 292 / 0.55);
+  /* Accent fill behind white text: at least 5:1 across the whole gradient. */
+  --color-accent-strong: oklch(0.54 0.18 292);
+  --gradient-button: linear-gradient(150deg, oklch(0.56 0.19 292) 0%, oklch(0.48 0.19 292) 100%);
+  /* Headline highlight: the same hue stepped from light to the accent. */
+  --gradient-text: linear-gradient(
+    180deg,
+    oklch(0.92 0.05 292) 10%,
+    oklch(0.74 0.15 292) 55%,
+    oklch(0.6 0.18 292)
+  );
 
   /* Panels: the standard surface for product previews and cards */
   --gradient-panel: linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface));
@@ -52,10 +66,11 @@
   /* Elevation */
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 24px 70px -20px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 0 1px rgba(91, 127, 255, 0.3), 0 14px 46px -12px rgba(91, 127, 255, 0.45);
+  --shadow-glow:
+    0 0 0 1px oklch(0.58 0.18 292 / 0.35), 0 14px 46px -12px oklch(0.58 0.18 292 / 0.5);
 
   /* Focus */
-  --color-focus: #8ea8ff;
+  --color-focus: oklch(0.7 0.16 292);
 
   /* Motion: see styles/motion.css for how each is used */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);

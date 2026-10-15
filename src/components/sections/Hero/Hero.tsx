@@ -64,7 +64,7 @@ export function Hero() {
           {/* A thin line of light along the top edge of the preview. */}
           <div
             aria-hidden="true"
-            className="bg-[linear-gradient(90deg,transparent,rgba(190, 208, 255,0.9),transparent)] absolute inset-x-[12%] -top-px z-10 h-px"
+            className="bg-[linear-gradient(90deg,transparent,oklch(0.85 0.08 292 / 0.85),transparent)] absolute inset-x-[12%] -top-px z-10 h-px"
           />
           <div aria-hidden="true" className="glow inset-x-[-8%] -top-24 h-64 w-auto opacity-80" />
           <figure

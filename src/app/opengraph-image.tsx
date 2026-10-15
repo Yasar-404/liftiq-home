@@ -16,8 +16,8 @@ export default function OpengraphImage() {
         justifyContent: "space-between",
         padding: "72px 80px",
         background:
-          "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(91, 127, 255,0.35), transparent), #060912",
-        color: "#f4f5f7",
+          "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(128, 95, 218, 0.35), transparent), #0b0b0d",
+        color: "#f1f1f3",
         fontFamily: "sans-serif",
       }}
     >
@@ -52,7 +52,7 @@ export default function OpengraphImage() {
           }}
         >
           Run your gym.&nbsp;
-          <span style={{ color: "#8ea8ff" }}>Smarter.</span>
+          <span style={{ color: "#a289f8" }}>Smarter.</span>
         </div>
         <div style={{ fontSize: 34, color: "#9ba1ac", lineHeight: 1.35, maxWidth: 920 }}>
           Memberships, payments, attendance, leads and renewals in one workspace.
