@@ -7,15 +7,12 @@ import {
   collections,
   dues,
   expiringThisWeek,
-  leadPipeline,
-  overdueLeads,
   paymentRows,
   plans,
-  renewals,
   revenueByPlan,
 } from "@/data/demo";
 import { formatInr, plural } from "@/lib/format";
-import type { TabVisualKind } from "@/types";
+import type { AreaId } from "@/types";
 
 function dueLabel(days: number) {
   return days === 1 ? "Ends tomorrow" : `Ends in ${days} days`;
@@ -172,77 +169,6 @@ function AttendanceView() {
   );
 }
 
-function RenewalsBoard() {
-  return (
-    <MockPanel>
-      <MockHeading
-        title="Due this week"
-        aside={`${renewals.count} · ${formatInr(renewals.atStake)} at stake`}
-      />
-      <ul>
-        {renewals.rows.slice(0, 6).map((m) => (
-          <MockRow
-            key={m.name}
-            primary={m.name}
-            secondary={`${m.plan} · ${formatInr(plans[m.plan])} · ${dueLabel(m.endsInDays)}`}
-            aside={
-              m.contacted ? (
-                <MockTag tone="positive">Contacted</MockTag>
-              ) : (
-                <MockTag tone="warning">Not reached</MockTag>
-              )
-            }
-          />
-        ))}
-      </ul>
-      <p className="mt-3 text-[11px] text-text-faint">
-        {renewals.notContactedCount} of {renewals.count} not reached yet
-      </p>
-    </MockPanel>
-  );
-}
-
-function LeadsView() {
-  const max = Math.max(...leadPipeline.map((s) => s.count));
-  return (
-    <div className="flex flex-col gap-2.5">
-      <MockPanel>
-        <MockHeading title="Pipeline" />
-        <dl className="flex flex-col gap-2">
-          {leadPipeline.map((s) => (
-            <div
-              key={s.stage}
-              className="grid grid-cols-[96px_1fr_24px] items-center gap-2 text-[11.5px]"
-            >
-              <dt className="text-text-muted">{s.stage}</dt>
-              <span className="h-1.5 rounded-full bg-white/[0.06]" aria-hidden="true">
-                <span
-                  className="block h-full rounded-full bg-accent"
-                  style={{ width: `${(s.count / max) * 100}%` }}
-                />
-              </span>
-              <dd className="text-right text-text tabular-nums">{s.count}</dd>
-            </div>
-          ))}
-        </dl>
-      </MockPanel>
-      <MockPanel>
-        <MockHeading title="Follow-ups due" aside={plural(overdueLeads.length, "lead")} />
-        <ul>
-          {overdueLeads.slice(0, 3).map((l) => (
-            <MockRow
-              key={l.name}
-              primary={`${l.name} · ${l.source}`}
-              secondary={l.note}
-              aside={<span className="mock-label">{l.due}</span>}
-            />
-          ))}
-        </ul>
-      </MockPanel>
-    </div>
-  );
-}
-
 function Reports() {
   const max = Math.max(...revenueByPlan.map((r) => r.amount));
   return (
@@ -282,20 +208,16 @@ function Reports() {
   );
 }
 
-/** Sample visual shown beside each product tab. */
-export function TabVisual({ kind }: { kind: TabVisualKind }) {
+/** The sample preview shown for each tab of the platform section. */
+export function AreaPreview({ kind }: { kind: AreaId }) {
   switch (kind) {
     case "members":
       return <MemberProfile />;
-    case "payments":
+    case "billing":
       return <Payments />;
     case "attendance":
       return <AttendanceView />;
-    case "renewals":
-      return <RenewalsBoard />;
-    case "leads":
-      return <LeadsView />;
-    case "reports":
+    case "analytics":
       return <Reports />;
   }
 }

@@ -1,1 +1,0 @@
-export { Intelligence } from "./Intelligence";

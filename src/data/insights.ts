@@ -74,30 +74,26 @@ export const insightGroups: DetailGroup[] = [
   },
 ];
 
-/** AI-assisted features that are designed but not yet built. */
-export const aiRoadmap: DetailGroup = {
-  title: "On the roadmap",
-  summary: "Planned, not yet available. Each is designed so that a person stays in charge.",
-  items: [
-    {
-      title: "Drafted reminders",
-      status: "Planned",
-      body: "Renewal and payment reminders written from an approved template and the member's facts, which your staff review, edit and send.",
-    },
-    {
-      title: "Suggested actions",
-      status: "Planned",
-      body: "LiftIQ proposes a batch of work, such as reminders to members expiring this week, and nothing happens until the owner approves the exact list.",
-    },
-    {
-      title: "Narrow permissions",
-      status: "Planned",
-      body: "The AI can read figures, draft and propose. It can never approve its own proposal, refund, discount, edit money, delete or export.",
-    },
-    {
-      title: "Limits and a switch",
-      status: "Planned",
-      body: "Caps on how many members a proposal reaches, quiet hours, a per-gym off switch, and an audit record of every proposal.",
-    },
-  ],
+/** Three lines on why the insights can be trusted, shown beside the example. */
+export const insightPrinciples = [
+  {
+    title: "Counted, not guessed",
+    body: "Every figure comes from your own payments, visits and memberships.",
+  },
+  {
+    title: "Every number has a list",
+    body: "Open any figure to see the members or invoices behind it.",
+  },
+  {
+    title: "Reasons you can say out loud",
+    body: "A member is flagged for “not seen for 14 days”, never an unexplained score.",
+  },
+];
+
+/** What exists today and what does not, in two sentences. */
+export const insightStatus = {
+  available:
+    "Available now: the morning brief, members likely to leave, and weekly and monthly summaries. None of it is produced by an AI model.",
+  planned:
+    "Planned: drafted reminders and owner-approved actions. The AI will only propose, and a person approves every action.",
 };

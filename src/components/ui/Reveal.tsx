@@ -10,7 +10,7 @@ import { cn } from "@/lib/cn";
  * - `mask`  a top-down wipe: large product frames
  * - `left` / `right` a sideways slide: paired columns arriving toward each other
  */
-export type RevealVariant = "rise" | "fade" | "scale" | "mask" | "left" | "right";
+type RevealVariant = "rise" | "fade" | "scale" | "mask" | "left" | "right";
 
 interface RevealProps {
   as?: ElementType;

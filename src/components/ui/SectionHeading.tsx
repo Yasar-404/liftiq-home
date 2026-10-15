@@ -5,8 +5,6 @@ import { Reveal } from "./Reveal";
 
 interface SectionHeadingProps {
   eyebrow?: string;
-  /** Position in the page's story, shown beside the eyebrow ("01 / Product"). */
-  index?: number;
   title: ReactNode;
   description?: ReactNode;
   align?: "left" | "center";
@@ -15,7 +13,6 @@ interface SectionHeadingProps {
 
 export function SectionHeading({
   eyebrow,
-  index,
   title,
   description,
   align = "left",
@@ -26,13 +23,7 @@ export function SectionHeading({
   return (
     <div className={cn("flex flex-col gap-4", centered && "items-center text-center", className)}>
       {eyebrow && (
-        <Reveal as="p" variant="fade" className="text-eyebrow flex items-center gap-2.5">
-          {index !== undefined && (
-            <span className="text-text-faint tabular-nums" aria-hidden="true">
-              {String(index).padStart(2, "0")}
-              <span className="mx-2 inline-block h-px w-5 bg-border-strong align-middle" />
-            </span>
-          )}
+        <Reveal as="p" variant="fade" className="text-eyebrow">
           {eyebrow}
         </Reveal>
       )}

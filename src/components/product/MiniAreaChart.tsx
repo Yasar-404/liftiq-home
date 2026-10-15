@@ -1,7 +1,3 @@
-"use client";
-
-import { useId } from "react";
-import { useInViewOnce } from "@/hooks/useInViewOnce";
 import { cn } from "@/lib/cn";
 
 interface MiniAreaChartProps {
@@ -12,11 +8,13 @@ interface MiniAreaChartProps {
   height?: number;
 }
 
-/** Small SVG area chart; the line draws in when scrolled into view. */
+/**
+ * Small SVG area chart. A server component: the line draws in when the shared
+ * RevealObserver marks it `is-visible` (see `.chart` in styles/motion.css), and
+ * it is fully drawn without scripting. The area fill uses the gradient defined
+ * once by ChartDefs in the root layout.
+ */
 export function MiniAreaChart({ data, label, className, height = 96 }: MiniAreaChartProps) {
-  const id = useId().replace(/:/g, "");
-  const { ref, inView } = useInViewOnce<HTMLDivElement>();
-
   const width = 320;
   const max = Math.max(...data);
   const min = Math.min(...data) * 0.85;
@@ -29,7 +27,7 @@ export function MiniAreaChart({ data, label, className, height = 96 }: MiniAreaC
   const [lastX, lastY] = points[points.length - 1];
 
   return (
-    <div ref={ref} className={cn("w-full", className)} style={{ height }}>
+    <div className={cn("chart w-full", className)} style={{ height }}>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         preserveAspectRatio="none"
@@ -37,12 +35,6 @@ export function MiniAreaChart({ data, label, className, height = 96 }: MiniAreaC
         role="img"
         aria-label={label}
       >
-        <defs>
-          <linearGradient id={`fill-${id}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.24" />
-            <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
-          </linearGradient>
-        </defs>
         {[0.25, 0.5, 0.75].map((f) => (
           <line
             key={f}
@@ -54,12 +46,7 @@ export function MiniAreaChart({ data, label, className, height = 96 }: MiniAreaC
             vectorEffect="non-scaling-stroke"
           />
         ))}
-        <path
-          d={area}
-          fill={`url(#fill-${id})`}
-          opacity={inView ? 1 : 0}
-          style={{ transition: "opacity 0.6s ease 0.3s" }}
-        />
+        <path d={area} fill="url(#lq-chart-fill)" className="chart-area" />
         <path
           d={line}
           fill="none"
@@ -69,21 +56,25 @@ export function MiniAreaChart({ data, label, className, height = 96 }: MiniAreaC
           strokeLinejoin="round"
           vectorEffect="non-scaling-stroke"
           pathLength={1}
-          style={{
-            strokeDasharray: 1,
-            strokeDashoffset: inView ? 0 : 1,
-            transition: "stroke-dashoffset 1.1s var(--ease-spring)",
-          }}
+          strokeDasharray={1}
+          className="chart-line"
         />
-        <circle
-          cx={lastX}
-          cy={lastY}
-          r={3}
-          fill="var(--color-accent-text)"
-          opacity={inView ? 1 : 0}
-          style={{ transition: "opacity 0.3s ease 1s" }}
-        />
+        <circle cx={lastX} cy={lastY} r={3} fill="var(--color-accent-text)" className="chart-dot" />
       </svg>
     </div>
+  );
+}
+
+/** The gradient the area charts fill with. Rendered once, in the root layout. */
+export function ChartDefs() {
+  return (
+    <svg width="0" height="0" aria-hidden="true" focusable="false" className="absolute">
+      <defs>
+        <linearGradient id="lq-chart-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.24" />
+          <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
   );
 }

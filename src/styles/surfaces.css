@@ -1,24 +1,13 @@
 @layer components {
-  /* Panels: product previews and content blocks. */
-  .surface-card {
-    background: linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface));
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      var(--shadow-md);
-  }
-
   /*
-   * The AI section's surface: the same near-black and violet as the rest of the
-   * page, lit from one side and given a faint dot field, so it reads as its own
+   * The AI section's surface: the same navy and blue as the rest of the page, lit from one side and given a faint dot field, so it reads as its own
    * place without leaving the design language.
    */
   .ai-surface {
     background:
-      radial-gradient(50% 40% at 85% 8%, rgba(124, 92, 255, 0.13), transparent),
+      radial-gradient(50% 40% at 85% 8%, rgba(91, 127, 255, 0.13), transparent),
       radial-gradient(40% 35% at 5% 90%, rgba(47, 128, 255, 0.07), transparent),
-      linear-gradient(180deg, #0a0b0e, #0b0a12 50%, #0a0b0e);
+      linear-gradient(180deg, var(--color-bg), #080d1b 50%, var(--color-bg));
     border-block: 1px solid var(--color-border);
     isolation: isolate;
   }
@@ -35,14 +24,6 @@
     mask-image: radial-gradient(ellipse 70% 60% at 70% 20%, #000 20%, transparent 75%);
   }
 
-  /* A contrasting full-width band, used to vary the rhythm between sections. */
-  .band {
-    background:
-      radial-gradient(60% 50% at 50% 0%, rgba(124, 92, 255, 0.07), transparent),
-      linear-gradient(180deg, #0c0d10, #0a0b0d);
-    border-block: 1px solid var(--color-border);
-  }
-
   /*
    * Frame for a product visual: a gradient hairline that is brightest along the
    * top edge, as if lit from above. Wrap the visual in an element with this class.
@@ -53,13 +34,13 @@
     padding: 1px;
     background: linear-gradient(
       180deg,
-      rgba(160, 139, 255, 0.55),
+      rgba(142, 168, 255, 0.55),
       rgba(255, 255, 255, 0.08) 22%,
       rgba(255, 255, 255, 0.03) 60%
     );
     box-shadow:
       0 0 0 1px rgba(0, 0, 0, 0.4),
-      0 40px 120px -40px rgba(124, 92, 255, 0.35),
+      0 40px 120px -40px rgba(91, 127, 255, 0.35),
       0 30px 60px -30px rgba(0, 0, 0, 0.8);
   }
 
@@ -84,7 +65,7 @@
       rgba(255, 255, 255, 0.14),
       rgba(255, 255, 255, 0.04) 35%,
       rgba(255, 255, 255, 0.03) 70%,
-      rgba(124, 92, 255, 0.16)
+      rgba(91, 127, 255, 0.16)
     );
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,

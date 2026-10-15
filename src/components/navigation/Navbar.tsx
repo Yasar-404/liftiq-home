@@ -27,6 +27,7 @@ export function Navbar() {
     setMenuOpen(false);
     menuButton.current?.focus();
   }, []);
+  const closeForNavigation = useCallback(() => setMenuOpen(false), []);
 
   return (
     <>
@@ -102,6 +103,7 @@ export function Navbar() {
       <MobileMenu
         open={menuOpen}
         onClose={closeMenu}
+        onNavigate={closeForNavigation}
         items={primaryNav}
         currentHref={activeId ? `/#${activeId}` : null}
       />

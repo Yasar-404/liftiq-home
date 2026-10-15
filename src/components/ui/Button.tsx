@@ -1,15 +1,17 @@
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { ArrowRight } from "./icons";
 
 type Variant = "primary" | "secondary" | "ghost";
 type Size = "md" | "lg";
 
-interface CommonProps {
+interface ButtonProps {
+  href: string;
   variant?: Variant;
   size?: Size;
   withArrow?: boolean;
   className?: string;
+  onClick?: () => void;
   /**
    * Names the call to action (e.g. "hero-demo") as a `data-cta` attribute, so
    * clicks can be measured by a tag manager without changing components.
@@ -18,18 +20,10 @@ interface CommonProps {
   children: ReactNode;
 }
 
-interface LinkProps extends CommonProps {
-  href: string;
-  onClick?: () => void;
-}
-
-type NativeButtonProps = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps>;
-
 const base =
   "group relative inline-flex shrink-0 items-center justify-center gap-2 rounded-full font-medium whitespace-nowrap " +
   "transition-[transform,background-color,border-color,box-shadow,color] duration-[var(--duration-fast)] ease-[var(--ease-spring)] " +
-  "active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 select-none";
+  "active:scale-[0.98] select-none";
 
 const sizes: Record<Size, string> = {
   md: "h-10 px-5 text-sm",
@@ -39,35 +33,24 @@ const sizes: Record<Size, string> = {
 const variants: Record<Variant, string> = {
   primary:
     "text-white bg-[image:var(--gradient-button)] " +
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_24px_-10px_rgba(124,92,255,0.6)] " +
+    "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_24px_-10px_rgba(91, 127, 255,0.6)] " +
     "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),var(--shadow-glow)]",
   secondary:
     "border border-border-strong bg-white/[0.03] text-text hover:border-white/25 hover:bg-white/[0.07]",
   ghost: "text-text-muted hover:text-text",
 };
 
-function Inner({ withArrow, children }: { withArrow?: boolean; children: ReactNode }) {
-  return (
-    <>
-      {children}
-      {withArrow && (
-        <ArrowRight className="h-4 w-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-spring)] group-hover:translate-x-0.5" />
-      )}
-    </>
-  );
-}
-
-/** Anchor styled as a button. */
-export function ButtonLink({
+/** A link styled as a button. Every call to action on the site is a plain anchor. */
+export function Button({
   href,
-  onClick,
   variant = "primary",
   size = "md",
   withArrow = false,
   className,
+  onClick,
   cta,
   children,
-}: LinkProps) {
+}: ButtonProps) {
   return (
     <a
       href={href}
@@ -75,36 +58,10 @@ export function ButtonLink({
       data-cta={cta}
       className={cn(base, sizes[size], variants[variant], className)}
     >
-      <Inner withArrow={withArrow}>{children}</Inner>
+      {children}
+      {withArrow && (
+        <ArrowRight className="h-4 w-4 transition-transform duration-[var(--duration-fast)] ease-[var(--ease-spring)] group-hover:translate-x-0.5" />
+      )}
     </a>
   );
-}
-
-/** Native `<button>` for actions that aren't navigation. */
-export function ButtonEl({
-  variant = "primary",
-  size = "md",
-  withArrow = false,
-  className,
-  cta,
-  children,
-  ...rest
-}: NativeButtonProps) {
-  return (
-    <button
-      data-cta={cta}
-      className={cn(base, sizes[size], variants[variant], className)}
-      {...rest}
-    >
-      <Inner withArrow={withArrow}>{children}</Inner>
-    </button>
-  );
-}
-
-/** Renders an anchor when `href` is given, otherwise a native button. */
-export function Button(props: LinkProps | NativeButtonProps) {
-  if ("href" in props && typeof props.href === "string") {
-    return <ButtonLink {...props} />;
-  }
-  return <ButtonEl {...(props as NativeButtonProps)} />;
 }

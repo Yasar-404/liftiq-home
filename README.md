@@ -30,6 +30,7 @@ The site runs at http://localhost:3000.
 | `npm run start`        | Serve the production build        |
 | `npm run lint`         | Lint with ESLint                  |
 | `npm run typecheck`    | Type-check with `tsc`             |
+| `npm test`             | Check a running build (see below) |
 | `npm run format`       | Format the codebase with Prettier |
 | `npm run format:check` | Check formatting without changing |
 
@@ -39,40 +40,54 @@ The site runs at http://localhost:3000.
 src/
   app/                  The homepage, 404 page, root layout, fonts, icons, robots and sitemap
   components/
-    layout/             Container, Section, RevealObserver, AnchorScroll
+    layout/             Container, Section, RevealObserver, SmoothAnchors
     navigation/         Header and mobile menu
     footer/             Site footer
-    sections/           One folder per homepage section (Hero, Overview, Loop, ProductStory, ...)
+    sections/           One folder per homepage section, named for what it shows
     page/               PageHero, used by the 404 page
     product/            Product previews built from the sample data in data/demo.ts
     ui/                 Reusable primitives (Button, Logo, Reveal, ...)
   data/                 Site config, navigation, and the content of each section
-  hooks/                Reusable React hooks
+  hooks/                useScrolled, useActiveSection
   lib/                  Helpers (class names, formatting, SEO)
   styles/               Design tokens and shared CSS
   types/                Shared TypeScript types
+tests/                  Checks of a running build (Node's built-in test runner)
 ```
+
+The homepage sections, in page order, and the `id` each answers to:
+
+| Section        | Folder                         | `id`       |
+| -------------- | ------------------------------ | ---------- |
+| Hero           | `sections/Hero`                | `top`      |
+| Platform tabs  | `sections/Platform`            | `platform` |
+| AI insights    | `sections/AiInsights`          | `ai`       |
+| Benefits       | `sections/Benefits`            | `benefits` |
+| Security strip | `sections/Benefits/TrustStrip` | `security` |
+| Book a demo    | `sections/Contact`             | `contact`  |
 
 ## Conventions
 
 - **One page.** All product marketing lives on the homepage as sections, in the order a gym
-  owner's questions come up: hero, product overview, how it works, platform, features, AI
-  insights, benefits, security, demo. There are no separate product routes. `next.config.ts`
-  redirects the four short-lived addresses (`/platform`, `/ai-insights`, `/features`,
-  `/security`) to the matching section. The navbar, `<main id="main">` and footer come from the
-  root layout.
-- **Navigation** is the list in `data/sections.ts`. Each entry's `id` must match a section's
-  `id`; the navbar, mobile menu, footer and the active-section highlight (`useActiveSection`)
-  all read from it. Write in-page links as `href="/#section-id"`: they work from the 404 page
-  too, and on the homepage `AnchorScroll` scrolls to the section, moves focus there and keeps
-  the address bar clean. Without JavaScript they are ordinary anchors.
+  owner's questions come up. There are no separate product routes: `next.config.ts` redirects
+  the four short-lived addresses (`/platform`, `/ai-insights`, `/features`, `/security`) to
+  the matching section (`/features` lands on the platform tabs). The navbar, `<main id="main">` and footer come from the root layout.
+- **Navigation is native hash navigation.** The links are the list in `data/sections.ts`; each
+  entry's `id` must match a section's `id`. Write in-page links as `href="/#section-id"`: a plain
+  anchor updates the URL hash, works on a direct load, refresh and back/forward, works without
+  JavaScript, and works from the 404 page. Sections carry `scroll-mt-24` so the sticky header
+  never covers a heading. `SmoothAnchors` only adds smooth scrolling for a moment after a click
+  on an in-page link (never on load, refresh or history navigation, and not for reduced motion);
+  it does not intercept navigation. `useActiveSection` highlights the current section.
+- **No hash is added on scroll.** Scrolling doesn't rewrite the URL, so history holds only
+  places the visitor chose.
 
 - **Content lives in `src/data`.** Components render data; edit copy, navigation, features,
   and contact details there. Brand name, contact details, calls to action and the sign-in URL
   have one source of truth: `data/site.ts`.
 - **Only describe what the product does today.** Copy is checked against the LiftIQ app.
   Anything not generally available is labelled (`status` on a feature, or the roadmap list in
-  `data/intelligence.ts`). No testimonials, customer logos or performance figures unless they
+  `data/insights.ts`). No testimonials, customer logos or performance figures unless they
   are real and verifiable.
 - **Product previews use one sample workspace.** `data/demo.ts` holds a fictional gym. Totals,
   counts and percentages are derived from its rows rather than typed in, so every preview
@@ -88,8 +103,7 @@ src/
   `bg-accent-strong` behind white text.
 - **CSS layers.** `styles/base.css` is in `@layer base` and shared classes are in
   `@layer components`, so Tailwind utilities always win. Keep new shared CSS inside a layer.
-- **Surfaces.** `.band` gives a section a contrasting background to vary the page rhythm;
-  `.frame-lit` frames a product visual with a top-lit hairline; `.text-sheen` and
+- **Surfaces.** `.frame-lit` frames a product visual with a top-lit hairline; `.text-sheen` and
   `.text-gradient-soft` are gradient text for headings. Gradient text is clipped to the
   element's own glyphs, so on word-animated headings pass it to `AnimatedText` as
   `wordClassName`, not `className`.
@@ -101,13 +115,31 @@ src/
   components revealed by one `RevealObserver`, gated on a `js` class on `<html>`, so content
   stays visible without JavaScript. `Reveal` has variants (`rise`, `fade`, `scale`, `mask`,
   `left`, `right`): choose by what the element is rather than using one everywhere.
-- **The platform story** (`ProductStory`/`StoryTrack`) is one row per area: text on the left and
-  its visual beside it, which sticks near the top from `lg` while its row scrolls past. It
-  needs no script and renders each visual once.
+- **The platform section** (`Platform`/`PlatformTabs`) is four tabs (members, billing, attendance,
+  analytics) with roving focus and arrow/Home/End keys. The server renders every panel and the
+  inactive ones carry `hidden`; without JavaScript the tab list is hidden and all panels show.
 - **Sections** are exported through `src/components/sections/index.ts` and composed in
-  `src/app/page.tsx`, ordered by the questions a gym owner asks while deciding.
+  `src/app/page.tsx`.
+- **Charts are server components.** `MiniAreaChart` and `MiniBars` draw in via CSS when the
+  shared `RevealObserver` adds `is-visible`; they are fully drawn without scripting.
 
-## Deployment
+## Checks
+
+`npm run typecheck`, `npm run lint` and `npm run format:check` cover the source.
+
+`npm test` runs `tests/site.test.mjs` against a **running** build, with no extra dependencies:
+
+```bash
+npm run build && npm run start          # one terminal
+BASE_URL=http://localhost:3000 npm test # another (BASE_URL defaults to :3000)
+```
+
+It checks what the server sends: one `h1`, canonical and Open Graph tags on the primary domain,
+an element for every section the navigation points at, no link to a fragment that doesn't exist,
+the redirects from the old routes, 404 behaviour, and the sitemap and robots files. It does not
+cover scrolling, focus, animation or layout, which need a browser: check hash navigation
+(direct load, refresh, back and forward, keyboard, the mobile menu), reduced motion, and overflow at
+360 to 1920 px by hand or with a browser automation tool before a release.
 
 The site is a static Next.js app and deploys to any Next.js host, including Vercel.
 Contact details and the production domain are configured in `src/data/site.ts`.
