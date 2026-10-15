@@ -7,38 +7,20 @@ export interface NavItem {
   href: string;
 }
 
-export interface Feature {
-  title: string;
-  description: string;
-  icon: IconType;
-  /** Shown as a badge when the capability is not generally available yet. */
-  status?: string;
-  /** Card size in the features bento: large cards carry a product visual. */
-  size?: "large" | "small" | "wide";
-  /** Sample product visual shown on large cards. */
-  visual?: FeatureVisualKind;
-}
+/** The tabs of the platform section. */
+export type AreaId = "members" | "billing" | "attendance" | "analytics";
 
-export type FeatureVisualKind = "branches" | "approval" | "cashClose";
-
-export type WorkflowId = "members" | "payments" | "attendance" | "renewals" | "leads" | "reports";
-
-export interface Workflow {
-  id: WorkflowId;
+export interface PlatformArea {
+  id: AreaId;
   label: string;
   headline: string;
-  /** The operational problem, in the owner's words. */
-  problem: string;
-  /** What LiftIQ does about it. */
-  solution: string;
+  summary: string;
   points: string[];
 }
 
 interface DetailItem {
   title: string;
   body: string;
-  /** Shown as a badge when the item is not generally available yet. */
-  status?: string;
 }
 
 export interface DetailGroup {

@@ -95,6 +95,31 @@
   animation: lq-trace 2.6s var(--ease-standard) infinite;
 }
 
+/*
+ * Platform tabs. The server renders every panel; the inactive ones carry
+ * `hidden`. Without JavaScript the tab list is hidden and every panel shows,
+ * so nothing is lost. A panel eases in only after the visitor switches to it.
+ */
+html:not(.js) .tab-list {
+  display: none;
+}
+
+/* In the base layer, beside Tailwind's `[hidden] { display: none !important }`: for
+   important declarations the earlier layer wins, so this cannot live in a later one. */
+@layer base {
+  html:not(.js) .tab-panel[hidden] {
+    display: grid !important;
+  }
+}
+
+html:not(.js) .tab-panel + .tab-panel {
+  margin-top: 4rem;
+}
+
+.tab-enter {
+  animation: lq-enter var(--duration-slow) var(--ease-spring) both;
+}
+
 /* Scroll reveal (Reveal) and its variants */
 
 .js .reveal {

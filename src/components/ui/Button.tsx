@@ -33,7 +33,7 @@ const sizes: Record<Size, string> = {
 const variants: Record<Variant, string> = {
   primary:
     "text-white bg-[image:var(--gradient-button)] " +
-    "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_24px_-10px_rgba(124,92,255,0.6)] " +
+    "shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_8px_24px_-10px_rgba(91, 127, 255,0.6)] " +
     "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),var(--shadow-glow)]",
   secondary:
     "border border-border-strong bg-white/[0.03] text-text hover:border-white/25 hover:bg-white/[0.07]",

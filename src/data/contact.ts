@@ -15,18 +15,9 @@ export const contactChannels: ContactChannel[] = [
   { label: "Based in", value: site.contact.location, icon: Pin },
 ];
 
-/** What happens after someone asks for a demo. */
-export const demoSteps = [
-  {
-    title: "Tell us about your gym",
-    body: "Your branches, roughly how many members you have, and how you track them today.",
-  },
-  {
-    title: `A ${site.demo.length} walkthrough`,
-    body: "We show LiftIQ on a sample gym set up like yours: selling a plan, taking a payment, working renewals.",
-  },
-  {
-    title: "Your questions, answered",
-    body: "Pricing, moving your existing members across, and what onboarding involves. No obligation.",
-  },
+/** What a demo covers, as three short lines. */
+export const demoCovers = [
+  "Your gym's set-up: branches, plans and members",
+  "Selling, collecting and renewing, step by step",
+  "Pricing, moving your data across, and onboarding",
 ];

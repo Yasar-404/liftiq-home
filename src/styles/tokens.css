@@ -4,29 +4,32 @@
     "Rupee Sign", var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     Helvetica, Arial, sans-serif;
 
-  /* Surfaces */
-  --color-bg: #08090a;
-  --color-bg-subtle: #0b0c0e;
-  --color-surface: #101114;
-  --color-surface-elevated: #16181c;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-strong: rgba(255, 255, 255, 0.14);
+  /* Surfaces: deep navy rather than neutral black */
+  --color-bg: #060912;
+  --color-bg-subtle: #0a0f1b;
+  --color-surface: #0e1524;
+  --color-surface-elevated: #131c2f;
+  --color-border: rgba(150, 175, 255, 0.1);
+  --color-border-strong: rgba(150, 175, 255, 0.18);
 
   /*
    * Text. Every text colour meets WCAG AA (4.5:1) for body-size text on both
    * --color-bg and --color-surface-elevated.
    */
-  --color-text: #f4f5f7;
-  --color-text-muted: #9ba1ac;
-  --color-text-faint: #80869a;
+  --color-text: #f1f4fb;
+  --color-text-muted: #9ba7be;
+  --color-text-faint: #7f8ba6;
 
-  /* Brand accent (blue to violet). Use accent-text, not accent, for small text. */
-  --color-accent: #7c5cff;
-  --color-accent-text: #a08bff;
-  --color-accent-soft: rgba(124, 92, 255, 0.14);
+  /* Brand accent: the blue end of the logo's gradient. Use accent-text, not accent, for small text. */
+  --color-accent: #5b7fff;
+  --color-accent-text: #8ea8ff;
+  --color-accent-soft: rgba(91, 127, 255, 0.14);
   /* Accent fill behind white text: meets 4.5:1 across the whole gradient. */
-  --color-accent-strong: #6a4cf0;
-  --gradient-button: linear-gradient(150deg, #2468e0 0%, #6a4cf0 55%, #8a3df0 100%);
+  --color-accent-strong: #3f5cf0;
+  --gradient-button: linear-gradient(150deg, #2f6fe8 0%, #3f5cf0 60%, #5a4fe8 100%);
+
+  /* Panels: the standard surface for product previews and cards */
+  --gradient-panel: linear-gradient(180deg, var(--color-surface-elevated), var(--color-surface));
 
   /* Status (used in product previews) */
   --color-positive: #4ade80;
@@ -49,10 +52,10 @@
   /* Elevation */
   --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 24px 70px -20px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 0 1px rgba(124, 92, 255, 0.28), 0 14px 46px -12px rgba(124, 92, 255, 0.42);
+  --shadow-glow: 0 0 0 1px rgba(91, 127, 255, 0.3), 0 14px 46px -12px rgba(91, 127, 255, 0.45);
 
   /* Focus */
-  --color-focus: #a08bff;
+  --color-focus: #8ea8ff;
 
   /* Motion: see styles/motion.css for how each is used */
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);

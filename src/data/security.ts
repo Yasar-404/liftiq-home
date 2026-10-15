@@ -1,42 +1,20 @@
-import { Audit, Link, Lock, Shield } from "@/components/ui/icons";
-import type { DetailGroup, IconType } from "@/types";
+import type { DetailGroup } from "@/types";
 
-interface TrustPoint {
-  title: string;
-  body: string;
-  icon: IconType;
-}
-
-/** How the product protects a gym's data and money. Each point describes how LiftIQ is built today. */
-export const trustPoints: TrustPoint[] = [
-  {
-    title: "Your gym's data stays your gym's",
-    body: "Every gym's records are kept apart at the database level, so one gym's staff can never see another gym's members.",
-    icon: Lock,
-  },
-  {
-    title: "Access by role",
-    body: "Owners decide what the front desk can see and do. Discounts, pay and exports follow the permissions you set.",
-    icon: Shield,
-  },
-  {
-    title: "Payments recorded once",
-    body: "A double tap or a dropped connection mid-payment does not create a second entry. LiftIQ tells you it is already paid.",
-    icon: Audit,
-  },
-  {
-    title: "Numbers you can check",
-    body: "Every figure on the dashboard and brief links to the list it was counted from, so you never have to take a total on trust.",
-    icon: Link,
-  },
+/**
+ * The strongest controls, stated briefly. Each describes how LiftIQ is built
+ * today (see the liftiq-gym repository's docs/architecture.md); there are no
+ * certifications to claim.
+ */
+export const trustPoints = [
+  { title: "Each gym kept separate", body: "Isolated in the database, not only in the app." },
+  { title: "Access by role", body: "You set what the front desk can see and do." },
+  { title: "Recorded once", body: "A double tap never records a payment twice." },
+  { title: "Numbers you can check", body: "Every figure links to the list behind it." },
 ];
 
-/** What onboarding looks like. */
-export const onboardingSteps = [
-  "We set up your gym's workspace, branches and plans with you.",
-  "Your front desk gets its own login with the permissions you choose.",
-  "You start recording sales, payments and visits as soon as the workspace is ready.",
-];
+/** Said plainly, next to the controls. */
+export const notYetClaimed =
+  "No independent certifications yet, such as SOC 2 or ISO 27001, and no published backup recovery targets.";
 
 /**
  * Security controls as built in the LiftIQ platform (see the liftiq-gym
@@ -132,10 +110,4 @@ export const securityGroups: DetailGroup[] = [
       },
     ],
   },
-];
-
-/** Being upfront about what isn't claimed yet. */
-export const notYetClaimed = [
-  "LiftIQ does not yet hold independent security certifications such as SOC 2 or ISO 27001.",
-  "We don't publish backup recovery targets yet. Ask us how your data is protected and recovered during your demo.",
 ];

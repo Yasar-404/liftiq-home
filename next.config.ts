@@ -7,8 +7,8 @@ import type { NextConfig } from "next";
 const movedSections: Record<string, string> = {
   "/platform": "/#platform",
   "/ai-insights": "/#ai",
-  "/features": "/#features",
-  "/security": "/#about",
+  "/features": "/#platform",
+  "/security": "/#security",
 };
 
 const nextConfig: NextConfig = {

@@ -1,9 +1,5 @@
+export { AiInsights } from "./AiInsights";
 export { Benefits } from "./Benefits";
 export { Contact } from "./Contact";
-export { Features } from "./Features";
 export { Hero } from "./Hero";
-export { AiInsights } from "./AiInsights";
-export { HowItWorks } from "./HowItWorks";
-export { PlatformOverview } from "./PlatformOverview";
-export { Workflows } from "./Workflows";
-export { About } from "./About";
+export { Platform } from "./Platform";
