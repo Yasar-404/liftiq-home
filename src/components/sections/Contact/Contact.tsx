@@ -16,7 +16,13 @@ export function Contact() {
           </div>
 
           <div className="relative flex flex-col items-center gap-5 text-center">
-            <p className="text-eyebrow">Book a demo</p>
+            <p className="text-eyebrow flex items-center gap-2.5">
+              <span className="text-text-faint tabular-nums" aria-hidden="true">
+                08
+                <span className="mx-2 inline-block h-px w-5 bg-border-strong align-middle" />
+              </span>
+              Book a demo
+            </p>
             <h2 className="text-h2 text-sheen max-w-2xl text-balance">
               See LiftIQ on a gym like yours.
             </h2>

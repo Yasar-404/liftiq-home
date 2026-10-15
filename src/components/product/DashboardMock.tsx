@@ -57,8 +57,12 @@ export function DashboardMock({ className }: { className?: string }) {
           </div>
 
           <dl className="grid grid-cols-2 gap-2.5 lg:grid-cols-4">
-            {dashboardKpis.map((kpi) => (
-              <MockPanel key={kpi.label} className="flex flex-col p-3 sm:p-3.5">
+            {dashboardKpis.map((kpi, i) => (
+              <MockPanel
+                key={kpi.label}
+                enterDelay={460 + i * 70}
+                className="flex flex-col p-3 sm:p-3.5"
+              >
                 <dt className="mock-label">{kpi.label}</dt>
                 <dd className="mt-1 text-[1.15rem] font-semibold tracking-tight text-text tabular-nums">
                   {kpi.value}
@@ -75,10 +79,10 @@ export function DashboardMock({ className }: { className?: string }) {
             ))}
           </dl>
 
-          <BriefMock className="mt-2.5" />
+          <BriefMock className="mt-2.5" enterDelay={760} />
 
           <div className="mt-2.5 grid grid-cols-1 gap-2.5 lg:grid-cols-[1.4fr_1fr]">
-            <MockPanel>
+            <MockPanel enterDelay={880}>
               <MockHeading title="Collections" aside="Last 12 weeks" />
               <MiniAreaChart
                 data={collections.weekly}
@@ -87,7 +91,7 @@ export function DashboardMock({ className }: { className?: string }) {
               />
             </MockPanel>
 
-            <MockPanel>
+            <MockPanel enterDelay={960}>
               <MockHeading
                 title="Expiring this week"
                 aside={`${renewals.count} · ${formatInr(renewals.atStake)}`}

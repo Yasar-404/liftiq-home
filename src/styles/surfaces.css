@@ -9,6 +9,32 @@
       var(--shadow-md);
   }
 
+  /*
+   * The AI section's surface: the same near-black and violet as the rest of the
+   * page, lit from one side and given a faint dot field, so it reads as its own
+   * place without leaving the design language.
+   */
+  .ai-surface {
+    background:
+      radial-gradient(50% 40% at 85% 8%, rgba(124, 92, 255, 0.13), transparent),
+      radial-gradient(40% 35% at 5% 90%, rgba(47, 128, 255, 0.07), transparent),
+      linear-gradient(180deg, #0a0b0e, #0b0a12 50%, #0a0b0e);
+    border-block: 1px solid var(--color-border);
+    isolation: isolate;
+  }
+
+  .ai-surface::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 70% 20%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 70% 20%, #000 20%, transparent 75%);
+  }
+
   /* A contrasting full-width band, used to vary the rhythm between sections. */
   .band {
     background:

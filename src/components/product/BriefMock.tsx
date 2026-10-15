@@ -4,9 +4,9 @@ import { cn } from "@/lib/cn";
 import { MockPanel } from "./Mock";
 
 /** The morning brief as it appears on the LiftIQ dashboard, with sample figures. */
-export function BriefMock({ className }: { className?: string }) {
+export function BriefMock({ className, enterDelay }: { className?: string; enterDelay?: number }) {
   return (
-    <MockPanel className={cn("@container flex flex-col gap-3", className)}>
+    <MockPanel enterDelay={enterDelay} className={cn("@container flex flex-col gap-3", className)}>
       <div className="flex items-baseline justify-between gap-3">
         <span className="text-[12px] font-semibold text-text">Today&apos;s brief</span>
         <span className="mock-label">Counted this morning</span>

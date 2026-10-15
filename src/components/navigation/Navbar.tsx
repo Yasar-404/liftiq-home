@@ -7,14 +7,19 @@ import { Button } from "@/components/ui/Button";
 import { Menu } from "@/components/ui/icons";
 import { Logo } from "@/components/ui/Logo";
 import { primaryNav } from "@/data/navigation";
+import { navSections } from "@/data/sections";
 import { site } from "@/data/site";
+import { useActiveSection } from "@/hooks/useActiveSection";
 import { useScrolled } from "@/hooks/useScrolled";
 import { cn } from "@/lib/cn";
 import { MobileMenu } from "./MobileMenu";
 
+const sectionIds = navSections.map((section) => section.id);
+
 export function Navbar() {
   const scrolled = useScrolled(16);
-  const pathname = usePathname();
+  const activeId = useActiveSection(sectionIds);
+  const onHome = usePathname() === "/";
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
 
@@ -34,19 +39,26 @@ export function Navbar() {
               : "border-transparent bg-transparent",
           )}
         >
-          <Link href="/" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
-            <Logo />
-          </Link>
+          {/* On the homepage the logo returns to the top; elsewhere (404) it goes home. */}
+          {onHome ? (
+            <a href="#top" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
+              <Logo />
+            </a>
+          ) : (
+            <Link href="/" aria-label={`${site.name} home`} className="shrink-0 rounded-md">
+              <Logo />
+            </Link>
+          )}
 
           <nav aria-label="Main" className="hidden md:block">
             <ul className="flex items-center gap-0.5">
-              {primaryNav.map((item) => {
-                const current = pathname === item.href;
+              {primaryNav.map((item, i) => {
+                const current = activeId === navSections[i].id;
                 return (
                   <li key={item.href}>
-                    <Link
+                    <a
                       href={item.href}
-                      aria-current={current ? "page" : undefined}
+                      aria-current={current ? "location" : undefined}
                       className={cn(
                         "block rounded-full px-3.5 py-2 text-sm transition-colors duration-[var(--duration-fast)]",
                         current
@@ -55,7 +67,7 @@ export function Navbar() {
                       )}
                     >
                       {item.label}
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
@@ -87,7 +99,12 @@ export function Navbar() {
         </div>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={closeMenu} items={primaryNav} currentPath={pathname} />
+      <MobileMenu
+        open={menuOpen}
+        onClose={closeMenu}
+        items={primaryNav}
+        currentHref={activeId ? `/#${activeId}` : null}
+      />
     </>
   );
 }

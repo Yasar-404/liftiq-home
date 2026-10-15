@@ -2,10 +2,23 @@
 
 import { useEffect } from "react";
 
-/** The id a same-page link points at, or null for any other link. */
-function targetId(link: HTMLAnchorElement): string | null {
+/**
+ * The section id a link points at when it targets the current page, or null.
+ * Handles `#trust` and `/#trust` (the form that also works from other routes).
+ */
+function sameDocumentTarget(link: HTMLAnchorElement): string | null {
   const href = link.getAttribute("href");
-  return href && href.length > 1 && href.startsWith("#") ? href.slice(1) : null;
+  if (!href || href.length < 2 || link.target === "_blank") return null;
+
+  let url: URL;
+  try {
+    url = new URL(href, window.location.href);
+  } catch {
+    return null;
+  }
+  const samePage =
+    url.origin === window.location.origin && url.pathname === window.location.pathname;
+  return samePage && url.hash.length > 1 ? decodeURIComponent(url.hash.slice(1)) : null;
 }
 
 function scrollToSection(id: string, smooth: boolean) {
@@ -28,10 +41,10 @@ function scrollToSection(id: string, smooth: boolean) {
 }
 
 /**
- * Keeps the address bar clean: same-page links (`href="#trust"`) scroll to their
- * section without adding `#trust` to the URL, and a URL that arrives with a
- * hash is tidied once the browser has scrolled to it. The hrefs stay in the
- * markup, so links still work without JavaScript. Renders nothing.
+ * Keeps the address bar clean: same-page links scroll to their section without
+ * adding `#section` to the URL, and a URL that arrives with a hash is tidied
+ * once the page has scrolled to it. The hrefs stay in the markup, so links
+ * still work without JavaScript. Renders nothing.
  */
 export function AnchorScroll() {
   useEffect(() => {
@@ -43,7 +56,7 @@ export function AnchorScroll() {
 
       const link = (event.target as Element | null)?.closest?.("a");
       if (!link) return;
-      const id = targetId(link);
+      const id = sameDocumentTarget(link);
       if (!id) return;
 
       event.preventDefault();
