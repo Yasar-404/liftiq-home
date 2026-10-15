@@ -120,28 +120,6 @@ html:not(.js) .tab-panel + .tab-panel {
   animation: lq-enter var(--duration-slow) var(--ease-spring) both;
 }
 
-/* Insight dialog: a short fade and scale; the backdrop only fades. */
-@keyframes lq-dialog-in {
-  from {
-    opacity: 0;
-    transform: scale(0.97);
-  }
-}
-
-@keyframes lq-backdrop-in {
-  from {
-    opacity: 0;
-  }
-}
-
-.insight-dialog[open] {
-  animation: lq-dialog-in var(--duration-base) var(--ease-spring) both;
-}
-
-.insight-dialog[open]::backdrop {
-  animation: lq-backdrop-in var(--duration-base) var(--ease-standard) both;
-}
-
 /* Scroll reveal (Reveal) and its variants */
 
 .js .reveal {

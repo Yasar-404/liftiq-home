@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import { Section } from "@/components/layout/Section";
 import { BriefMock } from "@/components/product/BriefMock";
 import { MockHeading, MockPanel, MockRow } from "@/components/product/Mock";
+import { DetailDisclosure } from "@/components/ui/DetailDisclosure";
 import { Reveal } from "@/components/ui/Reveal";
-import { InsightModal } from "./InsightModal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { brief, plans, renewals } from "@/data/demo";
 import { insightGroups, insightPrinciples, insightStatus } from "@/data/insights";
@@ -102,7 +102,7 @@ export function AiInsights() {
             <p className="leading-relaxed text-text-muted">{insightStatus.planned}</p>
           </Reveal>
 
-          <InsightModal groups={insightGroups} />
+          <DetailDisclosure title="How insights work" groups={insightGroups} />
         </div>
       </div>
     </Section>
